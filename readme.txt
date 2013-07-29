@@ -1,0 +1,439 @@
+
+EasyDataTable AJAX分页插件使用手册
+
+
+使用Ajax分页可以提高数据加载和显示速度，减少网络流量，提升客户体验度；同时能够只刷新局部，解决当页面上有多个数据显示表格区域时，传统的分页方式会导致页面全部刷新。
+EasyDataTable AJAX分页插件是基于jQuery最好的分页插件，没有之一，简单、清晰、易用、灵活、全面；自带分页标签；支持排序；内置EasyDataTable表达式语言能够通过JavaScript编程增强分页。
+
+
+快速开发步骤：
+1、在页面引入EasyDataTable核心的js和css文件
+
+<link rel="stylesheet" href="css/datatable.css" type="text/css"></link>
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/easy.datatable.js"></script>
+
+2、对Ajax分页表格进行数据初始化
+
+方法一：给表格添加easydatatable类样式即可，等价于方法二的DataTable.load('tableid')。
+<table class="datatable easydatatable"  id="datatable3"  width="760px" align="center">
+
+方法二：使用 DataTable.load(表格id , 参数信息) 方法对要进行Ajax分页的表格进行数据初始化
+DataTable.load( tableid [ , easydataParameters] );
+
+参数说明：
+tableid:必须参数,显示数据的表格id
+
+easydataParameters：可选参数,指定EasyDataTable的参数信息，支撑参数目前支持的参数 :
+{
+pagetheme: '分页主题',
+loading: '是否显示加载提示',
+language: '分页标签的语言'
+}
+
+pagetheme:可选参数,分页标签主题，支持两套可选分页主题：
+DataTable.FULL_PAGE（完全主题，默认显示所有分页选项）
+DataTable.SIMPLE_PAGE(简单主题，不显示当前页前后页快速跳转标签)
+默认值DataTable.FULL_PAGE .
+
+loading:可选参数,加载数据时是否显示loading提示"数据正在读取中……"，可选值为true或false,默认为false,不显示
+
+language:可选参数,设置分页标签显示的语言，默认值为
+{
+			"first":'首页',
+			"previous":'上一页',
+			"next":'下一页',
+			"last":'末页',
+			"totalCount":'共{0}条',
+			"totalPage":'共{0}页',
+			"rowPerPage":'每页显示{0}条'		
+	} 
+可根据需要重新定义,{0}为显示相应数据的占位符,必须存在。
+
+  <script type="text/javascript">
+  $(function(){
+  			var pageLanguage={
+				"first":'first',
+				"previous":'previous',
+				"next":'next',
+				"last":'last',
+				"totalPage":'total {0} pages',
+				"totalCount":'total {0} rows',
+				"rowPerPage":'page for {0} rows',
+		    };
+		    
+  			DataTable.load("datatable",{
+  				"pagetheme":DataTable.SIMPLE_PAGE,
+  				"loading":true,
+  				"language":pageLanguage
+  			});
+  			DataTable.load("datatable2");
+  			DataTable.load("datatable3");
+  			DataTable.load("datatable4");
+  });
+  </script>
+
+
+3、分页表格结构
+<form action="服务器分页地址">
+
+<!--  数据展示表格  -->
+<table>
+<!--  表头行  -->
+<tr><th></th>    …… </tr>
+<!--  数据展示行  -->
+<tr><th></th>    …… </tr>
+</table>
+
+<!--  分页行  -->
+<div class="panelBar" style="width: 760px;" size="5,10,30,50">	</div>
+</form>
+
+
+示例：
+
+<!-- 创建表单 action值为分页处理的请求地址 -->
+<form action="doPage.jsp" name="myform">
+
+   	<div style="height: 260px;overflow:auto;width: 780px;">
+  <!--显示数据的表格，必须指定id，EasyDatatable通过id初始化分页数据-->
+		     <table class="datatable"  id="datatable"  width="760px" align="center">
+            <!--表头行-->
+		      	<tr>
+		      	<th width="40">
+<!-- 调用DataTable.checkAll(this,'复选框名称')，可实现复选框全选/全不选功能 -->
+	<input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" />
+			   		</th>
+			   		<th width="80">数量</th>
+			   		<th width="100">编号</th>
+			   		<th width="100">姓名</th>
+			   		<th width="100">信息</th>
+			   		<th >操作</th>
+		   		</tr> 
+		<!-- 数据展示行，使用 {属性} 属性表达式获取数据 -->
+			   	<tr>
+			   		<td style="text-align:center;height: 45px;">
+            <!--自定义复选框,value为对象的id-->
+			   			<input type="checkbox" name="mychk" value="{id }"/>
+			   		</td>
+            <!--使用内置的datatableCount属性，显示数据条数-->
+			   		<td align="center"  style="text-align:center;height: 45px;">{datatableCount }</td>
+			   		<td style="text-align:center;color:#00f">No.{id}</td>
+			   		<td align="center">{name}</td>
+			   		<td>{info}</td>
+			   		<td align="center" style="width: 120px">
+			   			<a href="doUser.jsp?o=show&id={id }">查看</a>
+				   		<a href="doUser.jsp?o=edit&id={id }">修改</a>
+				   		<a href="doUser.jsp?o=delete&id={id }">删除</a>
+				   	</td>
+			   	</tr>
+		   </table>
+    </div>
+<!--分页标签部分，使用size属性设置每页显示条数下拉菜单可选值，使用,分隔-->
+      	<div class="panelBar" style="width: 760px;" size="5,10,30,50">
+			
+		</div>
+</form>
+
+4、EasyDataTable Expression Language——表达式语言使用
+4.1	EasyDataTable Property Expression属性表达式  {数据属性}
+属性表达式用于在数据展示行，显示指定的属性值。
+在属性表达式中可以直接引用数据属性来获得指定属性的数据，并支持各种数学、比较等JavaScript基本运算符进行运算。
+{id}  {name}
+
+4.2	EasyDataTable Statement Expression 语句表达式 %{表达式语句}%	
+语句表达式用于在数据展示行，使用编程语句进行控制编程，在语句表达式中支持使用JavaScript编写表达式代码；支持直接调用数据属性；也支持使用EasyDataTable属性表达式。
+语句表达式执行的结果必须使用EasyDataTable语句表达式标准输出方法输出：
+DataTable.out("内容");
+
+<%-- 支持JavaScript语言编写表达式，支持使用 属性名（以变量方式引用和处理） 或 EasyDataTable 属性表达式（必须使用引号定义在字符串中） 直接引用属性值 --%>
+%{
+	 var res=name+"   {name}";
+DataTable.out(res); 
+}% 
+			   		
+%{ 
+	if(id%2==0){ 
+		var op='<a href="doUser.jsp?o=show&id='+id+'">查看</a>&nbsp;&nbsp;'; 
+		op+='<a href="doUser.jsp?o=edit&id={id }">修改</a>';
+		DataTable.out(op);  
+	}else{ 
+	    DataTable.out('<a href="doUser.jsp?o=show&id={id }">查看</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={id }">修改</a>&nbsp;&nbsp;<a href="doUser.jsp?o=delete&id={id }">删除</a>');  
+	} 
+}%
+
+5、EasyTableData内置数据属性
+datatableIndex:可获得数据在当前页的索引
+datatableCount:可获得数据在当前页的个数
+pageNo:当前页
+rowPerPage:每页显示条数
+totalCount:数据总条数
+key:Map数据集合时可用来获取数据对于的键
+order:排序字段
+sort:排序方式，desc或asc
+例如：
+当前数据在所有数据中的索引：{datatableIndex+(pageNo-1)*rowPerPage}
+当前数据在所有数据中的个数：{datatableCount+(pageNo-1)*rowPerPage}
+
+
+6、排序支持
+在表头行需要排序字段对应的单元格上添加sort=”排序字段名称”属性即可。
+<tr>
+			   		<th width="80">count</th>
+			   	   	<th width="80">index</th>
+			   	   	<th width="80">{index+1}</th>
+			   		<th width="100" order="id">id</th>
+			   		<th width="100" order="name">name</th>
+			   		<th width="100" order="info">info</th>
+			   		<th >操作</th>
+</tr>
+ 
+可排序列会显示排序箭头。点击即可发送排序字段order和排序方式sort，实现升序降序切换。
+ 
+服务器端通过order和sort参数名获取排序信息。
+String sort = request.getParameter("sort");
+String order = request.getParameter("order");
+
+
+7	复选框多选功能（支持全选/全部选）
+在表头行加入复选框，在复选框的单击事件中调用 DataTable.checkAll(this,'复选框名称') ，可实现复选框全选/全不选功能：
+<input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" />
+数据行：
+<input type="checkbox" name="mychk" value="{id }"/>
+
+
+
+8、服务器端数据要求
+服务器端必须输出四条如下名称的分页参数JSON结果：
+data:数据集合，支持List和Map集合（内置属性key可获取Map的键，Map的值无需使用value.前缀）
+pageNo:当前第几页，数字
+rowPerPage:每页显示条数，数字
+totalCount:数据总条数，数字
+可选参数：
+[order]:排序字段
+[sort]:排序方式，desc或asc
+
+
+如果服务器端分页参数封装在PageBean中，例如
+public class PageBean {
+	private List data;
+	private int pageNo;
+	private int rowPerPage;
+	private int totalCount;
+   //setters&getters ……
+}
+返回的是PageBean对象，则在table上加入value属性，指定服务器端输出的包含分页参数的分页对象的json对象名称：
+<table class="datatable easydatatable"  id="datatable3"  width="760px" align="center" value="pb">
+
+
+9、表格AJAX分页实例
+
+9.1	指定分页主题（DataTable.SIMPLE_PAGE），加入Loading提示
+  <script type="text/javascript">
+  $(function(){
+  			DataTable.load("datatable",DataTable.SIMPLE_PAGE,true);
+  });
+  </script>
+
+<div style="margin: 20 0 10 0; font-size: 28px;">
+DataTable.SIMPLE_PAGE 分页主题  带Loading提示
+</div>
+
+<form action="doPage.jsp" name="myform">
+   	<div style="height: 260px;overflow:auto;width: 780px;">
+		     <table class="datatable"  id="datatable"  width="760px" align="center">
+		      	<tr>
+		      	<th width="40">
+			   			<input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" /> <!-- CheckAll -->
+			   		</th>
+			   	<!-- datatableCount -->
+			   		<th width="80">count</th>
+			   		<th width="100">id</th>
+			   		<th width="100">name</th>
+			   		<th width="100">info</th>
+			   		<th >操作</th>
+		   		</tr> 
+		   		<!-- 数据展示行 -->
+			   	<tr>
+			   		<td style="text-align:center;height: 45px;">
+			   			<input type="checkbox" name="mychk" value="{id }"/>
+			   		</td>
+			   		<td align="center"  style="text-align:center;height: 45px;">{datatableCount }</td>
+			   		<td style="text-align:center;color:#00f">No.{id}</td>
+			   		<td align="center">{name}</td>
+			   		<td>{info}</td>
+			   		<td align="center" style="width: 120px">
+			   			<a href="doUser.jsp?o=show&id={id }">查看</a>
+				   		<a href="doUser.jsp?o=edit&id={id }">修改</a>
+				   		<a href="doUser.jsp?o=delete&id={id }">删除</a>
+				   	</td>
+			   	</tr>
+		   </table>
+    </div>
+      	<div class="panelBar" style="width: 760px;" size="5,10,30,50">
+		</div>
+</form>
+
+
+
+9.2	判断语句DataTable表达式使用，默认DataTable.SIMPLE_FULL 分页主题 带复选框和自动编号
+
+   <div style="margin: 40 0 10 0; font-size: 28px;">判断语句DataTable表达式使用</div>
+   <form action="doPage.jsp" name="myform">
+   	<div style="height: 260px;overflow:auto;width: 780px;">
+		     <table class="datatable easydatatable"  id="datatable3"  width="760px" align="center">
+		      	<tr>
+			   	<!-- checkbox -->
+			   		<th width="40">
+			   			<input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" /> <!-- CheckAll -->
+			   		</th>
+			   	<!-- datatableIndex,datatableCount -->
+			   		<th width="80">count</th>
+			   	   	<th width="80">index</th>
+			   	   	<th width="80">{index+1}</th>
+			   		<th width="100">id</th>
+			   		<th width="100">name</th>
+			   		<th width="100">info</th>
+			   		<th >操作</th>
+		   		</tr> 
+		   		<!-- 数据展示行 -->
+		
+			   	<tr>
+			   		<td style="text-align:center;height: 45px;">
+			   			<input type="checkbox" name="mychk" value="{id }"/>
+			   		</td>
+			   		<td align="center"> {datatableCount+(pageNo-1)*rowPerPage}</td>
+			   		<td align="center"> {datatableIndex+(pageNo-1)*rowPerPage}</td>
+			   		<td align="center">{datatableIndex+(pageNo-1)*rowPerPage+1}</td>
+			   		<td style="text-align:center;color:#00f">No.{id}</td>
+			   		<td align="center">{name}</td>
+			   		<td>{info}</td>
+			   		<td align="center">
+			   		<!-- DataTable 表达式 -->
+			   		%{ 
+				   		if(id%2==0){ 
+				   			var op='<a href="doUser.jsp?o=show&id='+id+'">查看</a>&nbsp;&nbsp;'; 
+				   			op+='<a href="doUser.jsp?o=edit&id={id }">修改</a>';
+				   			DataTable.out(op);  
+				   		}else{ 
+				   			DataTable.out('<a href="doUser.jsp?o=show&id={id }">查看</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={id }">修改</a>&nbsp;&nbsp;<a href="doUser.jsp?o=delete&id={id }">删除</a>');  
+				   		} 
+			   		 }%
+			   		
+			   	
+				   	</td>
+			   	</tr>
+		   </table>
+    </div>
+      	<div class="panelBar" style="width: 760px;" size="5,10,30,50">
+			
+		</div>
+
+      </form>
+   
+
+9.3	带搜索条件分页
+
+搜索按钮数据提交方法：
+方法一：给搜索按钮添加onclick="DataTable.load('当前数据表格id')"
+<input type="button" class="btn_test" onclick="DataTable.load('datatable4')" value="立即查询"/>
+
+
+方法二：给搜索按钮直接加easydatatable_search类样式。
+<input type="button" class="btn_test easydatatable_search"  value="立即查询"/>
+
+
+
+<div style="margin: 40 0 10 0; font-size: 28px;">带搜索条件分页</div>
+   <form action="doPage.jsp" name="myform">
+<!--搜索条件部分，通过搜索按钮查询-->
+   <div style="margin: 20px 0px;">
+				用户名：<input type="text" name="user.name" class="txt_test"/> 
+				信息：<input type="text" name="user.info" class="txt_test"/> 
+				<input type="button" class="btn_test" onclick="DataTable.load('datatable4')" value="立即查询"/>
+			</div>
+
+   	<div style="height: 260px;overflow:auto;width: 780px;">
+	
+			
+		     <table class="datatable easydatatable"  id="datatable4"  width="760px" align="center">
+		      	<tr>
+			   	<!-- checkbox -->
+			   		<th width="40">
+			   			<input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" /> <!-- CheckAll -->
+			   		</th>
+			   	<!-- datatableIndex,datatableCount -->
+			   		<th width="80">count</th>
+			   	   	<th width="80">index</th>
+			   	   	<th width="80">{index+1}</th>
+			   		<th width="100">id</th>
+			   		<th width="100">name</th>
+			   		<th width="100">info</th>
+			   		<th >操作</th>
+		   		</tr> 
+		   		<!-- 数据展示行 -->
+		
+			   	<tr>
+			   		<td style="text-align:center;height: 45px;">
+			   			<input type="checkbox" name="mychk" value="{id }"/>
+			   		</td>
+			   		<td align="center">{datatableCount+(pageNo-1)*rowPerPage}</td>
+			   		<td align="center">{datatableIndex+(pageNo-1)*rowPerPage}</td>
+			   		<td align="center">{datatableIndex+(pageNo-1)*rowPerPage+1}</td>
+			   		<td style="text-align:center;color:#00f">No.{id}</td>
+			   		<td align="center">{name}</td>
+			   		<td>{info}</td>
+			   		<td align="center">
+			   		<!-- DataTable 表达式 -->
+			   		%{ 
+				   		if(id%2==0){ 
+				   			DataTable.out('<a href="doUser.jsp?o=show&id={id }" target="ajax">查看</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={id }" target="ajax">修改</a>'); 
+				   		}else{ 
+				   			DataTable.out('<a href="doUser.jsp?o=show&id={id }" target="ajax">查看</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={id }" target="ajax">修改</a>&nbsp;&nbsp;<a href="doUser.jsp?o=delete&id={id }" target="ajax">删除</a>');  
+				   		} 
+			   		 }%
+			   		
+			   	
+				   	</td>
+			   	</tr>
+		   </table>
+    </div>
+      	<div class="panelBar" style="width: 760px;" size="5,10,30,50">
+		
+		</div>
+
+      </form>
+
+10、EasyDataTable分页标签国际化支持
+EasyDataTable自带了分页标签，需要自定义显示的文字和语言时，标签中的文字可通过language参数调整和修改.
+	默认分页标签文字和语言： 
+{
+			"first":'首页',
+			"previous":'上一页',
+			"next":'下一页',
+			"last":'末页',
+			"totalCount":'共{0}条',
+			"totalPage":'共{0}页',
+			"rowPerPage":'每页显示{0}条'		
+	} 
+ 
+	自定义分页标签文字和语言：
+	var pageLanguage={
+				"first":'first',
+				"previous":'previous',
+				"next":'next',
+				"last":'last',
+				"totalPage":'total {0} pages',
+				"totalCount":'total {0} rows',
+				"rowPerPage":'page for {0} rows',
+		    };
+		    
+  			DataTable.load("datatable",{
+  				"pagetheme":DataTable.SIMPLE_PAGE,
+  				"loading":true,
+  				"language":pageLanguage
+  			});
+默认分页配置定义在DataTable对象的MSG属性中，可通过修改和重新定义，配置为默认分页文字和语言。
+
+
+
