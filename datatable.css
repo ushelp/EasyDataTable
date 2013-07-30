@@ -42,19 +42,16 @@
 .evenColor{background-color: #F8F8F8;}
 .tdHover{background-color:#E4F5FF; }
 .tdClick{background-color:#7CC5E5; }
-.pageGoHover{background-color:#FAFBFC; }
 
-.panelBar { border-width:0px;}
 
-.panelBar {font-size:13px; display:block; overflow:hidden; height:25px; border-style:solid;border-width:1px 0; background-repeat:repeat-x; }
-.pageTr{border: 0px;padding: 0px;margin: 0px;}
-.pageTr td{border: 0px;padding: 0px;margin: 0px;}
 
+.panelBar {border-color:#efefef; background-color:#efefef;font-size:13px; display:block; overflow:hidden; height:25px; border-style:solid;border-width:1px 0; background-repeat:repeat-x; }
 .panelBar .pages { float:left; overflow:hidden; height:21px; padding:2px 5px;margin: 0px;}
 .panelBar .pages span { float:left; line-height:21px;}
 .panelBar .pages label {  line-height:21px; padding-left:3px;padding-right: 3px; }
 .panelBar .pages select { float:left; margin:0 3px; font-size: 13px;font-family:Arial, sans-serif;}
 
+.pageGoHover{background-color:#FAFBFC; }
 .totalPage{margin-right: 10px;}
 .totalCount{font-size: 15px;font-family:Arial, sans-serif;}
 .pagego{ padding:0 5px 0 5px; cursor: pointer;}
@@ -67,11 +64,4 @@
 .sortArrow{font-size:11px;color:#ff6600;padding-left: 3px;font-weight: bold;}
 .sortArrowHover{font-size:11px;color:#4EBEE4191919;padding-left: 3px;font-weight: bold;}
 .sortArrowDown{font-size:11px;color:#191919;padding-left: 3px;font-weight: bold;}
-
-.ltxt{float: right;text-align: right;}
 .mycombox{color:#183152; border:6px #183152; font-size: 18px}
-.panelBar,
-.toolBar li.hover, .toolBar li.hover a, .toolBar li.hover span, .toolBar span,
-
-
-.panelBar { border-color:#efefef; background-color:#efefef;}

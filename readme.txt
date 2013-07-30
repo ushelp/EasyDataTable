@@ -194,6 +194,9 @@ sort:排序方式，desc或asc
 String sort = request.getParameter("sort");
 String order = request.getParameter("order");
 
+使用DataTable.reload(‘tableid’);可以刷新指定数据表格，恢复到没有排序状态。
+<div onclick="DataTable.reload('datatable3')">刷新</div>
+
 
 7	复选框多选功能（支持全选/全部选）
 在表头行加入复选框，在复选框的单击事件中调用 DataTable.checkAll(this,'复选框名称') ，可实现复选框全选/全不选功能：
@@ -406,7 +409,7 @@ DataTable.SIMPLE_PAGE 分页主题  带Loading提示
 
 10、EasyDataTable分页标签国际化支持
 EasyDataTable自带了分页标签，需要自定义显示的文字和语言时，标签中的文字可通过language参数调整和修改.
-	默认分页标签文字和语言： 
+默认分页标签文字和语言： 
 {
 			"first":'首页',
 			"previous":'上一页',
