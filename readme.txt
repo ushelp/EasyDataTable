@@ -1,8 +1,10 @@
-﻿
-EasyDataTable AJAX分页插件使用手册
+﻿This plugin is EasyDataTable the Chinese version, the English version please refer to：https://github.com/ushelp/DataTable
+
+EasyDataTable AJAX分页插件使用手册_zh__CN
 
 
-使用Ajax分页可以提高数据加载和显示速度，减少网络流量，提升客户体验度；同时能够只刷新局部，解决当页面上有多个数据显示表格区域时，传统的分页方式会导致页面全部刷新。
+
+使用AJAX分页可以提高数据加载和显示速度，减少网络流量，提升客户体验度；同时能够只刷新局部，解决当页面上有多个数据显示表格区域时，传统的分页方式会导致页面全部刷新。
 EasyDataTable AJAX分页插件是基于jQuery最好的分页插件，没有之一，简单、清晰、易用、灵活、全面；自带分页标签；支持排序；内置EasyDataTable表达式语言能够通过JavaScript编程增强分页。
 
 
