@@ -120,7 +120,12 @@ var DataTable={
 						if(!dataTableSort){
 							dataTableSort=	data.sort;
 						}
-						
+						if(!dataTableOrder){
+							dataTableOrder='';
+						}
+						if(!dataTableSort){
+							dataTableSort='';
+						}
 						for(var i in data[valueObject].data){
 								data[valueObject].data[i].datatableCount=parseInt(j)+1;
 								data[valueObject].data[i].datatableIndex=parseInt(j);
