@@ -442,3 +442,4 @@ EasyDataTable自带了分页标签，需要自定义显示的文字和语言时�
 
 
 
+在线Demo：http://www.lightfeel.com/EasyDataTable/demo.jsp
