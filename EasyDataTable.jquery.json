@@ -1,0 +1,40 @@
+{
+    "name": "EasyDataTable",
+    "title": "EasyDataTable AJAX Pagination jQuery plugin",
+    "description": "The best jQuery AJAX Pagination plugin——EasyDataTable jQuery plugin!",
+    "keywords": [
+        "Ajax",
+        "table",
+"data",
+"datatable",
+"EasyDataTable",
+"EDataTable","jquery","ui","Pagination","page"
+    ],
+    "version": "1.3.0",
+    "author": {
+        "name": "Ray",
+"email": "inthinkcolor@gmail.com",
+        "url": ""
+    },
+    "maintainers": [
+        {
+            "name": "Ray",
+            "email": "inthinkcolor@gmail.com",
+            "url": ""
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/srchulo/jQuery-Facets/blob/master/LICENSE"
+        }
+    ],
+	"demo":"http://www.lightfeel.com/EasyDataTable/demo.jsp",
+    "bugs": "https://github.com/ushelp/EasyDataTable/issues",
+    "homepage": "https://github.com/ushelp/EasyDataTable",
+    "docs": "https://github.com/ushelp/EasyDataTable/blob/master/readme.txt",
+    "download": "https://github.com/ushelp/EasyDataTable/archive/master.zip",
+    "dependencies": {
+        "jquery": ">=1.5"
+    }
+}
