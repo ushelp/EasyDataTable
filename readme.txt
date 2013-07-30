@@ -1,4 +1,4 @@
-
+﻿
 EasyDataTable AJAX分页插件使用手册
 
 
@@ -11,7 +11,7 @@ EasyDataTable AJAX分页插件是基于jQuery最好的分页插件，没有之�
 
 <link rel="stylesheet" href="css/datatable.css" type="text/css"></link>
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="js/easy.datatable.js"></script>
+<script type="text/javascript" src="js/easy.datatable.min.js"></script>
 
 2、对Ajax分页表格进行数据初始化
 
