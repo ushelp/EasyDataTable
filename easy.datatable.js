@@ -1,3 +1,13 @@
+// jQuery EasyDataTable Plugin
+//
+// Version 1.3.0
+//
+// Copy By RAY
+// inthinkcolor@gmail.com
+// 2013
+//
+// https://github.com/ushelp/EasyDataTable
+//
 var DataTable={
 		
 		"cacheData":{},
