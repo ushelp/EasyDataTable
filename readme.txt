@@ -4,8 +4,9 @@ EasyDataTable AJAX分页插件使用手册_zh__CN
 
 
 
-使用AJAX分页可以提高数据加载和显示速度，减少网络流量，提升客户体验度；同时能够只刷新局部，解决当页面上有多个数据显示表格区域时，传统的分页方式会导致页面全部刷新。
-EasyDataTable AJAX分页插件是基于jQuery最好的分页插件，没有之一，简单、清晰、易用、灵活、全面；自带分页标签；支持排序；内置EasyDataTable表达式语言能够通过JavaScript编程增强分页。
+使用Ajax分页可以提高数据加载和显示速度，减少网络流量，提升客户体验度；同时能够只刷新局部，解决当页面上有多个数据显示表格区域时，传统的分页方式会导致页面全部刷新。
+EasyDataTable AJAX分页插件是基于jQuery最好的纯Ajax分页插件，简单、易用、灵活；自带分页标签；支持排序；内置EasyDataTable表达式语言能够通过JavaScript编程增强分页。
+
 
 
 快速开发步骤：
@@ -80,11 +81,11 @@ language:可选参数,设置分页标签显示的语言，默认值为
 <form action="服务器分页地址">
 
 <!--  数据展示表格  -->
-<table>
+<table id="表格id">
 <!--  表头行  -->
 <tr><th></th>    …… </tr>
 <!--  数据展示行  -->
-<tr><th></th>    …… </tr>
+<tr><td></td>    …… </tr>
 </table>
 
 <!--  分页行  -->
@@ -165,14 +166,18 @@ DataTable.out(res);
 }%
 
 5、EasyTableData内置数据属性
+仅在数据展示行有效：
 datatableIndex:可获得数据在当前页的索引
 datatableCount:可获得数据在当前页的个数
+key:Map数据集合时可用来获取数据对于的键
+数据展示行+分页标签均可使用：
 pageNo:当前页
+maxPage:总页数
 rowPerPage:每页显示条数
 totalCount:数据总条数
-key:Map数据集合时可用来获取数据对于的键
 order:排序字段
 sort:排序方式，desc或asc
+
 例如：
 当前数据在所有数据中的索引：{datatableIndex+(pageNo-1)*rowPerPage}
 当前数据在所有数据中的个数：{datatableCount+(pageNo-1)*rowPerPage}
@@ -219,7 +224,7 @@ totalCount:数据总条数，数字
 [sort]:排序方式，desc或asc
 
 
-如果服务器端分页参数封装在PageBean中，例如
+如果服务器端分页参数封装在PageBean中，例如：
 public class PageBean {
 	private List data;
 	private int pageNo;
@@ -231,9 +236,46 @@ public class PageBean {
 <table class="datatable easydatatable"  id="datatable3"  width="760px" align="center" value="pb">
 
 
-9、表格AJAX分页实例
+9、	刷新指定数据表格
+DataTable.reload(“tableId”);  //取消排序效果，刷新表格，重新加载数据
 
-9.1	指定分页主题（DataTable.SIMPLE_PAGE），加入Loading提示
+10、	自定义分页
+DataTable内置分页实现，并提供了两套主题：
+DataTable.FULL_PAGE（完全主题，默认显示所有分页选项）
+ 
+DataTable.SIMPLE_PAGE(简单主题，不显示当前页前后页快速跳转标签)
+ 
+10.1	在使用JavaScript初始化数据表格时，可指定使用的分页主题：
+DataTable.load("datatable",{
+  				"pagetheme":DataTable.SIMPLE_PAGE
+  			});
+
+10.2	在分页DIV标签上指定分页主题：
+<div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="FULL">
+
+<div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="SIMPLE">
+
+10.3	取消分页和主题：
+<div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="no">
+
+.4	自定义分页：
+调用DataTable.go(‘加载数据的表格id’,页数,[每页显示条数]) 函数，即可实现自定义分页跳转。
+也可使用<input type="hidden" name="rowPerPage" value="8"/>隐藏域指定默认每页显示条数。
+
+
+<div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="no">
+<input type="hidden" name="rowPerPage" value="8"/> 
+当前第{pageNo}页/共{maxPage}页 每页{rowPerPage}条/共{totalCount}条	
+<input type="button" value="首页" onclick="DataTable.go('datatable7',1)"/>
+<input type="button" value="上一页" onclick="DataTable.go('datatable7',{pageNo-1})"/>
+<input type="button" value="下一页" onclick="DataTable.go('datatable7',{pageNo+1})"/>
+<input type="button" value="末页" onclick="DataTable.go('datatable7',{maxPage})"/>
+</div>
+
+
+11、表格AJAX分页实例
+
+11.1	指定分页主题（DataTable.SIMPLE_PAGE），加入Loading提示
   <script type="text/javascript">
   $(function(){
   			DataTable.load("datatable",DataTable.SIMPLE_PAGE,true);
@@ -281,7 +323,7 @@ DataTable.SIMPLE_PAGE 分页主题  带Loading提示
 
 
 
-9.2	判断语句DataTable表达式使用，默认DataTable.SIMPLE_FULL 分页主题 带复选框和自动编号
+11.2	判断语句DataTable表达式使用，默认DataTable.SIMPLE_FULL 分页主题 带复选框和自动编号
 
    <div style="margin: 40 0 10 0; font-size: 28px;">判断语句DataTable表达式使用</div>
    <form action="doPage.jsp" name="myform">
@@ -337,7 +379,7 @@ DataTable.SIMPLE_PAGE 分页主题  带Loading提示
       </form>
    
 
-9.3	带搜索条件分页
+11.3	带搜索条件分页
 
 搜索按钮数据提交方法：
 方法一：给搜索按钮添加onclick="DataTable.load('当前数据表格id')"
@@ -409,7 +451,7 @@ DataTable.SIMPLE_PAGE 分页主题  带Loading提示
 
       </form>
 
-10、EasyDataTable分页标签国际化支持
+12、EasyDataTable分页标签国际化支持
 EasyDataTable自带了分页标签，需要自定义显示的文字和语言时，标签中的文字可通过language参数调整和修改.
 默认分页标签文字和语言： 
 {
