@@ -6,6 +6,10 @@ EasyDataTable AJAX分页插件使用手册_zh__CN
 
 使用Ajax分页可以提高数据加载和显示速度，减少网络流量，提升客户体验度；同时能够只刷新局部，解决当页面上有多个数据显示表格区域时，传统的分页方式会导致页面全部刷新。
 EasyDataTable AJAX分页插件是基于jQuery最好的纯Ajax分页插件，简单、易用、灵活；自带分页标签；支持排序；内置EasyDataTable表达式语言能够通过JavaScript编程增强分页。
+与Ext分页比较EasyDataTable的特点：
+简单： EasyDataTable需要更少的资源加载，非常轻量级
+易用： 几乎无需JS代码，全面封装，JS零编程即可实现Ajax分页功能
+灵活： 更少的限制，自带表达式语言，从UI到功能均可自定义和扩展
 
 
 
