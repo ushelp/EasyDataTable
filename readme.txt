@@ -269,10 +269,12 @@ pagetheme=”no”,使用display:none隐藏，或直接删除分页标签部分�
 <input type="hidden" name="rowPerPage" value="8"/> 
 当前第{pageNo}页/共{maxPage}页 每页{rowPerPage}条/共{totalCount}条	
 <input type="button" value="首页" onclick="DataTable.go('datatable7',1)"/>
-<input type="button" value="上一页" onclick="DataTable.go('datatable7',{pageNo-1})"/>
-<input type="button" value="下一页" onclick="DataTable.go('datatable7',{pageNo+1})"/>
-<input type="button" value="末页" onclick="DataTable.go('datatable7',{maxPage})"/>
+<input type="button" value="上一页" onclick="DataTable.go('datatable7','{pageNo-1}')"/>
+<input type="button" value="下一页" onclick="DataTable.go('datatable7','{pageNo+1}')"/>
+<input type="button" value="末页" onclick="DataTable.go('datatable7','{maxPage}')"/>
 </div>
+
+在函数调用时参数如果使用了EasyDataTable表达式（如页数）则需要通过单引号引起来，作为一个字符串参数，如onclick="DataTable.go('datatable7', '{pageNo-1}')"/>中的'{pageNo-1}'。
 
 
 11、表格AJAX分页实例

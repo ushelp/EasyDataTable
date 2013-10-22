@@ -399,7 +399,7 @@ var DataTable = {
 	
 		var dataForm =  $("form").has("#" + tableid);
 		if(dataForm&&DataTable.Validate.integer.test(pagenum)){
-
+			pagenum=parseInt(pagenum);
 			if(pagenum<=0){
 				pagenum=1;
 			}
