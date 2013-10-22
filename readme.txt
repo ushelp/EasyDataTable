@@ -256,7 +256,9 @@ DataTable.load("datatable",{
 <div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="SIMPLE">
 
 10.3	取消分页和主题：
-<div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="no">
+pagetheme=”no”,使用display:none隐藏，或直接删除分页标签部分即可。
+<div class="panelBar" style="width: 760px;height: 40px;display: none;" size="5,10,30,50" pagetheme="no">
+
 
 .4	自定义分页：
 调用DataTable.go(‘加载数据的表格id’,页数,[每页显示条数]) 函数，即可实现自定义分页跳转。

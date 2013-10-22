@@ -42,7 +42,7 @@ var DataTable = {
 		easydataParams = easydataParams == undefined ? {} : easydataParams;
 
 		var dataForm = $("form").has("#" + tableid);
-		dataForm.find(".panelBar").hide();
+		//dataForm.find(".panelBar").hide();
 		if (!DataTable.cacheDataRow[tableid]) {
 			// 获取数据行
 			var dataRow = ("<tr>" + nowDataTable.find(" tr:eq(1)").html() + "</tr>")
@@ -680,10 +680,10 @@ var DataTable = {
 				
 			
 		}
-
 		dataForm.find(".panelBar").html(
 				DataTable.formatContent(content, this.cacheData[tableid]));
-		dataForm.find(".panelBar").show();
+	
+		//dataForm.find(".panelBar").show();
 
 	},
 	"loadInit" : function() {
