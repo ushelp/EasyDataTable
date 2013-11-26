@@ -5,13 +5,13 @@ EasyDataTable AJAX分页插件使用手册_zh__CN
 
 
 使用Ajax分页可以提高数据加载和显示速度，减少网络流量，提升客户体验度；同时能够只刷新局部，解决当页面上有多个数据显示表格区域时，传统的分页方式会导致页面全部刷新。
-EasyDataTable AJAX分页插件是基于jQuery最好的纯Ajax分页插件，简单、易用、灵活；自带分页标签；支持排序；内置EasyDataTable表达式语言能够通过JavaScript编程增强分页。
+EasyDataTable AJAX分页插件是基于jQuery最好的纯Ajax分页插件，简单、易用、灵活；自带分页标签；支持排序；内置EasyDataTable表达式语言和事件支持能够通过JavaScript编程增强分页。
+兼容性：EasyDataTable完全兼容IE6及以上版本、Firefox、Chrome、Safari、Opera等各内核（Trident、Gecko、Webkit、Presto）浏览器，并兼容多平台及系统（PC，TabletPC，Mobile）。
 
 与Ext分页比较EasyDataTable的特点：
 简单： EasyDataTable需要更少的资源加载，非常轻量级
 易用： 几乎无需JS代码，全面封装，JS零编程即可实现Ajax分页功能
-灵活： 更少的限制，自带表达式语言，从UI到功能均可自定义和扩展
-
+灵活： 更少的限制，自带表达式语言，事件支持，从UI到功能均可自定义和扩展
 
 
 快速开发步骤：
@@ -36,17 +36,29 @@ easydataParameters：可选参数,指定EasyDataTable的参数信息，支撑参
 {
 pagetheme: '分页主题',
 loading: '是否显示加载提示',
-language: '分页标签的语言'
+language: '分页标签的语言',
+start: '数据开始加载事件处理函数',
+end: '数据结束加载事件处理函数'
 }
 
-pagetheme:可选参数,分页标签主题，支持两套可选分页主题：
-DataTable.FULL_PAGE（完全主题，默认显示所有分页选项）
+pagetheme——可选参数,分页标签主题，支持两套可选分页主题：
+DataTable.FULL_PAGE（完全主题，显示所有分页选项，默认值）
 DataTable.SIMPLE_PAGE(简单主题，不显示当前页前后页快速跳转标签)
-默认值DataTable.FULL_PAGE .
+NO(取消主题，使用自定义分页，参考第10章节《自定义分页》)
+说明：pagetheme参数也可通分页div的pagetheme属性设置，加载顺序为html、javascript，后加载的参数会覆盖前面的值。
 
-loading:可选参数,加载数据时是否显示loading提示"数据正在读取中……"，可选值为true或false,默认为false,不显示
 
-language:可选参数,设置分页标签显示的语言，默认值为
+loading——可选参数,分页加载数据时表格的显示方式，可选值为default、show或none。
+default: 默认分页加载方式，分页加载时禁用表格操作(禁用超链，按钮)，表格数据显示为灰色
+show: 显示加载提示方式，分页加载时显示DataTable.LOADING_MSG定义的loading提示内容（可修改）"数据正在读取中……"
+none: 隐藏数据展示行方式，分页加载时隐藏数据展示行的数据+单元格，显示完全为空白
+hide: 隐藏数据内容方式，分页加载时仅隐藏数据展示行的数据，保留显示单元格边框
+其他值：直接将该内容作为分页加载时提示内容（等同show方式），支持HTML内容，如：
+loading:"<div><img src=\"images/loading.gif\"/><br/>数据正在加载中……</div>"
+
+
+
+language——可选参数,设置分页标签显示的语言，默认值为
 {
 			"first":'首页',
 			"previous":'上一页',
@@ -80,6 +92,36 @@ language:可选参数,设置分页标签显示的语言，默认值为
   			DataTable.load("datatable4");
   });
   </script>
+
+  
+start——可选,设置每一次数据加载开始时的处理函数
+/*
+o：当前表格对象
+initFlag：true代表第一次加载数据（初始化表格），false代表分页加载
+*/
+"start":function(o,initFlag){ 
+  					if(initFlag){ //第一次加载（未初始化）
+  						console.info('init start...');
+  					}else{ 
+	  					console.info('load start...');
+  					}
+  					
+  			}
+			
+			
+end——可选,设置每一次数据加载结束时的处理函数
+/*
+o：当前表格对象
+initFlag：true代表第一次加载数据（初始化表格），false代表分页加载
+*/
+"end":function(o,initFlag){ 
+  					if(initFlag){ //第一次加载（未初始化）
+  						console.info('init end...');
+  					}else{ 
+	  					console.info('load end...');
+  					}
+  					
+  		}
 
 
 3、分页表格结构
@@ -210,7 +252,7 @@ String order = request.getParameter("order");
 <div onclick="DataTable.reload('datatable3')">刷新</div>
 
 
-7	复选框多选功能（支持全选/全部选）
+7、复选框多选功能（支持全选/全部选）
 在表头行加入复选框，在复选框的单击事件中调用 DataTable.checkAll(this,'复选框名称') ，可实现复选框全选/全不选功能：
 <input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" />
 数据行：
@@ -261,13 +303,12 @@ DataTable.load("datatable",{
 <div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="SIMPLE">
 
 10.3	取消分页和主题：
-pagetheme=”no”,使用display:none隐藏，或直接删除分页标签部分即可。
+使用display:none隐藏，或直接删除分页标签部分即可。
 <div class="panelBar" style="width: 760px;height: 40px;display: none;" size="5,10,30,50" pagetheme="no">
 
 
-.4	自定义分页：
-调用DataTable.go(‘加载数据的表格id’,页数,[每页显示条数]) 函数，即可实现自定义分页跳转。
-也可使用<input type="hidden" name="rowPerPage" value="8"/>隐藏域指定默认每页显示条数。
+10.4	自定义分页：
+添加pagetheme=”no”属性（或通过EasyDataTable初始化参数设置），调用DataTable.go(‘加载数据的表格id’,’页数’,[每页显示条数]) 函数，即可实现自定义分页跳转;也可使用<input type="hidden" name="rowPerPage" value="8"/>隐藏域指定默认每页显示条数。
 
 
 <div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="no">
@@ -460,6 +501,83 @@ DataTable.SIMPLE_PAGE 分页主题  带Loading提示
 
       </form>
 
+11.4 带start和end数据加载事件处理函数的分页
+<script type="text/javascript">
+  $(function(){
+           //实现初始化loading效果，加载完成后隐藏loading，显示初始数据
+  			DataTable.load("datatable_event",{
+  				"start":function(dataTableObj,initFlag){ 
+  					if(initFlag){ //第一次加载，未初始化
+  						//console.info('init start...');
+  						$("#loading").show();     //显示loading提示DIV
+	  					$("#dataDiv").hide();     //隐藏数据div
+	  					$("#dataPageDiv").hide(); //隐藏分页div
+  					}else{ 
+	  					//console.info('load start...');
+  					}
+  					
+  				},
+  				"end":function(dataTableObj,initFlag){    
+  					if(initFlag){ //第一次加载，未初始化
+  						//console.info('init end...');
+  						$("#loading").hide();     //隐藏loading提示DIV
+  						$("#dataDiv").show();     //显示数据div
+  						$("#dataPageDiv").show(); //显示分页div
+  					}else{ 
+  						//console.info('load end...');
+  					}
+  				}
+
+  			});
+  });
+  </script>
+
+
+<form action="doPage_slow.jsp" name="myform">
+ 	<!-- loading提示DIV,第一次加载数据时显示 -->
+ 	<div id="loading" style="border:1px solid #efefef; text-align: center;width: 780px;height: 285px;display: none;font-size: 14px;">
+ 		<img src="images/loading.gif"/><br/>数据正在加载中……
+ 	</div>
+
+   	<div style="height: 260px;overflow:auto;width: 780px;" id="dataDiv">
+		     <table class="datatable"  id="datatable_event"  width="760px" align="center" value="pb">
+		      	<tr>
+		      	<th width="40">
+			   			<input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" /> <!-- CheckAll -->
+			   		</th>
+			   	<!-- datatableCount -->
+			   		<th width="80">count</th>
+			   		<th width="100">id</th>
+			   		<th width="150" order="name">name</th>
+			   		<th width="150">info</th>
+			   		<th >operation</th>
+		   		</tr> 
+		   		<!-- Data Show Row-->
+			   	<tr>
+			   		<td style="text-align:center;height: 45px;">
+			   			<input type="checkbox" name="mychk" value="{id }"/>
+			   		</td>
+			   		<td align="center"  style="text-align:center;height: 45px;">
+			   		{other}  ==
+			   		{sort }==={order}</td>
+			   		<td style="text-align:center;color:#00f">No.{id}</td>
+			   		<td align="center">{name}</td>
+			   		<td>{info}</td>
+			   		<td align="center" >
+			   			<a href="doUser.jsp?o=show&id={id }">show</a>
+				   		<a href="doUser.jsp?o=edit&id={id }">edit</a>
+				   		<a href="doUser.jsp?o=delete&id={id }">delete</a>
+				   		<input type="button" value="tests">
+				   	</td>
+			   	</tr>
+		   </table>
+    </div>
+      	<div class="panelBar" style="width: 760px;" size="5,10,30,50" pagetheme="FULL" id="dataPageDiv">
+		</div>
+		
+</form>
+
+	  
 12、EasyDataTable分页标签国际化支持
 EasyDataTable自带了分页标签，需要自定义显示的文字和语言时，标签中的文字可通过language参数调整和修改.
 默认分页标签文字和语言： 
@@ -491,6 +609,20 @@ EasyDataTable自带了分页标签，需要自定义显示的文字和语言时�
   			});
 默认分页配置定义在DataTable对象的MSG属性中，可通过修改和重新定义，配置为默认分页文字和语言。
 
+
+#####重要通知：
+1、V1.5.0重要更新升级说明：
+1.4.X及之前版本升级到1.5.0之后版本，loading参数发生变化:
+1.4.X之前版本中loading参数为boolean值(默认为false)。
+1.5.0之后loading参数的值设为"default"、"show"、"none"或"hide"(默认为"default")，具体含义参见readme。
+
+升级更改方案：
+V1.4.X旧代码           =>          V1.5.0新代码
+更新loading参数值：
+loading:true           =>          loading:"show"
+loading:false          =>          loading:"none"
+如果未设置loading参数值，使用默认值时，效果如下
+false，隐藏数据        =>          "default"，禁用数据
 
 
 在线Demo：http://www.lightfeel.com/EasyDataTable/demo.jsp

@@ -1,6 +1,6 @@
 // jQuery EasyDataTable Plugin
 //
-// Version 1.4.0
+// Version 1.5.0
 //
 // Copy By RAY
 // inthinkcolor@gmail.com
@@ -16,9 +16,14 @@ var DataTable = {
 	"cachePageTheme" : {},
 	"cacheLanguage" : {},
 	"cacheOrderArrow" : {},
+	"cacheInitLoading":{},
+	"cacheStartFun":{},
+	"cacheEndFun":{},
+	"cacheUserPage":{},
+	"cacheInit":{}, 
 	"SIMPLE_PAGE" : 'SIMPLE',
 	"FULL_PAGE" : 'FULL',
-	"lOADING_SHOW" : false,
+	"lOADING_SHOW" : 'default', //default,show,none,hide
 	"lOADING_DEFALUT" : {},
 	"LOADING_MSG" : '数据正在读取中……',
 	"MSG" : {
@@ -35,14 +40,60 @@ var DataTable = {
 	 * 是否显示加载提示;language 语言}
 	 */
 	"load" : function(tableid, easydataParams) {
-
 		
-		var nowDataTable = $("#" + tableid);
-		nowDataTable.find("tr:gt(0)").css("visibility", "hidden"); // 隐藏数据行
+		var nowDataTable = $("[id='" + tableid+"']");
+		if(nowDataTable.length==0){
+			//console.warn(tableid+" not found!");
+			return;
+		}
 		easydataParams = easydataParams == undefined ? {} : easydataParams;
-
-		var dataForm = $("form").has("#" + tableid);
-		//dataForm.find(".panelBar").hide();
+		var dataForm = $("form").has("[id='" + tableid+"']");
+		
+		//初始化标识(未初始化)
+		if(!(DataTable.cacheInit[tableid])){
+			DataTable.cacheInit[tableid]=false; //第一次加载，未初始化
+			
+			//初始化时，start函数缓存
+			if(easydataParams.start){  
+				DataTable.cacheStartFun[tableid]=easydataParams.start;
+			}
+			//初始化时，end函数缓存
+			if(easydataParams.end){  
+				DataTable.cacheEndFun[tableid]=easydataParams.end;
+			}
+		}
+		
+		//start函数调用,数据加载开始时执行
+		if(DataTable.cacheStartFun[tableid]){
+			try {
+				//数据表格，是否是第一次加载
+				DataTable.cacheStartFun[tableid](nowDataTable[0],!DataTable.cacheInit[tableid]);
+			} catch (e) {
+				// console.warn(e.toLocaleString()); 
+			}
+		}
+		
+		
+		//使用的分页主题
+		if (!(easydataParams.pagetheme == undefined)) {
+			DataTable.cachePageTheme[tableid] = easydataParams.pagetheme;
+		} 
+		if (!DataTable.cachePageTheme[tableid]) {
+			var usetheme = dataForm.find(".panelBar").attr("pagetheme");
+			
+			if(usetheme){
+				DataTable.cachePageTheme[tableid]=usetheme;
+			}else{
+				DataTable.cachePageTheme[tableid] = DataTable.FULL_PAGE;
+			}
+		
+			if(!(DataTable.cacheInit[tableid])){ //初始化时保存自定义分页content
+				DataTable.cacheUserPage[tableid]=dataForm.find(".panelBar").html();
+				dataForm.find(".panelBar").html(""); //第一次前加载清除分页部分代码
+			}
+		}
+		
+		
 		if (!DataTable.cacheDataRow[tableid]) {
 			// 获取数据行
 			var dataRow = ("<tr>" + nowDataTable.find(" tr:eq(1)").html() + "</tr>")
@@ -52,12 +103,17 @@ var DataTable = {
 			nowDataTable.find(" tr:eq(1)").find("td").css("border", "0");
 			nowDataTable.find(" tr:eq(1)").css("border", "0");
 		}
+		//分页加载数据时表格的显示方式
 		if (DataTable.lOADING_DEFALUT[tableid] == undefined) {
-			if (!(easydataParams.loading == undefined)) {
-				DataTable.lOADING_DEFALUT[tableid] = easydataParams.loading;
-			} else {
+			var table_loading_attr=nowDataTable.attr("loading");
+			if(table_loading_attr){
+				DataTable.lOADING_DEFALUT[tableid]=table_loading_attr;
+			}else {
 				DataTable.lOADING_DEFALUT[tableid] = DataTable.lOADING_SHOW;
 			}
+			if (!(easydataParams.loading == undefined)) {
+				DataTable.lOADING_DEFALUT[tableid] = easydataParams.loading+"";
+			} 
 		}
 
 		if (easydataParams.language) { // 如果存在语言，则按照指定语言显示
@@ -68,24 +124,58 @@ var DataTable = {
 			DataTable.cacheLanguage[tableid] = DataTable.MSG;
 		}
 
-		if (DataTable.lOADING_DEFALUT[tableid] == true) {
-			nowDataTable.find(" tr:gt(0)").remove();
-			nowDataTable.after("<tr name=\"DataTable_Loading\" ><td colspan='"
-					+ $("#" + tableid + " tr:eq(0)").find("th").length
-					+ "'><div class='DataTable_Loading'>"
-					+ DataTable.LOADING_MSG + "</div></td></tr>");
-		}
-
-		if (!DataTable.cachePageTheme[tableid]) {
-			var usetheme = dataForm.find(".panelBar").attr("pagetheme");
-		
-			
-			if (usetheme && usetheme.toLowerCase() != "no") { // html中指定主题
-				DataTable.cachePageTheme[tableid]=usetheme;
-			} else {
-				DataTable.cachePageTheme[tableid] = easydataParams.pagetheme;
+		//分页加载数据时,表格的显示方式
+		var loading_type=DataTable.lOADING_DEFALUT[tableid].toLowerCase();
+		if (loading_type == 'default') {
+			if(DataTable.cacheInitLoading[tableid]== undefined){ //初次加载
+				nowDataTable.find(" tr:gt(0)").remove();
+				DataTable.cacheInitLoading[tableid]="loaded";
 			}
+			//新方式，切换页面时，禁用数据操作(禁用超链，按钮)，显示为灰色
+			nowDataTable.find(" tr:gt(0)").find("*").on("click",function(){return false;});
+			nowDataTable.find(" tr:gt(0)").find("*").css("color","gray");
+		}else if(loading_type == 'none') {
+			if(DataTable.cacheInitLoading[tableid]== undefined){ //初次加载
+				nowDataTable.find(" tr:gt(0)").remove();
+				DataTable.cacheInitLoading[tableid]="loaded";
+			}
+			nowDataTable.find("tr:gt(0)").hide(); // 隐藏数据行内容
+		}else if(loading_type == 'hide') {
+			if(DataTable.cacheInitLoading[tableid]== undefined){ //初次加载
+				nowDataTable.find(" tr:gt(0)").remove();
+				DataTable.cacheInitLoading[tableid]="loaded";
+			}
+			//旧方式，切换页面时隐藏当前页面数据
+			nowDataTable.find("tr:gt(0)").css("visibility", "hidden"); // 完全隐藏数据行
+		}else if (loading_type == 'show') {
+			nowDataTable.find(" tr:gt(0)").remove();
+			//style1
+//			nowDataTable.append("<tr name=\"DataTable_Loading\" ><td colspan='"
+//					+ $("#" + tableid + " tr:eq(0)").find("th").length
+//					+ "'><div class='DataTable_Loading'>"
+//					+ DataTable.LOADING_MSG + 
+//					"</div></td></tr>");
+			
+			//style2
+			$("[id='" + tableid + "_loading_div']").hide();
+			nowDataTable.after("<div id='"+tableid+"_loading_div' class='DataTable_Loading'>"
+					+ DataTable.LOADING_MSG + 
+					"</div>");
+		}else{
+			nowDataTable.find(" tr:gt(0)").remove();
+			//style1
+//			nowDataTable.append("<tr name=\"DataTable_Loading\" ><td colspan='"
+//					+ $("#" + tableid + " tr:eq(0)").find("th").length
+//					+ "'><div class='DataTable_Loading'>"
+//					+ DataTable.lOADING_DEFALUT[tableid]  + 
+//					"</div></td></tr>");
+			//style2
+			$("[id='" + tableid + "_loading_div']").hide();
+			nowDataTable.after("<div id='"+tableid+"_loading_div' class='DataTable_Loading'>"
+					+  DataTable.lOADING_DEFALUT[tableid] + 
+					"</div>");
 		}
+		
 
 		/*
 		 * 提交分页数据验证
@@ -206,15 +296,10 @@ var DataTable = {
 								}
 							}
 
-							// 清除大于0的行
-							nowDataTable.find(" tr:gt(0)").remove();
-							if (DataTable.lOADING_DEFALUT[tableid] == true) {
-								dataForm.find("[name='DataTable_Loading']")
-										.remove();
-							}
+							
 							// 排序隐藏字段
 							var orderInfo = "<tr name=\"sort_order_hidden\" style=\"display:none\"><td colspan='"
-									+ $("#" + tableid + " tr:eq(0)").find("th").length
+									+ $("[id='" + tableid + "'] tr:eq(0)").find("th").length
 									+ "'><input type='hidden' name='order' value='"
 									+ dataTableOrder
 									+ "'/>"
@@ -222,29 +307,13 @@ var DataTable = {
 									+ dataTableSort + "'/></td></tr>";
 
 							content += orderInfo;
+							
+							// 清除大于0的行和loading的msg
+							nowDataTable.find(" tr:gt(0)").remove();
+							$("[id='"+tableid+"_loading_div']").remove();
 							// 显示数据
 							nowDataTable.append(content);
-
-							nowDataTable.find(" tr:eq(1)").css("visibility",
-									"visible");
-
-							nowDataTable.find(" tr:even").addClass("evenColor");
-							nowDataTable.find(" tr").hover(function() {
-								$(this).addClass("tdHover");
-							}, function() {
-								$(this).removeClass("tdHover");
-							});
-
-							var oldTr;
-
-							nowDataTable.find(" tr").on("click", function() {
-								if (oldTr) {
-									oldTr.removeClass("tdClick");
-								}
-								$(this).addClass("tdClick");
-								oldTr = $(this);
-							});
-
+							
 							/*
 							 * 分页部分
 							 */
@@ -280,11 +349,50 @@ var DataTable = {
 										DataTable.load(tableid);
 									});
 							DataTable.pageCheck(tableid);// 分页标签状态设置
+							
+							
+							
+							//表格效果事件
+							nowDataTable.find(" tr:even").addClass("evenColor");
+							nowDataTable.find(" tr").hover(function() {
+								$(this).addClass("tdHover");
+							}, function() {
+								$(this).removeClass("tdHover");
+							});
+
+							var oldTr;
+
+							nowDataTable.find(" tr").on("click", function() {
+								if (oldTr) {
+									oldTr.removeClass("tdClick");
+								}
+								$(this).addClass("tdClick");
+								oldTr = $(this);
+							});
+							
+							
+	
+							
+							//end函数调用,数据加载结束时执行
+							if(DataTable.cacheEndFun[tableid]){
+								try {
+									//数据表格，是否是第一次加载
+									DataTable.cacheEndFun[tableid](nowDataTable[0],!DataTable.cacheInit[tableid]);
+								} catch (e) {
+									// console.warn(e.toLocaleString()); 
+								}
+							}
+							
+							//完成第一次加载，已初始化
+							if(!(DataTable.cacheInit[tableid])){
+								DataTable.cacheInit[tableid]=true;
+							}
+							
 						});
 
 	},
 	"reload" : function(tableid) {
-		var dataForm = $("form").has("#" + tableid);
+		var dataForm = $("form").has("[id='" + tableid+"']");
 		dataForm.find("[name='order']").val("");
 		dataForm.find("[name='sort']").val("");
 		if (DataTable.cacheOrderArrow[tableid]) {
@@ -327,7 +435,7 @@ var DataTable = {
 		integer : /^[1-9][0-9]*$/
 	},
 	"first" : function(tableid) {
-		var dataForm = $("form").has("#" + tableid);
+		var dataForm = $("form").has("[id='" + tableid+"']");
 		/*
 		 * 提交分页数据验证
 		 */
@@ -336,7 +444,7 @@ var DataTable = {
 		this.load(tableid);
 	},
 	"prev" : function(tableid) {
-		var dataForm = $("form").has("#" + tableid);
+		var dataForm = $("form").has("[id='" + tableid+"']");
 		/*
 		 * 提交分页数据验证
 		 */
@@ -345,7 +453,7 @@ var DataTable = {
 		this.load(tableid);
 	},
 	"next" : function(tableid) {
-		var dataForm = $("form").has("#" + tableid);
+		var dataForm = $("form").has("[id='" + tableid+"']");
 		/*
 		 * 提交分页数据验证
 		 */
@@ -355,7 +463,7 @@ var DataTable = {
 		this.load(tableid);
 	},
 	"last" : function(tableid) {
-		var dataForm = $("form").has("#" + tableid);
+		var dataForm = $("form").has("[id='" + tableid+"']");
 		/*
 		 * 提交分页数据验证
 		 */
@@ -365,7 +473,7 @@ var DataTable = {
 		this.load(tableid);
 	},
 	"gopage" : function(tableid) {
-		var dataForm = $("form").has("#" + tableid);
+		var dataForm = $("form").has("[id='" + tableid+"']");
 		/*
 		 * 提交分页数据验证
 		 */
@@ -384,7 +492,7 @@ var DataTable = {
 		}
 	},
 	"numgoto" : function(tableid, e) {
-		var dataForm = $("form").has("#" + tableid);
+		var dataForm = $("form").has("[id='" + tableid+"']");
 		/*
 		 * 提交分页数据验证
 		 */
@@ -397,7 +505,7 @@ var DataTable = {
 	},
 	"go" : function(tableid, pagenum, row) {
 	
-		var dataForm =  $("form").has("#" + tableid);
+		var dataForm =  $("form").has("[id='" + tableid+"']");
 		if(dataForm&&DataTable.Validate.integer.test(pagenum)){
 			pagenum=parseInt(pagenum);
 			if(pagenum<=0){
@@ -442,7 +550,7 @@ var DataTable = {
 
 	},
 	"pageCheck" : function(tableid) {
-		var dataForm = $("form").has("#" + tableid);
+		var dataForm = $("form").has("[id='" + tableid+"']");
 		var maxPage = this.cacheData[tableid]['maxPage'];
 		var nowPage = parseInt(this.cacheData[tableid]['pageNo']);
 
@@ -549,18 +657,12 @@ var DataTable = {
 
 	},
 	"pageTheme" : function(tableid, theme) {
-		var dataForm = $("form").has("#" + tableid);
+		var dataForm = $("form").has("[id='" + tableid+"']");
 		var content="";
 		// 如果使用自定义分页内容（不使用主题）
-
-		var usetheme = dataForm.find(".panelBar").attr("pagetheme");
-		if (usetheme && usetheme.toLowerCase() == "no") { // 不使用主题
-			if(!DataTable.cachePageTheme[tableid]){ //将自定义主题缓存
-				DataTable.cachePageTheme[tableid]=dataForm.find(".panelBar").html();
-			}
-			content = DataTable.cachePageTheme[tableid];
-		} else {
-				
+		if (theme && theme.toLowerCase() == "no") { //不使用主题
+			content = DataTable.cacheUserPage[tableid];
+		}else {
 				var pageshowCount=dataForm.find(".panelBar").length;
 				if(pageshowCount!=0){ //存在分页标签
 					var sizes = dataForm.find(".panelBar").attr("size");
@@ -680,9 +782,10 @@ var DataTable = {
 				
 			
 		}
+	
 		dataForm.find(".panelBar").html(
 				DataTable.formatContent(content, this.cacheData[tableid]));
-	
+		
 		//dataForm.find(".panelBar").show();
 
 	},
@@ -702,8 +805,11 @@ var DataTable = {
 		$(".datatable").find("tr:eq(1)").css("visibility", "hidden"); // 隐藏数据行
 		$("[class~='easydatatable']").each(function() {
 			var tableid = $(this).attr("id");
-			if (tableid) {
-				DataTable.load(tableid);
+			if(!DataTable.cacheInit[tableid]){
+				if (tableid) {
+					
+					DataTable.load(tableid);
+				}
 			}
 		});
 		$("[class~='easydatatable_search']").each(function() {
@@ -734,7 +840,7 @@ var DataTable = {
 												o.css("cursor", "pointer");
 												o.off("click");
 												var dataForm = $("form").has(
-														"#" + tableid);
+														"[id='" + tableid+"']");
 												o
 														.on(
 																"click",
@@ -787,8 +893,10 @@ var DataTable = {
 																	}
 
 																	DataTable.cacheOrderArrow[tableid] = arrowObj;
+																	
 																	DataTable
 																			.load(tableid);
+																	
 																});
 											});
 							table.find("[order]").hover(
@@ -829,5 +937,6 @@ var DataTable = {
 };
 
 $(function() {
+	
 	DataTable.init();
 });
