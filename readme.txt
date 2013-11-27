@@ -626,3 +626,5 @@ false，隐藏数据        =>          "default"，禁用数据
 
 
 在线Demo：http://www.lightfeel.com/EasyDataTable/demo.jsp
+
+联系、反馈、定制Email：in.think@gmail.com
