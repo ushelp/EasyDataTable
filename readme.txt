@@ -38,24 +38,25 @@ pagetheme: '分页主题',
 loading: '是否显示加载提示',
 language: '分页标签的语言',
 start: '数据开始加载事件处理函数',
-end: '数据结束加载事件处理函数'
+end: '数据结束加载事件处理函数',
+row: '初始每页加载显示数量'
 }
 
 pagetheme——可选参数,分页标签主题，支持两套可选分页主题：
 DataTable.FULL_PAGE（完全主题，显示所有分页选项，默认值）
 DataTable.SIMPLE_PAGE(简单主题，不显示当前页前后页快速跳转标签)
 NO(取消主题，使用自定义分页，参考第10章节《自定义分页》)
-说明：pagetheme参数也可通分页div的pagetheme属性设置，加载顺序为html、javascript，后加载的参数会覆盖前面的值。
+支持HTML增强：pagetheme参数也可通分页div的pagetheme属性设置，加载顺序为html、javascript，后加载的参数会覆盖前面的值。
 
 
-loading——可选参数,分页加载数据时表格的显示方式，可选值为default、show或none。
+loading——可选参数,分页加载数据时表格的显示方式，可选值为default、show、none、hide或任意值。
 default: 默认分页加载方式，分页加载时禁用表格操作(禁用超链，按钮)，表格数据显示为灰色
 show: 显示加载提示方式，分页加载时显示DataTable.LOADING_MSG定义的loading提示内容（可修改）"数据正在读取中……"
 none: 隐藏数据展示行方式，分页加载时隐藏数据展示行的数据+单元格，显示完全为空白
 hide: 隐藏数据内容方式，分页加载时仅隐藏数据展示行的数据，保留显示单元格边框
-其他值：直接将该内容作为分页加载时提示内容（等同show方式），支持HTML内容，如：
+任意值：直接将该内容作为分页加载时提示内容（等同show方式），支持HTML内容，如：
 loading:"<div><img src=\"images/loading.gif\"/><br/>数据正在加载中……</div>"
-
+支持HTML增强：loading参数也可通过数据表格的loading属性设置，加载顺序为html、javascript，后加载的参数会覆盖前面的值。
 
 
 language——可选参数,设置分页标签显示的语言，默认值为
@@ -122,6 +123,11 @@ initFlag：true代表第一次加载数据（初始化表格），false代表分
   					}
   					
   		}
+		
+row——可选,设置初始分页加载的条数
+在初始化参数中指定默认分页加载的数据条数。
+如不设置该参数，将使用DataTable.DEFAULT_ROW属性的值默认值5。
+支持HTML增强： row参数也可通过分页DIV的row属性设置，加载顺序为html、javascript，后加载的参数会覆盖前面的值。
 
 
 3、分页表格结构
@@ -286,28 +292,36 @@ public class PageBean {
 9、	刷新指定数据表格
 DataTable.reload(“tableId”);  //取消排序效果，刷新表格，重新加载数据
 
-10、	自定义分页
+10、	默认分页条数设置
+在初始化分页参数中使用row参数可以指定默认的分页条数。如果不设置该参数，将使用DataTable.DEFAULT_ROW属性的值默认值5。
+row属性同事支持使用HTML增强：
+    
+<div class="panelBar" style="width: 760px;" size="5,10,30,50" row="10">
+			
+</div>
+
+11、	自定义分页
 DataTable内置分页实现，并提供了两套主题：
 DataTable.FULL_PAGE（完全主题，默认显示所有分页选项）
  
 DataTable.SIMPLE_PAGE(简单主题，不显示当前页前后页快速跳转标签)
  
-10.1	在使用JavaScript初始化数据表格时，可指定使用的分页主题：
+11.1	在使用JavaScript初始化数据表格时，可指定使用的分页主题：
 DataTable.load("datatable",{
   				"pagetheme":DataTable.SIMPLE_PAGE
   			});
 
-10.2	在分页DIV标签上指定分页主题：
+11.2	在分页DIV标签上指定分页主题：
 <div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="FULL">
 
 <div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="SIMPLE">
 
-10.3	取消分页和主题：
+11.3	取消分页和主题：
 使用display:none隐藏，或直接删除分页标签部分即可。
 <div class="panelBar" style="width: 760px;height: 40px;display: none;" size="5,10,30,50" pagetheme="no">
 
 
-10.4	自定义分页：
+11.4	自定义分页：
 添加pagetheme=”no”属性（或通过EasyDataTable初始化参数设置），调用DataTable.go(‘加载数据的表格id’,’页数’,[每页显示条数]) 函数，即可实现自定义分页跳转;也可使用<input type="hidden" name="rowPerPage" value="8"/>隐藏域指定默认每页显示条数。
 
 
@@ -323,9 +337,9 @@ DataTable.load("datatable",{
 在函数调用时参数如果使用了EasyDataTable表达式（如页数{pageNo-1}）则需要通过单引号引起来，作为一个字符串参数，如onclick="DataTable.go('datatable7', '{pageNo-1}')"/>中的'{pageNo-1}'。
 
 
-11、表格AJAX分页实例
+12、表格AJAX分页实例
 
-11.1	指定分页主题（DataTable.SIMPLE_PAGE），加入Loading提示
+12.1	指定分页主题（DataTable.SIMPLE_PAGE），加入Loading提示
   <script type="text/javascript">
   $(function(){
   			DataTable.load("datatable",DataTable.SIMPLE_PAGE,true);
@@ -373,7 +387,7 @@ DataTable.SIMPLE_PAGE 分页主题  带Loading提示
 
 
 
-11.2	判断语句DataTable表达式使用，默认DataTable.SIMPLE_FULL 分页主题 带复选框和自动编号
+12.2	判断语句DataTable表达式使用，默认DataTable.SIMPLE_FULL 分页主题 带复选框和自动编号
 
    <div style="margin: 40 0 10 0; font-size: 28px;">判断语句DataTable表达式使用</div>
    <form action="doPage.jsp" name="myform">
@@ -429,7 +443,7 @@ DataTable.SIMPLE_PAGE 分页主题  带Loading提示
       </form>
    
 
-11.3	带搜索条件分页
+12.3	带搜索条件分页
 
 搜索按钮数据提交方法：
 方法一：给搜索按钮添加onclick="DataTable.load('当前数据表格id')"
@@ -501,7 +515,7 @@ DataTable.SIMPLE_PAGE 分页主题  带Loading提示
 
       </form>
 
-11.4 带start和end数据加载事件处理函数的分页
+12.4 带start和end数据加载事件处理函数的分页
 <script type="text/javascript">
   $(function(){
            //实现初始化loading效果，加载完成后隐藏loading，显示初始数据
@@ -578,7 +592,7 @@ DataTable.SIMPLE_PAGE 分页主题  带Loading提示
 </form>
 
 	  
-12、EasyDataTable分页标签国际化支持
+13、EasyDataTable分页标签国际化支持
 EasyDataTable自带了分页标签，需要自定义显示的文字和语言时，标签中的文字可通过language参数调整和修改.
 默认分页标签文字和语言： 
 {
@@ -611,13 +625,13 @@ EasyDataTable自带了分页标签，需要自定义显示的文字和语言时�
 
 
 #####重要更新升级说明：
-1、V1.5.0重要更新：
-1.4.X及之前版本升级到1.5.0之后版本，loading参数发生变化:
+1、V1.5.X重要更新：
+1.4.X及之前版本升级到1.5.X之后版本，loading参数发生变化:
 1.4.X之前版本中loading参数为boolean值(默认为false)。
-1.5.0之后loading参数的值设为"default"、"show"、"none"或"hide"(默认为"default")，具体含义参见readme。
+1.5.X之后loading参数的值设为"default"、"show"、"none"或"hide"(默认为"default")，具体含义参见readme。
 
 升级更改方案：
-V1.4.X旧代码           =>          V1.5.0新代码
+V1.4.X旧代码           =>          V1.5.X新代码
 更新loading参数值：
 loading:true           =>          loading:"show"
 loading:false          =>          loading:"none"
