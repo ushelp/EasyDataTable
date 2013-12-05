@@ -628,7 +628,14 @@ var DataTable = {
           sizeArray = sizes.split(",");
         }
         if (this.cacheDefaultRow[tableid]) {
-          sizeArray.push(this.cacheDefaultRow[tableid]);
+        	var sa="#"+sizeArray.join("#")+"#";
+        	//如果已经存在,则不加入
+        	if(sa.indexOf("#"+this.cacheDefaultRow[tableid]+"#")!=-1){ 
+        		this.cacheDefaultRow[tableid]=null; 	
+        	}else{
+        		sizeArray.push(this.cacheDefaultRow[tableid]);
+        	}
+          
         }
         sizeArray.sort(function(i, j) {
           return parseInt(i) - parseInt(j);
