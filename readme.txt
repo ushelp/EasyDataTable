@@ -59,19 +59,20 @@ loading:"<div><img src=\"images/loading.gif\"/><br/>数据正在加载中……<
 支持HTML增强：loading参数也可通过数据表格的loading属性设置，加载顺序为html、javascript，后加载的参数会覆盖前面的值。
 
 
-language——可选参数,设置分页标签显示的语言，默认值为
-{
-			"first":'首页',
-			"previous":'上一页',
-			"next":'下一页',
-			"last":'末页',
-			"totalCount":'共{0}条',
-			"totalPage":'共{0}页',
-			"rowPerPage":'每页显示{0}条'		
-	} 
-可根据需要重新定义,{0}为显示相应数据的占位符,必须存在。
+language——可选参数,设置分页标签显示的语言，默认分页配置定义在DataTable.MSG属性中，默认值为：
+DataTable.MSG={
+      first:"首页",
+      previous:"上一页",
+      next:"下一页",
+      last:"末页",
+      totalCount:"共{0}条",
+      totalPage:"共{0}页",
+      rowPerPage:"每页显示{0}条"
+}
+可直接修改和重新定义该属性作为默认分页文字和语言。
+也可根据需要在初始化参数中为数据表格重新定义,{0}为显示相应数据的占位符,必须存在。
 
-  <script type="text/javascript">
+ <script type="text/javascript">
   $(function(){
   			var pageLanguage={
 				"first":'first',
@@ -126,7 +127,7 @@ initFlag：true代表第一次加载数据（初始化表格），false代表分
 		
 row——可选,设置初始分页加载的条数
 在初始化参数中指定默认分页加载的数据条数。
-如不设置该参数，将使用DataTable.DEFAULT_ROW属性的值默认值5。
+如不设置该参数，将使用DataTable.DEFAULT_ROW属性的值默认值5（可修改）。
 支持HTML增强： row参数也可通过分页DIV的row属性设置，加载顺序为html、javascript，后加载的参数会覆盖前面的值。
 
 
@@ -293,7 +294,7 @@ public class PageBean {
 DataTable.reload(“tableId”);  //取消排序效果，刷新表格，重新加载数据
 
 10、	默认分页条数设置
-在初始化分页参数中使用row参数可以指定默认的分页条数。如果不设置该参数，将使用DataTable.DEFAULT_ROW属性的值默认值5。
+在初始化分页参数中使用row参数可以指定默认的分页条数。如果不设置该参数，将使用DataTable.DEFAULT_ROW属性的值默认值5（可修改）。
 row属性同事支持使用HTML增强：
     
 <div class="panelBar" style="width: 760px;" size="5,10,30,50" row="10">
@@ -594,18 +595,21 @@ DataTable.SIMPLE_PAGE 分页主题  带Loading提示
 	  
 13、EasyDataTable分页标签国际化支持
 EasyDataTable自带了分页标签，需要自定义显示的文字和语言时，标签中的文字可通过language参数调整和修改.
-默认分页标签文字和语言： 
-{
-			"first":'首页',
-			"previous":'上一页',
-			"next":'下一页',
-			"last":'末页',
-			"totalCount":'共{0}条',
-			"totalPage":'共{0}页',
-			"rowPerPage":'每页显示{0}条'		
-	} 
+
+默认分页配置定义在DataTable.MSG属性中，默认分页标签文字和语言：
+DataTable.MSG={
+      first:"首页",
+      previous:"上一页",
+      next:"下一页",
+      last:"末页",
+      totalCount:"共{0}条",
+      totalPage:"共{0}页",
+      rowPerPage:"每页显示{0}条"
+}
+
  
-	自定义分页标签文字和语言：
+自定义分页标签文字和语言：
+可直接修改和重新定义DataTable.MSG默认分页属性作为默认分页文字和语言。或者在初始化参数中专门指定（{0}为显示相应数据的占位符,必须存在）：
 	var pageLanguage={
 				"first":'first',
 				"previous":'previous',
@@ -621,7 +625,7 @@ EasyDataTable自带了分页标签，需要自定义显示的文字和语言时�
   				"loading":true,
   				"language":pageLanguage
   			});
-默认分页配置定义在DataTable对象的MSG属性中，可通过修改和重新定义，配置为默认分页文字和语言。
+
 
 
 #####重要更新升级说明：
