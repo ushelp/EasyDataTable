@@ -1,0 +1,1371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>readme</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1 id="easydatatable-ajax-">EasyDataTable AJAX分页插件使用手册</h1>
+<p>说明：该插件与DataTable插件为同一插件，是DataTable的中文版本，提示消息和使用手册均为中文版。<br>Notice：It’s same to DataTable,This plugin is DataTable the Chinese version, the English version please refer to：<a href="https://github.com/ushelp/DataTable">https://github.com/ushelp/DataTable</a></p>
+<p>使用Ajax分页可以提高数据加载和显示速度，减少网络流量，提升客户体验度；同时能够只刷新局部，解决当页面上有多个数据显示表格区域时，传统的分页方式会导致页面全部刷新。   </p>
+<p>EasyDataTable AJAX分页插件是基于jQuery最好的纯Ajax分页插件，支持HTML增强和JS编程两种途径实现分页，最大的特点是：简单、易用、灵活。支持多种数据源加载（服务器动态数据源，静态数据源，JSON文件数据源）；自带分页标签；支持自定义分页；自定义Loading提示；数据表格UI可自定义；支持列点击排序，支持静态数据排序；支持条件动态查询，静态数据条件筛选查询，支持范围、方式及模式支持，内置8种静态数据查询匹配模式；内置EasyDataTable表达式语言、事件支持，能够通过JavaScript编程增强分页。</p>
+<p><strong>兼容性</strong>：EasyDataTable完全兼容IE6及以上版本、Firefox、Chrome、Safari、Opera等各内核（Trident、Gecko、Webkit、Presto）浏览器，并兼容多平台及系统（PC，TabletPC，Mobile）。</p>
+<p>与Ext等比较EasyDataTable的主要特点：   </p>
+<ol>
+<li>轻量： EasyDataTable需要更少的资源加载，非常 <strong>轻量级</strong>    </li>
+<li>易用： <strong>HTML增强支持</strong> ，几乎无需JS代码，全面封装，简单易用，JS零编程即可实现强大的Ajax分页功能     </li>
+<li>灵活： 不受限制，自带表达式语言，事件支持，从UI到功能实现均可 <strong>灵活自定义</strong> 和扩展     </li>
+<li>全面： 动态，静态<strong>多种数据源加载</strong>全面支持，并支持多种不同范围、方式、模式的静态数据筛选查询</li>
+</ol>
+<blockquote>
+<p>EasyDataTable目前支持两个版本 1.X 和 2.X 版本<br>2.X 增加了对静态数据源、JSON文件数据源的分页加载支持，并支持对以上静态数据进行筛选查询和排序。</p>
+</blockquote>
+<hr>
+<h2 id="1-easydatatable-js-css-">1、引入EasyDataTable核心js和css文件</h2>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/datatable.css&quot; type=&quot;text/css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/easy.datatable.js&quot;&gt;&lt;/script&gt;</code></pre>
+<h2 id="2-">2、分页表格结构</h2>
+<p>EasyDataTable的结构分为表单、EasyDataTable数据表格（表头行，数据展示行）、分页div三个部分，按照如下结构创建数据表格：</p>
+<pre><code>&lt;!-- 创建表单 action值为分页处理的动态请求地址 --&gt;
+&lt;form action=&quot;服务器分页地址&quot;&gt;
+
+    &lt;!--  EasyDataTable 数据展示表格，必须有id  --&gt;
+    &lt;table id=&quot;表格id&quot;&gt;
+
+        &lt;!--  表头行  --&gt;
+        &lt;tr&gt;&lt;th&gt;&lt;/th&gt;    …… &lt;/tr&gt;
+
+        &lt;!--  数据展示行  --&gt;
+        &lt;tr style=&quot;display: none;&quot;&gt;&lt;td&gt;&lt;/td&gt;    …… &lt;/tr&gt;
+
+    &lt;/table&gt;
+
+    &lt;!--  分页行  --&gt;
+    &lt;div class=&quot;panelBar&quot;  size=&quot;5,10,30,50&quot;&gt;    &lt;/div&gt;
+
+&lt;/form&gt;</code></pre>
+<h3 id="-">分页表格实例：</h3>
+<pre><code>&lt;!-- 创建表单 action值为分页处理的请求地址 --&gt;
+&lt;form action=&quot;doPage.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;!-- 使用DIV来包装EasyDataTable 数据展示表格，当数据超出DIV高度时，可现实滚动条 --&gt;
+       &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+              &lt;!--显示数据的表格，必须指定id，EasyDatatable通过id初始化分页数据--&gt;
+            &lt;table class=&quot;datatable&quot;  id=&quot;datatable&quot;  width=&quot;100%&quot; align=&quot;center&quot;&gt;
+                &lt;!--表头行--&gt;
+                  &lt;tr&gt;
+                      &lt;th width=&quot;40&quot;&gt;
+                        &lt;!-- 调用DataTable.checkAll(this,&#39;复选框名称&#39;)函数或使用HTML增强添加check=&quot;复选框名称&quot;属性，均可可实现复选框全选/全不选功能 --&gt;
+                        &lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt;
+                       &lt;/th&gt;
+                       &lt;th width=&quot;80&quot;&gt;数量&lt;/th&gt;
+                       &lt;th width=&quot;100&quot;&gt;编号&lt;/th&gt;
+                       &lt;th width=&quot;100&quot;&gt;姓名&lt;/th&gt;
+                       &lt;th width=&quot;100&quot;&gt;信息&lt;/th&gt;
+                       &lt;th &gt;操作&lt;/th&gt;
+                   &lt;/tr&gt; 
+                &lt;!-- 数据展示行，使用 {属性} 属性表达式获取数据 --&gt;
+                   &lt;tr  style=&quot;display: none;&quot;&gt;
+                       &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;
+                        &lt;!--自定义复选框,value为对象的id--&gt;
+                           &lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot;/&gt;
+                       &lt;/td&gt;
+                    &lt;!--使用内置的datatableCount属性，显示数据条数--&gt;
+                       &lt;td align=&quot;center&quot;  style=&quot;text-align:center;height: 45px;&quot;&gt;
+                        {datatableCount }
+                    &lt;/td&gt;
+                       &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                       &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                       &lt;td&gt;{info}&lt;/td&gt;
+                       &lt;td align=&quot;center&quot; style=&quot;width: 120px&quot;&gt;
+                           &lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;查看&lt;/a&gt;
+                           &lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;修改&lt;/a&gt;
+                           &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;删除&lt;/a&gt;
+                       &lt;/td&gt;
+                   &lt;/tr&gt;
+           &lt;/table&gt;
+    &lt;/div&gt;
+
+    &lt;!--分页标签部分，使用size属性设置每页显示条数下拉菜单可选值，使用,分隔--&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h2 id="3-ajax-">3、对Ajax分页表格进行数据初始化</h2>
+<p>EasyDataTable支持HTMl增强和JS两种方式实现分页表格的初始化。</p>
+<h3 id="3-1-html-easydatatable-">3.1、方法一：html增强，使用easydatatable类样式</h3>
+<p>给表格添加<code>easydatatable</code>类样式进行初始化（表格必须有id）</p>
+<pre><code>&lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable3&quot; width=&quot;780px&quot; align=&quot;center&quot;&gt;</code></pre>
+<h3 id="3-2-javascript-datatable-load-">3.2、方法二：JavaScript，使用 DataTable.load() 函数</h3>
+<p>使用 <code>DataTable.load( 表格id，参数信息)</code>函数对要进行Ajax分页的表格进行初始化<br><strong><code>DataTable.load( tableid [，easydataParameters] );</code></strong></p>
+<p>参数说明：<br><code>tableid</code>：必须参数，显示数据的表格id<br><code>easydataParameters</code>：可选参数，指定<strong>EasyDataTable的初始化分页参数</strong>信息，支持的参数 :<br>    {<br>        <code>pagetheme</code>: ‘分页主题’,<br>        <code>loading</code>: ‘分页加载数据时，Loading提示的方式’,<br>        <code>language</code>: ‘分页标签的语言’,<br>        <code>start</code>: ‘数据开始加载事件处理函数’,<br>        <code>end</code>: ‘数据结束加载事件处理函数’,<br>        <code>row</code>: ‘初始每页加载显示数量’<br>    }</p>
+<h4 id="easydataparameters-">easydataParameters 初始化分页参数说明</h4>
+<ul>
+<li><h4 id="pagetheme-">pagetheme——可选，分页标签主题</h4>
+<p>支持两套可选分页主题，及自定义分页（值不区分大小写）</p>
+<p>  <code>&quot;FULL&quot;</code>（完全主题，默认显示所有分页选项，默认值）<br>  <img src="mdImage/pagetheme_full.png" alt="FULL 主题图例" title="FULL 主题图例"></p>
+<p>  <code>&quot;SIMPLE&quot;</code> (简单主题，不显示快速跳转页码)<br>  <img src="mdImage/pagetheme_simple.png" alt="SIMPLE 主题图例" title="SIMPLE 主题图例"></p>
+<p>  <code>&quot;NO&quot;</code> (取消主题，使用自定义分页，参考第11章节《自定义分页》)</p>
+<p>  <strong>该参数支持HTML增强：</strong><br>  <code>pagetheme</code>参数也可通<code>分页div</code>的<code>pagetheme属性</code>设置。加载顺序为html、javascript，后加载的参数会覆盖前面的值，参考第10章节《分页主题设置》。</p>
+</li>
+</ul>
+<ul>
+<li><h4 id="loading-loading-">loading——可选，分页加载数据时Loading方式</h4>
+<p>  由于Ajax程序在执行过程中并不刷新网页，所以在执行分页等操作时，Ajax应用应当当给客户给出相应加载执行的提示和反馈，否则用户可能会认为任务未执行或失败，影响体验度。</p>
+<p>  EasyDataTable在分页加载时支持进行Loading配置，可选值为：<code>&quot;default&quot;</code>、<code>&quot;show&quot;</code>、<code>&quot;none&quot;</code>、<code>&quot;hide&quot;</code>或<code>&quot;任意值&quot;</code>。（值不区分大小写）</p>
+<p>  <code>&quot;default&quot;</code>: 默认值，分页加载时禁用表格操作(禁用超链，按钮)，数据显示为灰色</p>
+<p>  <code>&quot;show&quot;</code>: 显示文字加载提示，分页加载时显示DataTable.loading_msg定义的loading提示内容（可修改）”数据正在读取中……”</p>
+<p>  <code>&quot;none&quot;</code>: 隐藏数据展示行，分页加载时隐藏数据展示行的数据+单元格，显示完全为空白</p>
+<p>  <code>&quot;hide&quot;</code>: 隐藏数据内容，分页加载时仅隐藏数据展示行的数据，保留显示单元格边框</p>
+<p>  <code>&quot;任意值&quot;</code>：直接将该内容作为分页加载时提示内容（等同show方式），支持HTML内容</p>
+<p>  示例：</p>
+<pre><code>  loading:&quot;&lt;div&gt;&lt;img src=\&quot;images/loading.gif\&quot;/&gt;&lt;br/&gt;数据正在加载中……&lt;/div&gt;&quot;  </code></pre>
+<p>  <strong>该参数支持HTML增强：</strong>     </p>
+<p>  <code>loading</code>参数也可通过数据<code>表格的loading属性</code>设置。加载顺序为html、javascript，后加载的参数会覆盖前面的值。</p>
+</li>
+</ul>
+<ul>
+<li><h4 id="language-">language——可选,设置分页标签显示的语言</h4>
+<p>  默认分页配置定义在<code>DataTable.default_lang</code>属性中，默认值为：</p>
+<pre><code>  DataTable.default_lang={
+        first:&quot;首页&quot;,
+        previous:&quot;上一页&quot;,
+        next:&quot;下一页&quot;,
+        last:&quot;末页&quot;,
+        totalCount:&quot;共{0}条&quot;,
+        totalPage:&quot;共{0}页&quot;,
+        rowPerPage:&quot;每页显示{0}条&quot;
+  }</code></pre>
+<p>  可直接修改和重新定义该属性的值作为全局默认分页文字和语言。<br>  也可根据需要在初始化参数中为指定数据表格重新定义分页语言，<code>{0}</code>为显示相应数据的占位符,必须存在。</p>
+<pre><code>    &lt;script type=&quot;text/javascript&quot;&gt;
+    $(function(){
+              // 重新自定义分页语言 
+                var pageLanguage={
+                  &quot;first&quot;:&#39;first&#39;,
+                  &quot;previous&quot;:&#39;previous&#39;,
+                  &quot;next&quot;:&#39;next&#39;,
+                  &quot;last&quot;:&#39;last&#39;,
+                  &quot;totalPage&quot;:&#39;total {0} pages&#39;,
+                  &quot;totalCount&quot;:&#39;total {0} rows&#39;,
+                  &quot;rowPerPage&quot;:&#39;page for {0} rows&#39;,
+              };
+
+              // 初始化数据表格datatable
+                DataTable.load(&quot;datatable&quot;,{
+                    &quot;pagetheme&quot;:&quot;SIMPLE&quot;,
+                    &quot;loading&quot;:true,
+                    &quot;language&quot;:pageLanguage  //为id为datatale的数据表格指定语言
+                });
+
+              // 初始化数据表格datatable2
+                DataTable.load(&quot;datatable2&quot;);
+    });
+    &lt;/script&gt;</code></pre>
+</li>
+</ul>
+<ul>
+<li><h4 id="start-">start——可选,设置每一次数据加载开始时的处理函数</h4>
+<pre><code>  /*
+  o：当前表格对象
+  initFlag：true代表第一次加载数据（初始化表格），false代表分页加载
+  */
+  &quot;start&quot;:function(o,initFlag){ 
+                if(initFlag){ //第一次加载（未初始化）
+                    console.info(&#39;init start...&#39;);
+                }else{ 
+                    console.info(&#39;load start...&#39;);
+                }
+            }</code></pre>
+</li>
+</ul>
+<ul>
+<li><h4 id="end-">end——可选,设置每一次数据加载结束时的处理函数</h4>
+<pre><code>  /*
+  o：当前表格对象
+  initFlag：true代表第一次加载数据（初始化表格），false代表分页加载
+  */
+  &quot;end&quot;:function(o,initFlag){ 
+            if(initFlag){ //第一次加载（未初始化）
+                console.info(&#39;init end...&#39;);
+            }else{ 
+                console.info(&#39;load end...&#39;);
+            }        
+        }</code></pre>
+</li>
+<li><h4 id="row-">row——可选,设置初始分页加载的条数</h4>
+<p>  在初始化参数中指定默认分页加载的数据条数。如不设置该参数，将使用<code>DataTable.default_row</code>属性的值默认值5（可修改）。</p>
+<p>  <strong>该参数支持HTML增强：</strong><br>  row参数也可通过<code>分页div</code>的<code>row属性</code>设置，加载顺序为html、javascript，后加载的参数会覆盖前面的值。</p>
+</li>
+</ul>
+<h2 id="4-easydatatable-expression-language-">4、EasyDataTable Expression Language 表达式语言使用</h2>
+<h3 id="4-1-easydatatable-property-expression-">4.1 EasyDataTable Property Expression 属性表达式  <code>{数据属性}</code></h3>
+<p><strong>属性表达式用于在数据展示行，显示指定的属性值。</strong><br>在属性表达式中可以直接引用数据属性来获得指定属性的数据。并支持各种数学、比较等JavaScript基本运算符进行运算。    </p>
+<pre><code>{id}    {name}</code></pre>
+<h3 id="4-2-easydatatable-statement-expression-">4.2 EasyDataTable Statement Expression 语句表达式 <code>%{表达式语句}%</code></h3>
+<p><strong>语句表达式用于在数据展示行，使用编程语句进行控制编程。</strong><br>在语句表达式中支持使用JavaScript编写表达式代码；支持直接调用数据属性；也支持使用EasyDataTable属性表达式（必须使用引号定义在字符串中使用）。<br>语句表达式执行的结果必须使用EasyDataTable语句表达式标准输出方法输出：    <strong><code>DataTable.out(&quot;内容&quot;);</code></strong></p>
+<pre><code>&lt;%--
+支持JavaScript语言编写表达式。
+属性名：以变量方式引用和处理
+EasyDataTable属性表达式：必须使用引号定义在字符串中使用
+--%&gt;
+%{
+    var res=name+&quot;   {name}&quot;;
+    DataTable.out(res);   
+}% 
+
+%{ 
+    if(id%2==0){ 
+        var op=&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id=&#39;+id+&#39;&quot;&gt;查看&lt;/a&gt;&amp;nbsp;&amp;nbsp;&#39;; 
+        op+=&#39;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;修改&lt;/a&gt;&#39;;
+
+        DataTable.out(op);  
+    }else{ 
+         DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;查看&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;修改&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;删除&lt;/a&gt;&#39;);  
+    } 
+}%</code></pre>
+<h2 id="5-easydatatable-">5、EasyDataTable内置数据属性</h2>
+<p><strong>EasyDataTable内置了与数据及分页相关的内置属性，可在数据展示行或分页标签行直接使用。</strong></p>
+<p><strong>仅在数据展示行有效：</strong><br><code>datatableIndex</code>：可获得数据在当前页的索引<br><code>datatableCount</code>：可获得数据在当前页的个数<br><code>key</code>：Map数据集合时可用来获取数据对于的键    </p>
+<p><strong>数据展示行、分页标签均可使用：</strong><br><code>pageNo</code>：当前页<br><code>maxPage</code>：总页数<br><code>rowPerPage</code>：每页显示条数<br><code>totalCount</code>：数据总条数<br><code>sort</code>：排序字段<br><code>order</code>：排序方式，<code>desc</code>或<code>asc</code>    </p>
+<p><strong>例如：</strong><br>当前数据在所有数据中的索引：<code>{datatableIndex+(pageNo-1)*rowPerPage}</code><br>当前数据在所有数据中的个数：<code>{datatableCount+(pageNo-1)*rowPerPage}</code></p>
+<h2 id="6-">6、排序支持</h2>
+<p>在表头行需要排序字段对应的单元格上添加<code>sort=&quot;排序字段名称&quot;</code>属性即可。</p>
+<pre><code>&lt;tr&gt;
+    &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+    &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+    &lt;th width=&quot;80&quot;&gt;{index+1}&lt;/th&gt;
+    &lt;th width=&quot;100&quot; sort=&quot;id&quot;&gt;id&lt;/th&gt;
+    &lt;th width=&quot;100&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+    &lt;th width=&quot;100&quot; sort=&quot;info&quot;&gt;info&lt;/th&gt;
+    &lt;th &gt;操作&lt;/th&gt;
+&lt;/tr&gt;</code></pre>
+<p>可排序列会显示排序箭头。点击即可发送服务器需要的排序信息：排序字段sort（sort的值）和排序方式order(asc或desc)到服务器。<br>服务器接收并处理后返回新数据即可实现升序降序切换。</p>
+<p>服务器端通过order和sort参数名获取排序信息。    </p>
+<pre><code>String sort = request.getParameter(&quot;sort&quot;);
+String order = request.getParameter(&quot;order&quot;);</code></pre>
+<p><strong>刷新表格：</strong><br>使用<code>DataTable.reload(‘tableid’);</code>可以刷新指定数据表格，恢复到没有排序状态。</p>
+<pre><code>&lt;div onclick=&quot;DataTable.reload(&#39;datatable3&#39;)&quot;&gt;刷新&lt;/div&gt;</code></pre>
+<h3 id="-">排序指示符号自定义</h3>
+<p>EasyDataTable对于可排序的列在外观上通过<strong>排序指示符号</strong>来进行排序提醒。默认在可排序列名上使用上下箭头↑↓（<code>&amp;uarr;&amp;darr;</code>）表示该列可进行点击排序；当升序时显示↑（<code>&amp;uarr;</code>），降序时显示↓（<code>&amp;darr;</code>）来指示当前的升降序方式。</p>
+<p>EasyDataTable支持对可排序列的排序指示符号进行<strong>全局</strong>和<strong>按DataTableID</strong>两种方式的的自定义：</p>
+<p><strong>1. 全局自定义：默认修改所有DataTable对象的排序指示符</strong></p>
+<ul>
+<li><code>DataTable.order_default</code> 可排序列的默认指示符号</li>
+<li><code>DataTable.order_up</code> 可排序列的升序指示符号</li>
+<li><code>DataTable.order_down</code> 可排序列的降序指示符号</li>
+</ul>
+<pre><code>//重新定义EasyDataTable的排序指示符号
+DataTable.order_default=&quot;&lt;img src=&#39;images/order_default.gif&#39;/&gt;&quot;;
+DataTable.order_up=&quot;&lt;img src=&#39;images/order_up.gif&#39;/&gt;&quot;;
+DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot;;</code></pre>
+<p><strong>2. 按DataTableID自定义：仅修改当前DataTableID对应的DataTable对象的排序指示符</strong></p>
+<p><code>DataTable.sort[&quot;DataTableID列表&quot;]</code>可以同时为指定的多个DataTable表格对象设置排序指示符，多个DataTable表格id使用逗号<code>,</code>分隔</p>
+<pre><code>DataTable.sort[&quot;datatable,datatable2,datatable4&quot;]={
+    order_default:&quot;&lt;img src=&#39;images/order_default.gif&#39;/&gt;&quot;,
+    order_up:&quot;&lt;img src=&#39;images/order_up.gif&#39;/&gt;&quot;,
+    order_down:&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot;
+};</code></pre>
+<h2 id="7-">7、服务器端数据要求</h2>
+<p><strong>EasyDataTable可以自动解析服务器端返回的JSON结果，并实现分页。</strong>  </p>
+<ul>
+<li><p><strong>服务器端必须输出如下名称的分页JSON结果：</strong><br>  <code>data</code>：数据集合，支持List和Map集合（内置属性key可获取Map的键，Map的值无需使用value前缀）对于的JSON集合<br>  <code>pageNo</code>：当前第几页，数字<br>  <code>rowPerPage</code>：每页显示条数，数字<br>  <code>totalCount</code>：数据总条数，数字<br>  可选参数：<br>  <code>[sort]</code>：排序字段<br>  <code>[order]</code>：排序方式，desc或asc     </p>
+</li>
+<li><p><strong>如果服务器端分页参数封装在PageBean中，如：</strong> </p>
+<pre><code>  public class PageBean {
+      private List data;
+      private int pageNo;
+      private int rowPerPage;
+      private int totalCount;
+     //setters&amp;getters ……
+  }</code></pre>
+<p>  例如，服务器端返输出的JSON对象中PageBean名称为<code>pb</code>，则在数据表格<code>table标签</code>上加入<code>value</code>属性，指定分页对象的JSON名称<code>pb</code>：</p>
+<pre><code>  &lt;table class=&quot;datatable&quot; id=&quot;datatable3&quot;  width=&quot;780px&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;</code></pre>
+</li>
+</ul>
+<h2 id="8-">8、刷新指定数据表格</h2>
+<pre><code>DataTable.reload(“tableId”);  //取消排序效果，刷新表格，重新加载数据</code></pre>
+<h2 id="9-">9、默认分页条数设置</h2>
+<p>在<strong>初始化分页参数</strong>中使用<code>row参数</code>可以指定默认的分页条数。如果不设置该参数，将使用<code>DataTable.default_row</code>属性的值默认值5（可修改）。</p>
+<p><code>row属性</code>同时支持在分页div标签中使用HTML增强：</p>
+<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;10&quot;&gt;
+
+&lt;/div&gt;</code></pre>
+<h2 id="10-">10、分页主题设置</h2>
+<p>DataTable内置分页实现，并提供了两套主题：</p>
+<p><code>FULL</code>（完全主题，默认显示所有分页选项，默认值）<br><img src="mdImage/pagetheme_full.png" alt="FULL 主题图例" title="FULL 主题图例"></p>
+<p><code>SIMPLE</code> (简单主题，不显示快速跳转页码)<br><img src="mdImage/pagetheme_simple.png" alt="SIMPLE 主题图例" title="SIMPLE 主题图例"></p>
+<h3 id="10-1-javascript-">10.1、使用JavaScript指定分页主题</h3>
+<pre><code>DataTable.load(&quot;datatable&quot;,{
+      &quot;pagetheme&quot;:&#39;SIMPLE&#39;
+ });</code></pre>
+<h3 id="10-2-div-">10.2、在分页DIV标签上指定分页主题</h3>
+<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;FULL&quot;&gt;
+
+&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;SIMPLE&quot;&gt;</code></pre>
+<h3 id="10-3-">10.3、取消分页和主题</h3>
+<p>使用display:none隐藏，或直接删除分页标签部分即可。</p>
+<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;display: none;&quot; size=&quot;5,10,30,50&quot; &gt;</code></pre>
+<h2 id="11-">11、自定义分页</h2>
+<p>EasyDataTable支持分页的自定义，在分页div标签中可编写自定义分页代码。自定义分页代码中支持使用：EasyDataTable内置属性、属性表达式和语句表达式。</p>
+<p>为 <code>分页div标签</code> 添加 <code>pagetheme=&quot;no&quot;</code> 属性（或通过EasyDataTable初始化参数设置），调用<strong><code>DataTable.go(&#39;加载数据的表格id&#39;,&#39;页数&#39;,[每页显示条数])</code></strong>函数，即可实现自定义分页跳转。<br>也可使用<code>row</code>属性指定默认每页显示条数：</p>
+<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px; line-height: 40px;&quot; size=&quot;5,10,30,50&quot;
+            pagetheme=&quot;no&quot; row=&quot;8&quot;&gt;</code></pre>
+<p>实例：</p>
+<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot;  row=&quot;8&quot;&gt;
+    当前第{pageNo}页/共{maxPage}页 每页{rowPerPage}条/共{totalCount}条    
+    &lt;input type=&quot;button&quot; value=&quot;首页&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;,1)&quot;/&gt;
+    &lt;input type=&quot;button&quot; value=&quot;上一页&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;/&gt;
+    &lt;input type=&quot;button&quot; value=&quot;下一页&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo+1}&#39;)&quot;/&gt;
+    &lt;input type=&quot;button&quot; value=&quot;末页&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{maxPage}&#39;)&quot;/&gt;
+&lt;/div&gt;</code></pre>
+<p>在JavaScript函数调用时，如果参数使用了EasyDataTable属性表达式（如页数<code>{pageNo-1}</code>）则需要通过单引号引起来，作为一个字符串参数，否则IE8下会有警告（不影响实际运行结果）。<br>例如下面代码中的’{pageNo-1}’必须使用引号：</p>
+<pre><code>onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;/&gt;。</code></pre>
+<h2 id="12-">12、带搜索条件分页</h2>
+<p>将搜索框放入form表单中，通过以下两种方式实现带搜索提交分页。</p>
+<p><strong>搜索按钮提交搜索数据的两种方法</strong></p>
+<p>方法一：使用HTML增强，将搜索按钮放入当前表单，给搜索按钮直接加<code>data_search</code>类样式</p>
+<pre><code>&lt;input type=&quot;button&quot; class=&quot;data_search&quot; value=&quot;立即查询&quot;/&gt;</code></pre>
+<p>方法二：使用<code>DataTable.load(&#39;数据表格id&#39;)</code>，通过单击事件注册给搜索按钮</p>
+<pre><code>&lt;input type=&quot;button&quot; class=&quot;btn_test&quot; onclick=&quot;DataTable.load(&#39;DataTableID&#39;)&quot; value=&quot;立即查询&quot;/&gt;</code></pre>
+<p>服务器端即可获取客户端提交的搜索条件。</p>
+<h2 id="13-easydatatable-">13、EasyDataTable多数据源加载支持</h2>
+<p><strong>EasyDataTable支持3种数据源：</strong>  </p>
+<ol>
+<li>服务器动态数据源（1.X，2.X支持）       </li>
+<li>静态数据源（2.X支持）   </li>
+<li>文件数据源（2.X支持）    </li>
+</ol>
+<p><em>注意：EasyDataTable目前支持 1.X 和 2.X 两个版本。EasyDataTable 1.X仅支持动态数据源的加载；EasyDataTable 2.X还支持静态数据源和文件数据源加载。</em></p>
+<h3 id="13-1-1-x-2-x-">13.1、 服务器动态数据源（1.X，2.X）</h3>
+<p><strong>在form的action中指定服务器端分页地址</strong>来动态获取JSON分页数据，实现分页。</p>
+<pre><code>DataTable.load( &#39;tableid&#39; [，easydataParameters] );</code></pre>
+<h3 id="13-2-2-x-">13.2、 静态数据源（2.X）</h3>
+<p>支持直接加载指定的<strong>JSON数据对象</strong>，实现分页。  </p>
+<pre><code>DataTable.staticLoad(&#39;tableid&#39; , jsonDataObject [,easydataParams]);</code></pre>
+<h3 id="13-3-2-x-">13.3、 文件数据源（2.X）</h3>
+<p>支持直接加载指定的<strong>JSON数据文件</strong>，实现分页。   </p>
+<pre><code>DataTable.fileLoad(&#39;tableid&#39; , &#39;jsonFile&#39; [,easydataParams]);</code></pre>
+<h2 id="14-2-x-">14、静态排序支持（2.X）</h2>
+<p>EasyDataTable支持对静态数据进行排序，在表头行需要排序字段对应的单元格上添加<code>staticSort=&quot;排序字段名称&quot;</code>属性即可。</p>
+<pre><code>&lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
+&lt;th width=&quot;100&quot; staticSort=&quot;name&quot;&gt;name&lt;/th&gt;</code></pre>
+<h2 id="15-2-x-">15、静态筛选查询（2.X）</h2>
+<p><strong>EasyDataTable支持对静态数据进行筛选查询，并具有以下三大特性：</strong></p>
+<ol>
+<li><p><strong>查询范围</strong>：支持对All(全部静态数据)和NowPage(当前页的静态数据)两种范围的静态数据筛选查询。</p>
+</li>
+<li><p><strong>查询方式</strong>：支持多条件筛选时按 <code>AND</code> 或 <code>OR</code> 方式实现数据筛选。</p>
+</li>
+<li><p><strong>查询模式</strong>：内置8种MatchMode(查询匹配模式)支持，每个筛选表单项均可独立配置MatchMode。 </p>
+<p>  <strong>EasyDataTable支持的8种MatchMode查询匹配模式名称和作用：</strong></p>
+<pre><code> extra：完全匹配    
+ extra_i：完全匹配，并忽略大小写 
+
+ like：模糊匹配
+ like_i：模糊匹配，并忽略大小写
+
+ sql：SQL通配符匹配（支持百分号`%`通配符，匹配任意字符；支持下划线`_`通配符，匹配单个字符；支持`[0-9]`、`[A-Z]`、`[a-z]`、`[0-9A-Za-z]`等范围通配符，匹配单个字符范围）    
+ sql_i：SQL通配符匹配，并忽略大小写
+
+ reg：正则表达式匹配     
+ reg_i：正则表达匹配 ，并忽略大小写</code></pre>
+</li>
+</ol>
+<h3 id="-matchmode-">为表单元素指定MatchMode（查询匹配模式）：</h3>
+<p>EasyDataTable通过8种数据查询匹配模式MatchMode，为使用者提供了全方位的查询支持；同时支持为每个表单选项独立指定不同的查询匹配模式，极大的增强了筛选的灵活性。</p>
+<p><strong>使用方法：</strong><br>使用HTML增强，在相应文本框上添加<code>mode</code>属性，并将值指定为EasyDataTable支持的<code>MathMode名称</code>即可。</p>
+<pre><code>username： 
+&lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; mode=&quot;sql_i&quot;/&gt; 
+
+userinfo：
+&lt;input type=&quot;text&quot; name=&quot;info&quot; class=&quot;txt_test&quot; mode=&quot;extra&quot;/&gt;</code></pre>
+<p>默认匹配模式说明：如果没有为表单元素指定<code>mode</code>属性，则按<strong><code>like_i</code>(忽略大小写的模糊匹配)</strong>处理，默认匹配模式可通过<code>DataTable.default_matchMode=&#39;like_i&#39;</code>修改。</p>
+<h3 id="-">静态数据筛选查询两种范围：</h3>
+<ol>
+<li><p><strong>NowPage</strong>——当前页面数据范围的数据筛选查询：查询当前页面符合条件的数据（同时支持对动态数据源和静态数据源进行NowPage筛选）</p>
+</li>
+<li><p><strong>All</strong>——全部静态数据范围的数据筛选查询：查询加载的所有静态数据中符合条件的数据（仅支持对静态数据源进行All筛选）</p>
+</li>
+</ol>
+<h3 id="-">实现数据筛选的两种方法：</h3>
+<p><strong>方法一：使用HTML增强</strong></p>
+<p>NowPage当前页面静态数据范围的数据筛选查询：给搜索按钮添加<code>static_data_search[_or]</code>类样式：</p>
+<pre><code>`data_static_search` 支持多条件的 AND 方式查询。
+
+    &lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static search and&quot; /&gt;
+
+`data_static_search_or` 支持多条件的 OR 方式查询。
+
+    &lt;input type=&quot;button&quot; class=&quot;data_static_search_or&quot; value=&quot;static search or&quot;/&gt;</code></pre>
+<p>ALL全部静态数据范围的数据筛选查询：给搜索按钮添加<code>static_data_searchAll[_or]</code>类样式：</p>
+<pre><code>`data_static_searchAll` 支持多条件的 AND 方式查询。
+
+    &lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static searchAll and&quot; /&gt;
+
+`data_static_searchAll_or` 支持多条件的 OR 方式查询。
+
+    &lt;input type=&quot;button&quot; class=&quot;data_static_searchAll_or&quot; value=&quot;static searchAll or&quot;/&gt;</code></pre>
+<p><strong>方法二：使用内置函数实现静态筛选：</strong>   </p>
+<p>NowPage当前页面静态数据范围的数据筛选查询：<code>DataTable.staticSearch(&#39;tableid&#39; [,true] )</code></p>
+<pre><code>如果第二个参数为true，则按 OR 方式查询；否则按 AND 方式查询。
+
+&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearch(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
+<p>ALL全部静态数据范围的数据筛选查询：<code>DataTable.staticSearchAll(&#39;tableid&#39; [,true] )</code></p>
+<pre><code>如果第二个参数为true，则按 OR 方式查询；否则按 AND 方式查询。
+
+&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearchAll(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
+<h2 id="16-ajax-">16、表格AJAX分页实例</h2>
+<h3 id="16-1-full-index-count-">16.1、默认FULL分页主题 + 复选框 + index，count内置属性使用</h3>
+<pre><code>&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+        &lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;{index+1}&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot; sort=&quot;info&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount }&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex }&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex+1 }&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt; &lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt; &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-2-simple-loading-show-">16.2、指定分页主题SIMPLE + Loading=”show” + 带复选框 + 排序属性</h3>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+  DataTable.load(&quot;datatable2&quot;,{
+                  &quot;pagetheme&quot;:&#39;SIMPLE&#39;,
+                  &quot;loading&quot;:&quot;show&quot;
+              }); 
+&lt;/script&gt;
+
+&lt;form action=&quot;zh_CN/doPage_slow.jsp&quot; name=&quot;myform&quot;&gt;
+        &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+            &lt;table class=&quot;datatable&quot; value=&quot;pb&quot; id=&quot;datatable2&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+                &lt;tr&gt;
+                    &lt;!-- checkbox --&gt;
+                    &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; check=&quot;mychk&quot; /&gt; &lt;!-- CheckAll --&gt;&lt;/th&gt;
+                    &lt;!-- datatableIndex,datatableCount --&gt;
+                    &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                    &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                    &lt;th width=&quot;100&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                    &lt;th width=&quot;100&quot; sort=&quot;info&quot;&gt;info&lt;/th&gt;
+                    &lt;th width=&quot;100&quot; &gt;sort、order&lt;/th&gt;
+                    &lt;th&gt;operation&lt;/th&gt;
+                &lt;/tr&gt;
+                &lt;!-- Data Show Row--&gt;
+
+                &lt;tr style=&quot;display: none;&quot;&gt;
+                    &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;&lt;/td&gt;
+                    &lt;td align=&quot;center&quot;&gt;{datatableCount }&lt;/td&gt;
+                    &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                    &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                    &lt;td&gt;{info}&lt;/td&gt;
+                    &lt;td&gt;
+                    sort={sort}&lt;br/&gt;
+                    order={order}
+
+                    &lt;/td&gt;
+                    &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt; &lt;a
+                        href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt; &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
+    &lt;/form&gt;</code></pre>
+<h3 id="16-3-datatable-loading-none-10-">16.3、判断语句DataTable表达式使用 + loading=”none” + 默认每页10条</h3>
+<pre><code>&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+         &lt;table class=&quot;datatable easydatatable&quot; loading=&quot;none&quot; id=&quot;datatable3&quot;  width=&quot;100%&quot; align=&quot;center&quot;&gt;
+              &lt;tr&gt;
+               &lt;!-- checkbox --&gt;
+                   &lt;th width=&quot;40&quot;&gt;
+                       &lt;input type=&quot;checkbox&quot;  check=&quot;mychk&quot;  /&gt; &lt;!-- CheckAll --&gt;
+                   &lt;/th&gt;
+               &lt;!-- datatableIndex,datatableCount --&gt;
+                   &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                      &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                      &lt;th width=&quot;80&quot;&gt;{index+1}&lt;/th&gt;
+                   &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                   &lt;th width=&quot;100&quot;&gt;name&lt;/th&gt;
+                   &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                   &lt;th &gt;operation&lt;/th&gt;
+               &lt;/tr&gt; 
+               &lt;!-- Data Show Row--&gt;
+
+               &lt;tr style=&quot;display: none;&quot;&gt;
+                   &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;
+                       &lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot;/&gt;
+                   &lt;/td&gt;
+                   &lt;td align=&quot;center&quot;&gt; {datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                   &lt;td align=&quot;center&quot;&gt; {datatableIndex+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                   &lt;td align=&quot;center&quot;&gt;{datatableIndex+(pageNo-1)*rowPerPage+1}&lt;/td&gt;
+                   &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                   &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                   &lt;td&gt;{info}&lt;/td&gt;
+                   &lt;td align=&quot;center&quot;&gt;
+                   &lt;!-- DataTable 表达式 --&gt;
+                   %{ 
+                       if(id%2==0){ 
+                           var op=&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id=&#39;+id+&#39;&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&#39;; 
+                           op+=&#39;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt;&#39;;
+                           DataTable.out(op); 
+                       }else{ 
+                           DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;&#39;);  
+                       } 
+                    }%
+
+
+                   &lt;/td&gt;
+               &lt;/tr&gt;
+       &lt;/table&gt;
+&lt;/div&gt;
+      &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;10&quot;&gt;
+
+    &lt;/div&gt;
+  &lt;/form&gt;</code></pre>
+<h3 id="16-4-start-end-">16.4、带start和end数据加载事件处理函数的分页 + 自定义排序指示符</h3>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+
+//为datatable4自定义排序指示符
+DataTable.sort[&quot;datatable4&quot;]={
+    order_default:&quot;&lt;img src=&#39;images/order_default.gif&#39;/&gt;&quot;,
+    order_up:&quot;&lt;img src=&#39;images/order_up.gif&#39;/&gt;&quot;,
+    order_down:&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot;
+};
+
+$(function(){
+   //实现初始化loading效果，加载完成后隐藏loading，显示初始数据
+        DataTable.load(&quot;datatable4&quot;,{
+            &quot;start&quot;:function(dataTableObj,initFlag){ 
+                if(initFlag){ //第一次加载，未初始化
+                    console.info(&#39;init start...&#39;);
+                    $(&quot;#loading&quot;).show();     //显示loading提示DIV
+                  $(&quot;#dataDiv&quot;).hide();     //隐藏数据div
+                  $(&quot;#dataPageDiv&quot;).hide(); //隐藏分页div
+                }else{ 
+                  console.info(&#39;load start...&#39;);
+                }
+
+            },
+            &quot;end&quot;:function(dataTableObj,initFlag){    
+                if(initFlag){ //第一次加载，未初始化
+                    console.info(&#39;init end...&#39;);
+                    $(&quot;#loading&quot;).hide();     //隐藏loading提示DIV
+                    $(&quot;#dataDiv&quot;).show();     //显示数据div
+                    $(&quot;#dataPageDiv&quot;).show(); //显示分页div
+                }else{ 
+                    console.info(&#39;load end...&#39;);
+                }
+            }
+
+        });
+ });
+&lt;/script&gt;
+
+
+&lt;form action=&quot;zh_CN/doPage_slow.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;!-- loading提示DIV,第一次加载数据时显示 --&gt;
+    &lt;div id=&quot;loading&quot;
+        style=&quot;border:1px solid #efefef; text-align: center;width: 780px;height: 285px;display: none;font-size: 14px;&quot;&gt;
+        &lt;img src=&quot;images/loading.gif&quot; /&gt;&lt;br /&gt;数据正在加载中……
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot; id=&quot;dataDiv&quot;&gt;
+        &lt;table class=&quot;datatable&quot; id=&quot;datatable4&quot; width=&quot;100%&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;
+            &lt;tr&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;countPerTotal&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;150&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;150&quot;&gt;info&lt;/th&gt;
+                &lt;th width=&quot;100&quot; &gt;sort、order&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot; style=&quot;text-align:center;height: 45px;&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td&gt;
+                sort={sort}&lt;br/&gt;
+                order={order}
+
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt; &lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt; &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;FULL&quot; id=&quot;dataPageDiv&quot;&gt;&lt;/div&gt;
+
+&lt;/form&gt;</code></pre>
+<h3 id="16-5-">16.5 取消分页标签</h3>
+<pre><code>&lt;form action=&quot;zh_CN/doPage.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
+        &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable5&quot; width=&quot;100%&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;
+            &lt;tr&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot;
+                     check=&quot;mychk&quot;  /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;150&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;150&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;操作&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- 数据展示行 --&gt;
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input
+                    type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot; style=&quot;text-align:center;height: 45px;&quot;&gt;
+                {datatableCount}
+                &lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot; &gt;&lt;a
+                    href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;查看&lt;/a&gt; &lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;修改&lt;/a&gt; &lt;a
+                    href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;删除&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;display: none&quot; size=&quot;5,10,30,50&quot;
+        pagetheme=&quot;no&quot; row=&quot;10&quot;&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-6-1">16.6、自定义分页1</h3>
+<pre><code>&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
+        &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable6&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot;  check=&quot;mychk&quot; /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;pageNo&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;150&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;150&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;操作&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- 数据展示行 --&gt;
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;&lt;/td&gt;
+                &lt;td align=&quot;center&quot; style=&quot;text-align:center;height: 45px;&quot;&gt;{pageNo}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;查看&lt;/a&gt; &lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;修改&lt;/a&gt; &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;删除&lt;/a&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;font-size:14px; width: 780px;height: 40px;line-height: 40px;&quot;
+        size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot;&gt;
+        当前第{pageNo}页/共{maxPage}页&amp;nbsp;&amp;nbsp;每页{rowPerPage}条/共{totalCount}条 {order} {sort} &amp;nbsp;&amp;nbsp; &lt;a href=&quot;#&quot;
+            onclick=&quot;DataTable.go(&#39;datatable6&#39;,1,5);return false;&quot;&gt;首页&lt;/a&gt; &amp;nbsp;&amp;nbsp;&lt;a href=&quot;#&quot;
+            onclick=&quot;DataTable.go(&#39;datatable6&#39;,&#39;{pageNo-1}&#39;,5);return false;&quot;&gt;上一页&lt;/a&gt; &amp;nbsp;&amp;nbsp;&lt;a href=&quot;#&quot;
+            onclick=&quot;DataTable.go(&#39;datatable6&#39;,&#39;{pageNo+1}&#39;,5);return false;&quot;&gt;下一页&lt;/a&gt; &amp;nbsp;&amp;nbsp;&lt;a href=&quot;#&quot;
+            onclick=&quot;DataTable.go(&#39;datatable6&#39;,&#39;{maxPage}&#39;,5);return false;&quot;&gt;末页&lt;/a&gt;
+
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-7-2">16.7、自定义分页2</h3>
+<pre><code>&lt;form action=&quot;zh_CN/doPage.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
+        &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable7&quot; width=&quot;100%&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;
+            &lt;tr&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; check=&quot;mychk&quot; /&gt; &lt;!-- CheckAll --&gt;&lt;/th&gt;
+                &lt;!-- datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;pageNo&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;150&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;150&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;操作&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- 数据展示行 --&gt;
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;&lt;/td&gt;
+                &lt;td align=&quot;center&quot; style=&quot;text-align:center;height: 45px;&quot;&gt;{pageNo}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;查看&lt;/a&gt; &lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;修改&lt;/a&gt; &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;删除&lt;/a&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px; line-height: 40px;&quot; size=&quot;5,10,30,50&quot;
+        pagetheme=&quot;no&quot; row=&quot;8&quot;&gt;
+        当前第{pageNo}页/共{maxPage}页
+        每页{rowPerPage}条/共{totalCount}条 {order} {sort} &lt;input type=&quot;button&quot; value=&quot;首页&quot;
+            onclick=&quot;DataTable.go(&#39;datatable7&#39;,1)&quot;&gt; &lt;input type=&quot;button&quot; value=&quot;上一页&quot;
+            onclick=&quot;DataTable.go(&#39;datatable7&#39;,&#39;{pageNo-1}&#39;)&quot;&gt; &lt;input type=&quot;button&quot; value=&quot;下一页&quot;
+            onclick=&quot;DataTable.go(&#39;datatable7&#39;,&#39;{pageNo+1}&#39;)&quot;&gt; &lt;input type=&quot;button&quot; value=&quot;末页&quot;
+            onclick=&quot;DataTable.go(&#39;datatable7&#39;,&#39;{maxPage}&#39;)&quot;&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-8-loading-hide-">16.8、带搜索条件分页 + loading=”hide”</h3>
+<pre><code>DataTable.load(&quot;datatable8&quot;, {
+        &quot;loading&quot; : &quot;hide&quot;
+});
+
+
+&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;margin: 20px 0px;&quot;&gt;
+        username：&lt;input type=&quot;text&quot; name=&quot;user.name&quot; class=&quot;txt_test&quot; /&gt;
+         userinfo：&lt;input type=&quot;text&quot; name=&quot;user.info&quot; class=&quot;txt_test&quot; /&gt; 
+         &lt;!-- HTML增强：使用data_search类样式--&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test data_search&quot; value=&quot;search&quot; /&gt;
+         &lt;!-- JS函数：DataTable.load(&#39;DataTableID&#39;)  --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test&quot; onclick=&quot;DataTable.load(&#39;datatable8&#39;)&quot; value=&quot;search2&quot;/&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+
+        &lt;table class=&quot;datatable &quot; id=&quot;datatable8&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; check=&quot;mychk&quot; /&gt; &lt;!-- CheckAll --&gt;&lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;60&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;180&quot;&gt;condition&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{user.name},{user.info}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;
+                    &lt;!-- DataTable 表达式 --&gt; %{ if(id%2==0){ DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;
+                    target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&#39;); }else{
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=delete&amp;id={id }&quot; target=&quot;ajax&quot;&gt;delete&lt;/a&gt;&#39;); } }%&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-9-nowpage-like_i-2-x-">16.9、 动态数据源加载 + NowPage范围静态数据筛选查询排序 + 默认like_i查询匹配模式（2.X）</h3>
+<pre><code>&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;margin: 20px auto;&quot;&gt;
+        username：&lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; value=&quot;4&quot; /&gt;
+        userinfo：&lt;input type=&quot;text&quot; name=&quot;info&quot; class=&quot;txt_test&quot; value=&quot;INFO_2&quot;/&gt;
+        &lt;br/&gt;&lt;br/&gt;
+        &lt;div&gt;NowPage当前页面数据范围静态筛选（同时支持动态数据源和静态数据源页面筛选）&lt;/div&gt;
+        &lt;br/&gt;
+        &lt;!-- 多条件AND查询，HTML增强和JS函数实现 --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_search&quot; value=&quot;NowPage search AND&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;NowPage search AND2&quot; onclick=&quot;DataTable.staticSearch(&#39;datatable9&#39;)&quot;/&gt;
+
+        &lt;!-- 多条件OR查询，HTML增强和JS函数实现 --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_search_or&quot; value=&quot;NowPage search OR&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;NowPage search OR2&quot; onclick=&quot;DataTable.staticSearch(&#39;datatable9&#39;,true)&quot; /&gt;
+
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+        &lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable9&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot;  check=&quot;mychk&quot;  /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;
+                    &lt;!-- DataTable 表达式 --&gt; %{ if(id%2==0){ DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;
+                    target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&#39;); }else{
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=delete&amp;id={id }&quot; target=&quot;ajax&quot;&gt;delete&lt;/a&gt;&#39;); } }%&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;30&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-10-json-nowpage-2-x-">16.10、JSON静态数据源加载 + NowPage范围静态数据筛选查询排序 + 无分页 （2.X）</h3>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    //静态JSON数据
+    var jsonData ={
+        &quot;rowPerPage&quot;: 10,
+        &quot;pageNo&quot; :1,
+        &quot;data&quot; : [ {
+            &quot;id&quot; : 1,
+            &quot;name&quot; : &quot;USER_1&quot;,
+            &quot;info&quot; : &quot;INFO_1&quot;
+        }, {
+            &quot;id&quot; : 2,
+            &quot;name&quot; : &quot;USER_2&quot;,
+            &quot;info&quot; : &quot;INFO_2&quot;
+        }, {
+            &quot;id&quot; : 3,
+            &quot;name&quot; : &quot;USER_3&quot;,
+            &quot;info&quot; : &quot;INFO_3&quot;
+        }, {
+            &quot;id&quot; : 4,
+            &quot;name&quot; : &quot;USER_4&quot;,
+            &quot;info&quot; : &quot;INFO_4&quot;
+        }, {
+            &quot;id&quot; : 5,
+            &quot;name&quot; : &quot;USER_5&quot;,
+            &quot;info&quot; : &quot;INFO_5&quot;
+        }, {
+            &quot;id&quot; : 6,
+            &quot;name&quot; : &quot;USER_6&quot;,
+            &quot;info&quot; : &quot;INFO_6&quot;
+        }, {
+            &quot;id&quot; : 7,
+            &quot;name&quot; : &quot;USER_7&quot;,
+            &quot;info&quot; : &quot;INFO_7&quot;
+        }, {
+            &quot;id&quot; : 8,
+            &quot;name&quot; : &quot;USER_8&quot;,
+            &quot;info&quot; : &quot;INFO_8&quot;
+        }, {
+            &quot;id&quot; : 9,
+            &quot;name&quot; : &quot;USER_9&quot;,
+            &quot;info&quot; : &quot;INFO_9&quot;
+        }, {
+            &quot;id&quot; : 10,
+            &quot;name&quot; : &quot;USER_10&quot;,
+            &quot;info&quot; : &quot;INFO_10&quot;
+        }, {
+            &quot;id&quot; : 11,
+            &quot;name&quot; : &quot;USER_11&quot;,
+            &quot;info&quot; : &quot;INFO_11&quot;
+        }, {
+            &quot;id&quot; : 12,
+            &quot;name&quot; : &quot;USER_12&quot;,
+            &quot;info&quot; : &quot;INFO_12&quot;
+        }, {
+            &quot;id&quot; : 13,
+            &quot;name&quot; : &quot;USER_13&quot;,
+            &quot;info&quot; : &quot;INFO_13&quot;
+        }, {
+            &quot;id&quot; : 14,
+            &quot;name&quot; : &quot;USER_14&quot;,
+            &quot;info&quot; : &quot;INFO_14&quot;
+        }, {
+            &quot;id&quot; : 15,
+            &quot;name&quot; : &quot;USER_15&quot;,
+            &quot;info&quot; : &quot;INFO_15&quot;
+        }, {
+            &quot;id&quot; : 16,
+            &quot;name&quot; : &quot;USER_16&quot;,
+            &quot;info&quot; : &quot;INFO_16&quot;
+        }, {
+            &quot;id&quot; : 17,
+            &quot;name&quot; : &quot;USER_17&quot;,
+            &quot;info&quot; : &quot;INFO_17&quot;
+        }, {
+            &quot;id&quot; : 18,
+            &quot;name&quot; : &quot;USER_18&quot;,
+            &quot;info&quot; : &quot;INFO_18&quot;
+        }, {
+            &quot;id&quot; : 19,
+            &quot;name&quot; : &quot;USER_19&quot;,
+            &quot;info&quot; : &quot;INFO_19&quot;
+        }, {
+            &quot;id&quot; : 20,
+            &quot;name&quot; : &quot;USER_20&quot;,
+            &quot;info&quot; : &quot;INFO_20&quot;
+        }, {
+            &quot;id&quot; : 21,
+            &quot;name&quot; : &quot;USER_21&quot;,
+            &quot;info&quot; : &quot;INFO_21&quot;
+        }, {
+            &quot;id&quot; : 22,
+            &quot;name&quot; : &quot;USER_22&quot;,
+            &quot;info&quot; : &quot;INFO_22&quot;
+        }, {
+            &quot;id&quot; : 23,
+            &quot;name&quot; : &quot;USER_23&quot;,
+            &quot;info&quot; : &quot;INFO_23&quot;
+        }, {
+            &quot;id&quot; : 24,
+            &quot;name&quot; : &quot;USER_24&quot;,
+            &quot;info&quot; : &quot;INFO_24&quot;
+        }, {
+            &quot;id&quot; : 25,
+            &quot;name&quot; : &quot;USER_25&quot;,
+            &quot;info&quot; : &quot;INFO_25&quot;
+        }, {
+            &quot;id&quot; : 26,
+            &quot;name&quot; : &quot;USER_26&quot;,
+            &quot;info&quot; : &quot;INFO_26&quot;
+        }, {
+            &quot;id&quot; : 27,
+            &quot;name&quot; : &quot;USER_27&quot;,
+            &quot;info&quot; : &quot;INFO_27&quot;
+        }, {
+            &quot;id&quot; : 28,
+            &quot;name&quot; : &quot;USER_28&quot;,
+            &quot;info&quot; : &quot;INFO_28&quot;
+        }, {
+            &quot;id&quot; : 29,
+            &quot;name&quot; : &quot;USER_29&quot;,
+            &quot;info&quot; : &quot;INFO_29&quot;
+        }, {
+            &quot;id&quot; : 30,
+            &quot;name&quot; : &quot;USER_30&quot;,
+            &quot;info&quot; : &quot;INFO_30&quot;
+        } ]
+    };
+
+    $(function(){
+        //加载静态JSON数据，并分页：
+        DataTable.staticLoad(&quot;datatable10&quot;, jsonData,{&quot;row&quot;:30});
+    });
+&lt;/script&gt;
+
+
+&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;margin: 20px auto;&quot;&gt;
+        username：&lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; value=&quot;4&quot; /&gt;
+        userinfo：&lt;input type=&quot;text&quot; name=&quot;info&quot; class=&quot;txt_test&quot; value=&quot;INFO_2&quot;/&gt;
+        &lt;br/&gt;&lt;br/&gt;
+        &lt;div class=&quot;seaD&quot;&gt;NowPage当前页面数据范围静态筛选（同时支持动态数据源和静态数据源页面筛选）&lt;/div&gt;
+        &lt;br/&gt;
+        &lt;!-- 多条件AND查询，HTML增强和JS函数实现 --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_search&quot; value=&quot;NowPage search AND&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;NowPage search AND2&quot; onclick=&quot;DataTable.staticSearch(&#39;datatable9&#39;)&quot;/&gt;
+
+        &lt;!-- 多条件OR查询，HTML增强和JS函数实现 --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_search_or&quot; value=&quot;NowPage search OR&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;NowPage search OR2&quot; onclick=&quot;DataTable.staticSearch(&#39;datatable9&#39;,true)&quot; /&gt;
+
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+        &lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable9&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot;  check=&quot;mychk&quot;  /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;
+                    &lt;!-- DataTable 表达式 --&gt; %{ if(id%2==0){ DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;
+                    target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&#39;); }else{
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=delete&amp;id={id }&quot; target=&quot;ajax&quot;&gt;delete&lt;/a&gt;&#39;); } }%&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;30&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-11-json-all-2-x-">16.11、JSON文件数据源加载 + All范围静态数据筛选查询排序  （2.X）</h3>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    $(function(){
+        DataTable.fileLoad(&quot;datatable11&quot;,&quot;jsonData.json&quot;);
+    });
+&lt;/script&gt;
+
+
+&lt;form action=&quot;&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;margin: 20px auto;&quot;&gt;
+        username（ sql_i 模式）： &lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; value=&quot;USER_1%&quot; mode=&quot;sql_i&quot; /&gt;
+        userinfo（ like_i 模式）：&lt;input type=&quot;text&quot; name=&quot;info&quot; class=&quot;txt_test&quot; value=&quot;INFO_&quot;/&gt;
+        &lt;br/&gt;&lt;br/&gt;
+                &lt;div class=&quot;seaD&quot;&gt;All当前页面数据范围静态筛选（仅支持静态数据源页面筛选）&lt;/div&gt;
+        &lt;br/&gt;
+        &lt;!-- 多条件AND查询，HTML增强和JS函数实现 --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_searchAll&quot; value=&quot;All search AND&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;All search AND2&quot;  onclick=&quot;DataTable.staticSearchAll(&#39;datatable11&#39;)&quot;/&gt; 
+        &lt;!-- 多条件OR查询，HTML增强和JS函数实现 --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_searchAll_or&quot; value=&quot;All search OR&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;All search OR2&quot; onclick=&quot;DataTable.staticSearchAll(&#39;datatable11&#39;,true)&quot;/&gt; 
+
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+        &lt;table class=&quot;datatable&quot; id=&quot;datatable11&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;
+                    &lt;!-- DataTable 表达式 --&gt; %{ if(id%2==0){ DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;
+                    target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&#39;); }else{
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=delete&amp;id={id }&quot; target=&quot;ajax&quot;&gt;delete&lt;/a&gt;&#39;); } }%&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;15&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<p><a href="http://www.lightfeel.com/easy/easydatatable/zh-cn/index.jsp#demo" title="在线 Demo">在线Demo</a></p>
+<p>联系、反馈、定制Email：<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#x69;&#110;&#46;&#x74;&#x68;&#x69;&#110;&#x6b;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#x69;&#110;&#46;&#x74;&#x68;&#x69;&#110;&#x6b;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a></p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
