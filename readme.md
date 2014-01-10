@@ -17,7 +17,7 @@ EasyDataTable AJAX分页插件是基于jQuery最好的纯Ajax分页插件，支�
 
 
 > EasyDataTable目前支持两个版本 1.X 和 2.X 版本   
-> 2.X 增加了对静态数据源、JSON文件数据源的分页加载支持，并支持对以上静态数据进行筛选查询和排序。
+> 2.X 增加了对静态数据源(数据列表支持JSON和Array格式)、JSON文件数据源的分页加载支持，并支持对以上静态数据进行筛选查询和排序。
 
 
 ----------
@@ -543,7 +543,7 @@ _注意：EasyDataTable目前支持 1.X 和 2.X 两个版本。EasyDataTable 1.X
 
 
 ### 13.2、 静态数据源（2.X）
-支持直接加载指定的**JSON数据对象**，实现分页。  
+支持直接加载指定的**JSON数据对象**，实现分页(数据列表支持JSON和Array格式)。  
  
     DataTable.staticLoad('tableid' , jsonDataObject [,easydataParams]);
 
@@ -1369,6 +1369,227 @@ ALL全部静态数据范围的数据筛选查询：`DataTable.staticSearchAll('t
 		</div>
 		<div class="panelBar" style="width: 780px;" size="5,10,30,50" row="15"></div>
 	</form>
+
+
+
+
+## 17、数组数据集合加载分页
+
+EasyDataTable在数据分页时除了支持使用JSON数据集合外，**还支持使用Array数组集合数据**。服务器动态数据源或静态数据源均可使用数组保存数据集合。例如：
+
+	data:[
+				[1,"Jay","I'm Jay"],
+				[2,"Jolin","I'm Jolin"],
+				[3,"Sheldon","I'm Sheldon"],
+				[4,"Penny","I'm Penny"],
+				[5,"Amy","I'm Amy"],
+				[6,"Jay2","I'm Jay"],
+				[7,"Jolin2","I'm Jolin"],
+				[8,"Sheldon2","I'm Sheldon"],
+				[9,"Penny2","I'm Penny"],
+				[10,"Amy2","I'm Amy"],
+				[11,"Jay3","I'm Jay"],
+				[12,"Jolin3","I'm Jolin"],
+				[13,"Sheldon3","I'm Sheldon"],
+				[14,"Penny3","I'm Penny"],
+				[15,"Amy3","I'm Amy"]
+		]
+
+
+
+**从数组中获取数据时使用`[index]`代表指定的数据字段名称，`index`为数据在数组中的数字索引，在EasyDataTable的语句表达式和属性表达式中均可使用。**
+**例如`[0]`，代表第一列；`{[0]}`代表获取第一列的值**
+
+
+### 实例一：数组数据集合(服务器动态数据源) + NowPage范围数据筛选 （2.X）
+
+
+	<form action="zh_CN/doPage3.jsp" name="myform">
+		<div style="margin: 20px auto;">
+			username（ sql_i 模式）： <input type="text" name="[1]" class="txt_test" value="USER_1%" mode="sql_i" />
+			userinfo（ like_i 模式）：<input type="text" name="[2]" class="txt_test" value="i"/>
+			<br/><br/>
+				<div class="seaD">NowPage当前页面数据范围静态筛选（同时支持动态数据源和静态数据源页面筛选）</div>
+			<br/>
+			<!-- 多条件AND查询，HTML增强和JS函数实现 -->
+		    <input type="button" class="btn_test2 data_static_search" value="NowPage search AND" />
+			<input type="button" class="btn_test2" value="NowPage search AND2" onclick="DataTable.staticSearch('datatable10')"/>
+		    <!-- 多条件OR查询，HTML增强和JS函数实现 -->
+		    <input type="button" class="btn_test2 data_static_search_or" value="NowPage search OR" />
+			<input type="button" class="btn_test2" value="NowPage search OR2" onclick="DataTable.staticSearch('datatable10',true)" />
+			
+		</div>
+		<div style="height: 260px;overflow:auto;width: 780px;" class="dataTableScrollDiv">
+
+			<table class="datatable easydatatable" id="datatable12" width="100%" align="center">
+				  <thead>
+					  <tr>
+						<!-- checkbox -->
+						<th width="40">
+						<input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" /> <!-- CheckAll -->
+						</th>
+						<!-- datatableIndex,datatableCount -->
+						<th width="80">count</th>
+						<th width="80">index</th>
+						<th width="100" staticSort="[0]">id</th>
+						<th width="100" staticSort="[1]">name</th>
+						<th width="100">info</th>
+						<th>operation</th>
+					</tr>  
+				</thead>
+				<!-- Data Show Row-->
+
+				<tr style="display: none;">
+					<td style="text-align:center;height: 45px;"><input type="checkbox" name="mychk" value="{id }" />
+					</td>
+					<td align="center">{datatableCount+(pageNo-1)*rowPerPage}</td>
+					<td align="center">{datatableIndex+(pageNo-1)*rowPerPage}</td>
+					<td style="text-align:center;color:#00f">No.{[0]}</td>
+					<td align="center">{[1]}</td>
+					<td>{[2]}</td>
+					<td align="center">
+						
+						%{ 
+						if([0]%2==0){ 
+						DataTable.out('<a href="doUser.jsp?o=show&id={[0] }" target="ajax">show</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={[0] }" target="ajax">edit</a>'); 
+						}else{
+						DataTable.out('<a href="doUser.jsp?o=show&id={[0] }" target="ajax">show</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={[0] }" target="ajax">edit</a>&nbsp;&nbsp;<a href="doUser.jsp?o=delete&id={[0] }" target="ajax">delete</a>'); 
+						} }%
+					
+					</td>
+										</tr>
+			</table>
+		</div>
+		<div class="panelBar" style="width: 780px;" size="5,10,30,50" row="15"></div>
+
+	</form>
+
+
+
+### 实例二： 数组数据集合（静态数据源）  + All范围数据筛选 （2.X）
+
+	<script type="text/javascript">
+		//静态数据源——数组数据集合			
+		var arrayData={
+			data:[
+					[1,"Jay","I'm Jay"],
+					[2,"Jolin","I'm Jolin"],
+					[3,"Sheldon","I'm Sheldon"],
+					[4,"Penny","I'm Penny"],
+					[5,"Amy","I'm Amy"],
+					[6,"Jay2","I'm Jay"],
+					[7,"Jolin2","I'm Jolin"],
+					[8,"Sheldon2","I'm Sheldon"],
+					[9,"Penny2","I'm Penny"],
+					[10,"Amy2","I'm Amy"],
+					[11,"Jay3","I'm Jay"],
+					[12,"Jolin3","I'm Jolin"],
+					[13,"Sheldon3","I'm Sheldon"],
+					[14,"Penny3","I'm Penny"],
+					[15,"Amy3","I'm Amy"]
+				]
+		};
+		
+		//13.静态数据源——数组数据集合  + All范围数据筛选 （2.X）
+		DataTable.staticLoad("datatable13", arrayData,{"row":5});	
+	</script>
+
+	<form action="" name="myform">
+		<div style="margin: 20px auto;">
+			username（ sql_i 模式）： <input type="text" name="[1]" class="txt_test" value="J%" mode="sql_i" />
+			userinfo（ like_i 模式）：<input type="text" name="[2]" class="txt_test" value="l"/>
+			<br/><br/>
+					<div class="seaD">All当前页面数据范围静态筛选（仅支持静态数据源页面筛选）</div>
+			<br/>
+			<!-- 多条件AND查询，HTML增强和JS函数实现 -->
+			<input type="button" class="btn_test2 data_static_searchAll" value="All search AND" />
+			<input type="button" class="btn_test2" value="All search AND2"  onclick="DataTable.staticSearchAll('datatable11')"/> 
+			<!-- 多条件OR查询，HTML增强和JS函数实现 -->
+			<input type="button" class="btn_test2 data_static_searchAll_or" value="All search OR" />
+			<input type="button" class="btn_test2" value="All search OR2" onclick="DataTable.staticSearchAll('datatable11',true)"/> 
+			
+		</div>
+		<div style="height: 260px;overflow:auto;width: 780px;" class="dataTableScrollDiv">
+
+			<table class="datatable" id="datatable13" width="100%" align="center">
+				  <thead><tr>
+					<!-- checkbox -->
+					<th width="40"><input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" /> <!-- CheckAll -->
+					</th>
+					<!-- datatableIndex,datatableCount -->
+					<th width="80">count</th>
+					<th width="80">index</th>
+					<th width="100" staticSort="[0]">id</th>
+					<th width="100" staticSort="[1]">name</th>
+					<th width="100">info</th>
+					<th>operation</th>
+				</tr>  </thead>
+				<!-- Data Show Row-->
+
+				<tr style="display: none;">
+					<td style="text-align:center;height: 45px;"><input type="checkbox" name="mychk" value="{id }" />
+					</td>
+					<td align="center">{datatableCount+(pageNo-1)*rowPerPage}</td>
+					<td align="center">{datatableIndex+(pageNo-1)*rowPerPage}</td>
+					<td style="text-align:center;color:#00f">No.{[0]}</td>
+					<td align="center">{[1]}</td>
+					<td>{[2]}</td>
+					<td align="center">
+						
+						%{ 
+						if([0]%2==0){ 
+						DataTable.out('<a href="doUser.jsp?o=show&id={[0] }" target="ajax">show</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={[0] }" target="ajax">edit</a>'); 
+						}else{
+						DataTable.out('<a href="doUser.jsp?o=show&id={[0] }" target="ajax">show</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={[0] }" target="ajax">edit</a>&nbsp;&nbsp;<a href="doUser.jsp?o=delete&id={[0] }" target="ajax">delete</a>'); 
+						} }%
+					
+					</td>
+										</tr>
+			</table>
+		</div>
+		<div class="panelBar" style="width: 780px;" size="5,10,30,50" row="5"></div>
+
+	</form>
+
+
+
+## 18、插件扩展：列宽拖动调整插件
+
+EasyDataTable支持使用[jquery-resizable-columns](https://github.com/dobtco/jquery-resizable-columns 'Viw on GitHub')插件实现数据表格的列宽拖动调整。
+
+18.1、 为需要列拖动的数据表格的行首添加`<thead>`标签
+
+	<table class="datatable" id="datatable12" width="100%" align="center">
+			  <thead>  <!-- resizableColumns need-->
+				  <tr>
+					<!-- checkbox -->
+					<th width="40"><input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" /> <!-- CheckAll -->
+					</th>
+					<!-- datatableIndex,datatableCount -->
+					<th width="80">count</th>
+					<th width="80">index</th>
+					<th width="100" staticSort="[0]">id</th>
+					<th width="100" staticSort="[1]">name</th>
+					<th width="100">info</th>
+					<th>operation</th>
+				</tr>  
+			</thead>  <!-- resizableColumns need-->
+		    ……
+	</table>
+
+18.2、使用 `$("#datatable12").resizableColumns();`初始化即可
+
+	<link rel="stylesheet" href="resizable/jquery.resizableColumns.css" type="text/css"></link>
+	<script type="text/javascript" src="resizable/jquery.resizableColumns.js"></script>
+
+	<script type="text/javascript">
+	  $(function(){
+	    $("#datatable12").resizableColumns();
+	  });
+	</script>
+
+
+
 
 
 

@@ -1,6 +1,5 @@
 *{font-family: 微软雅黑,Arial, sans-serif;}
 .datatable {
-	border-collapse: separate;
 	border-spacing: 0;
 	background: #fff;
 	padding: 0;
@@ -8,7 +7,8 @@
 	font-size: 13px;
 	line-height: 100%;
 	font-family: 微软雅黑,Arial, sans-serif;
-	border-collapse:collapse; border:solid 1px #ededed;
+	border-collapse:collapse;
+	 border:solid 1px #ededed;
 	overflow: scroll;
 }
 

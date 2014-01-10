@@ -114,10 +114,17 @@
   }, formatContent = function(content, jsondata) {
     var reg = /\{([^}]+)\}/g;
     var regExp = /\%\{(.*)\}\%/g;
+	var arrExp=/\[([0-9]+)\]/g;
     content = content.replace(regExp, function(m, i) {
       with (jsondata) {
         try {
-          return eval($.trim(i));
+        	try {
+				return eval($.trim(i).replace(arrExp,function(n,j){
+					return jsondata[j];
+				}));
+			} catch (e) {
+				return m;
+			}
         } catch (e) {
           return m;
         }
@@ -133,6 +140,9 @@
           if (res) {
             return res;
           }
+          if(/\[([0-9]+)\]/.test(i)){
+				return jsondata[i.substring(1,i.length-1)];
+			}
           return eval($.trim(i)) == null ? "" :eval($.trim(i));
         } catch (e) {
           return "";
@@ -320,6 +330,10 @@
     for (var i in data) {
       a.push(new dataObject(i, data[i]));
     }
+	if(/\[([0-9]+)\]/.test(dataTableSort)){
+		dataTableSort=dataTableSort.substring(1,dataTableSort.length-1);
+	}
+    
     a.sort(function(x, y) {
       if (dataTableSort.toLowerCase() == "key") {
         if (x.k == y.k) {

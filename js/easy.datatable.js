@@ -1,6 +1,6 @@
 // jQuery EasyDataTable Plugin
 //
-// Version 2.0.0
+// Version 2.1.0
 //
 // Copy By RAY
 // inthinkcolor@gmail.com
@@ -358,23 +358,27 @@ staticPagination = function(tableid) {
 	
 },
 formatContent = function(content, jsondata) {
+	
+	
 	// EasyDataTable 属性表达式
 	var reg = /\{([^}]+)\}/g;
-	// var regExp=/\%\{([\s\S]+)\}/g; //语句表达式
-	var regExp = /\%\{(.*)\}\%/g;
-	
+	// var regExp=/\%\{([\s\S]+)\}/g;
+	var regExp = /\%\{(.*)\}\%/g; //语句表达式
+	var arrExp=/\[([0-9]+)\]/g;//数组表达式
 	// EasyDataTable 语句表达式
 	content = content.replace(regExp, function(m, i) {
+		
 		with (jsondata) {
 			try {
-				return eval($.trim(i));
+				return eval($.trim(i).replace(arrExp,function(n,j){
+					return jsondata[j];
+				}));
 			} catch (e) {
 				return m;
 			}
 		}
 	});
-	
-	content = content.replace(reg, function(m, i) {
+	content = content.replace(reg, function(m, i,i2) {
 		with (jsondata) {
 			try {
 				var res;
@@ -384,6 +388,10 @@ formatContent = function(content, jsondata) {
 				if(res){
 					return res;
 				}
+				if(/\[([0-9]+)\]/.test(i)){
+					return jsondata[i.substring(1,i.length-1)];
+				}
+				
 				return eval($.trim(i)) == null ? "" : eval($.trim(i));
 			} catch (e) {
 				// return m;
@@ -436,10 +444,15 @@ filterStaticData= function(data, params,or,dataForm) {
 	paramsMatch={}		;
 	
 	$.each(params,function(k,v){
+		if(/\[([0-9]+)\]/.test(k)){
+			k=k.substring(1,k.length-1);
+		}
 		if($.trim(v)!=""){
 			paramsMatch[k]=new staticMatch(k,matchReg(mode,v,f),mode);
 		}
 	});
+	
+	
 	
 	dataForm.find(":input[mode]").each(function(k,v){
 		var v=$.trim($(this).val());
@@ -448,6 +461,10 @@ filterStaticData= function(data, params,or,dataForm) {
 			var 
 			name=$(this).attr("name"),
 			mode=$(this).attr("mode").toLowerCase();
+			
+			if(/\[([0-9]+)\]/.test(name)){
+				name=name.substring(1,name.length-1);
+			}
 			
 			if(!(mode=="extra"||mode=="extra_i"||mode=="sql"||mode=="sql_i"||mode=="like"||mode=="like_i"||mode=="reg"||mode=="reg_i")){
 				mode=DataTable.default_matchMode.toLowerCase();
@@ -503,6 +520,7 @@ filterStaticData= function(data, params,or,dataForm) {
 		for ( var i in data) {
 			var flag = true;
 			for ( var pname in paramsMatch) {
+				
 				// 如果当前数据存在匹配条件
 				try {
 					if (data[i][pname]) { // 存在参数
@@ -670,12 +688,13 @@ initDataAndContent=function(tableid, nowDataTable, dataForm, data, params, or,al
 		cacheData[tableid].maxPage = Math
 				.floor(((parseInt(data.totalCount) - 1) / parseInt(data.rowPerPage)) + 1);
 		var filterData = data.data;
-
+		
 		if (params) { // 如果是静态查询
 			filterData = filterStaticData(data.data, params, or,dataForm);
 		}
 		cacheStaticData[tableid] = clone(filterData);
-	
+		
+		
 		
 		for ( var i in filterData) {
 			for ( var property in data) {
@@ -693,6 +712,10 @@ initDataAndContent=function(tableid, nowDataTable, dataForm, data, params, or,al
 					.floor(((parseInt(filterData[i].totalCount) - 1) / parseInt(filterData[i].rowPerPage)) + 1);
 			filterData[i].order = dataTableOrder;
 			filterData[i].sort = dataTableSort;
+			
+			
+			
+			
 			if(!all){
 				content += formatContent(
 						cacheDataRow[tableid], filterData[i]);
@@ -810,7 +833,7 @@ dataObject = function(k, v) {
 	this.v = v;
 },
 dataSort = function(data, dataTableSort,dataTableOrder) {
-	
+
 	var l = true;// List集合
 
 	if (!$.isArray(data)) {// Map集合
@@ -821,6 +844,11 @@ dataSort = function(data, dataTableSort,dataTableOrder) {
 	var a = new Array(); // keyArray
 	for ( var i in data) {
 		a.push(new dataObject(i, data[i]));
+	}
+	
+	//数组
+	if(/\[([0-9]+)\]/.test(dataTableSort)){
+		dataTableSort=dataTableSort.substring(1,dataTableSort.length-1);
 	}
 
 	a.sort(function(x, y) {
