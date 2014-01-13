@@ -383,18 +383,77 @@ EasyDataTable支持对可排序列的排序指示符号进行**全局**和**按D
 	};
 
 
+
+
+
+
 ## 7、服务器端数据要求    
 
 **EasyDataTable可以自动解析服务器端返回的JSON结果，并实现分页。**  
 
+
 - **服务器端必须输出如下名称的分页JSON结果：**    
-	`data`：数据集合，支持List和Map集合（内置属性key可获取Map的键，Map的值无需使用value前缀）对于的JSON集合
+	`data`：数据集合，支持List和Map集合（内置属性key可获取Map的键，Map的值无需使用value前缀）对应的JSON集合，JSON集合中的数据支持实体对象和数组两种方式。
 	`pageNo`：当前第几页，数字    
 	`rowPerPage`：每页显示条数，数字    
 	`totalCount`：数据总条数，数字   
 	可选参数：   
 	`[sort]`：排序字段   
 	`[order]`：排序方式，desc或asc     
+
+
+- **data数据集合支持的两种方式：**
+
+	1、实体对象数据集合：
+
+		"data" : [ 
+			{
+				"id" : 1,
+				"name" : "USER_1",
+				"info" : "INFO_1"
+			}, {
+				"id" : 2,
+				"name" : "USER_2",
+				"info" : "INFO_2"
+			}, {
+				"id" : 3,
+				"name" : "USER_3",
+				"info" : "INFO_3"
+			}, {
+				"id" : 4,
+				"name" : "USER_4",
+				"info" : "INFO_4"
+			}, {
+				"id" : 5,
+				"name" : "USER_5",
+				"info" : "INFO_5"
+			}
+		]
+
+	2、数组对象数据集合：
+
+		"data":[
+					[1,"Jay","I'm Jay"],
+					[2,"Jolin","I'm Jolin"],
+					[3,"Sheldon","I'm Sheldon"],
+					[4,"Penny","I'm Penny"],
+					[5,"Amy","I'm Amy"],
+					[6,"Jay2","I'm Jay"],
+					[7,"Jolin2","I'm Jolin"],
+					[8,"Sheldon2","I'm Sheldon"],
+					[9,"Penny2","I'm Penny"],
+					[10,"Amy2","I'm Amy"],
+					[11,"Jay3","I'm Jay"],
+					[12,"Jolin3","I'm Jolin"],
+					[13,"Sheldon3","I'm Sheldon"],
+					[14,"Penny3","I'm Penny"],
+					[15,"Amy3","I'm Amy"]
+			]
+	
+	**注意：使用数组对象数据集合从数组中获取数据时使用`[index]`代表指定的数据属性名称，`index`为数据在数组中的数字索引，在EasyDataTable的属性表达式和语句表达式中均可使用。**
+	**例如`[0]`，代表第一列数据属性；`{[0]}`代表获取第一列数据属性的值**
+
+
 
 - **如果服务器端分页参数封装在PageBean中，如：** 
 
@@ -1373,9 +1432,9 @@ ALL全部静态数据范围的数据筛选查询：`DataTable.staticSearchAll('t
 
 
 
-## 17、数组数据集合加载分页
+## 17、数组对象数据集合加载分页
 
-EasyDataTable在数据分页时除了支持使用JSON数据集合外，**还支持使用Array数组集合数据**。服务器动态数据源或静态数据源均可使用数组保存数据集合。例如：
+EasyDataTable在数据分页时除了支持使用JSON数据集合外，**还支持使用Array数组对象数据集合**。服务器动态数据源或静态数据源均可使用数组保存数据集合。例如：
 
 	data:[
 				[1,"Jay","I'm Jay"],
@@ -1397,11 +1456,11 @@ EasyDataTable在数据分页时除了支持使用JSON数据集合外，**还支�
 
 
 
-**从数组中获取数据时使用`[index]`代表指定的数据字段名称，`index`为数据在数组中的数字索引，在EasyDataTable的语句表达式和属性表达式中均可使用。**
-**例如`[0]`，代表第一列；`{[0]}`代表获取第一列的值**
+**数组对象数据集合从数组中获取数据时使用`[index]`代表指定的数据属性名称，`index`为数据在数组中的数字索引，在EasyDataTable的属性表达式和语句表达式中均可使用。**
+**例如`[0]`，代表第一列数据属性；`{[0]}`代表获取第一列数据属性的值**
 
 
-### 实例一：数组数据集合(服务器动态数据源) + NowPage范围数据筛选 （2.X）
+### 实例一：数组对象数据集合(服务器动态数据源) + NowPage范围数据筛选 （2.X）
 
 
 	<form action="zh_CN/doPage3.jsp" name="myform">
@@ -1466,7 +1525,7 @@ EasyDataTable在数据分页时除了支持使用JSON数据集合外，**还支�
 
 
 
-### 实例二： 数组数据集合（静态数据源）  + All范围数据筛选 （2.X）
+### 实例二： 数组对象数据集合（静态数据源）  + All范围数据筛选 （2.X）
 
 	<script type="text/javascript">
 		//静态数据源——数组数据集合			

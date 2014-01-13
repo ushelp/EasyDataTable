@@ -553,8 +553,56 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
 <h2 id="7-">7、服务器端数据要求</h2>
 <p><strong>EasyDataTable可以自动解析服务器端返回的JSON结果，并实现分页。</strong>  </p>
 <ul>
-<li><p><strong>服务器端必须输出如下名称的分页JSON结果：</strong><br>  <code>data</code>：数据集合，支持List和Map集合（内置属性key可获取Map的键，Map的值无需使用value前缀）对于的JSON集合<br>  <code>pageNo</code>：当前第几页，数字<br>  <code>rowPerPage</code>：每页显示条数，数字<br>  <code>totalCount</code>：数据总条数，数字<br>  可选参数：<br>  <code>[sort]</code>：排序字段<br>  <code>[order]</code>：排序方式，desc或asc     </p>
+<li><strong>服务器端必须输出如下名称的分页JSON结果：</strong><br>  <code>data</code>：数据集合，支持List和Map集合（内置属性key可获取Map的键，Map的值无需使用value前缀）对应的JSON集合，JSON集合中的数据支持实体对象和数组两种方式。<br>  <code>pageNo</code>：当前第几页，数字<br>  <code>rowPerPage</code>：每页显示条数，数字<br>  <code>totalCount</code>：数据总条数，数字<br>  可选参数：<br>  <code>[sort]</code>：排序字段<br>  <code>[order]</code>：排序方式，desc或asc     </li>
+</ul>
+<ul>
+<li><p><strong>data数据集合支持的两种方式：</strong></p>
+<p>  1、实体对象数据集合：</p>
+<pre><code>  &quot;data&quot; : [ 
+      {
+          &quot;id&quot; : 1,
+          &quot;name&quot; : &quot;USER_1&quot;,
+          &quot;info&quot; : &quot;INFO_1&quot;
+      }, {
+          &quot;id&quot; : 2,
+          &quot;name&quot; : &quot;USER_2&quot;,
+          &quot;info&quot; : &quot;INFO_2&quot;
+      }, {
+          &quot;id&quot; : 3,
+          &quot;name&quot; : &quot;USER_3&quot;,
+          &quot;info&quot; : &quot;INFO_3&quot;
+      }, {
+          &quot;id&quot; : 4,
+          &quot;name&quot; : &quot;USER_4&quot;,
+          &quot;info&quot; : &quot;INFO_4&quot;
+      }, {
+          &quot;id&quot; : 5,
+          &quot;name&quot; : &quot;USER_5&quot;,
+          &quot;info&quot; : &quot;INFO_5&quot;
+      }
+  ]</code></pre>
+<p>  2、数组对象数据集合：</p>
+<pre><code>  &quot;data&quot;:[
+              [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
+              [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
+              [3,&quot;Sheldon&quot;,&quot;I&#39;m Sheldon&quot;],
+              [4,&quot;Penny&quot;,&quot;I&#39;m Penny&quot;],
+              [5,&quot;Amy&quot;,&quot;I&#39;m Amy&quot;],
+              [6,&quot;Jay2&quot;,&quot;I&#39;m Jay&quot;],
+              [7,&quot;Jolin2&quot;,&quot;I&#39;m Jolin&quot;],
+              [8,&quot;Sheldon2&quot;,&quot;I&#39;m Sheldon&quot;],
+              [9,&quot;Penny2&quot;,&quot;I&#39;m Penny&quot;],
+              [10,&quot;Amy2&quot;,&quot;I&#39;m Amy&quot;],
+              [11,&quot;Jay3&quot;,&quot;I&#39;m Jay&quot;],
+              [12,&quot;Jolin3&quot;,&quot;I&#39;m Jolin&quot;],
+              [13,&quot;Sheldon3&quot;,&quot;I&#39;m Sheldon&quot;],
+              [14,&quot;Penny3&quot;,&quot;I&#39;m Penny&quot;],
+              [15,&quot;Amy3&quot;,&quot;I&#39;m Amy&quot;]
+      ]</code></pre>
+<p>  <strong>注意：使用数组对象数据集合从数组中获取数据时使用<code>[index]</code>代表指定的数据属性名称，<code>index</code>为数据在数组中的数字索引，在EasyDataTable的属性表达式和语句表达式中均可使用。</strong><br>  <strong>例如<code>[0]</code>，代表第一列数据属性；<code>{[0]}</code>代表获取第一列数据属性的值</strong></p>
 </li>
+</ul>
+<ul>
 <li><p><strong>如果服务器端分页参数封装在PageBean中，如：</strong> </p>
 <pre><code>  public class PageBean {
       private List data;
@@ -1363,8 +1411,8 @@ $(function(){
     &lt;/div&gt;
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;15&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
-<h2 id="17-">17、数组数据集合加载分页</h2>
-<p>EasyDataTable在数据分页时除了支持使用JSON数据集合外，<strong>还支持使用Array数组集合数据</strong>。服务器动态数据源或静态数据源均可使用数组保存数据集合。例如：</p>
+<h2 id="17-">17、数组对象数据集合加载分页</h2>
+<p>EasyDataTable在数据分页时除了支持使用JSON数据集合外，<strong>还支持使用Array数组对象数据集合</strong>。服务器动态数据源或静态数据源均可使用数组保存数据集合。例如：</p>
 <pre><code>data:[
             [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
             [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
@@ -1382,8 +1430,8 @@ $(function(){
             [14,&quot;Penny3&quot;,&quot;I&#39;m Penny&quot;],
             [15,&quot;Amy3&quot;,&quot;I&#39;m Amy&quot;]
     ]</code></pre>
-<p><strong>从数组中获取数据时使用<code>[index]</code>代表指定的数据字段名称，<code>index</code>为数据在数组中的数字索引，在EasyDataTable的语句表达式和属性表达式中均可使用。</strong><br><strong>例如<code>[0]</code>，代表第一列；<code>{[0]}</code>代表获取第一列的值</strong></p>
-<h3 id="-nowpage-2-x-">实例一：数组数据集合(服务器动态数据源) + NowPage范围数据筛选 （2.X）</h3>
+<p><strong>数组对象数据集合从数组中获取数据时使用<code>[index]</code>代表指定的数据属性名称，<code>index</code>为数据在数组中的数字索引，在EasyDataTable的属性表达式和语句表达式中均可使用。</strong><br><strong>例如<code>[0]</code>，代表第一列数据属性；<code>{[0]}</code>代表获取第一列数据属性的值</strong></p>
+<h3 id="-nowpage-2-x-">实例一：数组对象数据集合(服务器动态数据源) + NowPage范围数据筛选 （2.X）</h3>
 <pre><code>&lt;form action=&quot;zh_CN/doPage3.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;margin: 20px auto;&quot;&gt;
         username（ sql_i 模式）： &lt;input type=&quot;text&quot; name=&quot;[1]&quot; class=&quot;txt_test&quot; value=&quot;USER_1%&quot; mode=&quot;sql_i&quot; /&gt;
@@ -1443,7 +1491,7 @@ $(function(){
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;15&quot;&gt;&lt;/div&gt;
 
 &lt;/form&gt;</code></pre>
-<h3 id="-all-2-x-">实例二： 数组数据集合（静态数据源）  + All范围数据筛选 （2.X）</h3>
+<h3 id="-all-2-x-">实例二： 数组对象数据集合（静态数据源）  + All范围数据筛选 （2.X）</h3>
 <pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
     //静态数据源——数组数据集合            
     var arrayData={
@@ -1556,7 +1604,7 @@ $(function(){
   });
 &lt;/script&gt;</code></pre>
 <p><a href="http://www.lightfeel.com/easy/easydatatable/zh-cn/index.jsp#demo" title="在线 Demo">在线Demo</a></p>
-<p>联系、反馈、定制Email：<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#105;&#x6e;&#46;&#116;&#x68;&#x69;&#110;&#107;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;">&#105;&#x6e;&#46;&#116;&#x68;&#x69;&#110;&#107;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;</a></p>
+<p>联系、反馈、定制Email：<a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x69;&#110;&#46;&#x74;&#x68;&#x69;&#110;&#x6b;&#64;&#103;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;">&#x69;&#110;&#46;&#x74;&#x68;&#x69;&#110;&#x6b;&#64;&#103;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;</a></p>
 
 </body>
 </html>
