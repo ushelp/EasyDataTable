@@ -20,6 +20,8 @@ EasyDataTable AJAX分页插件是基于jQuery最好的纯Ajax分页插件，支�
 > 2.X 增加了对静态数据源(数据列表支持JSON和Array格式)、JSON文件数据源的分页加载支持，并支持对以上静态数据进行筛选查询和排序。
 
 
+### [官网主页](http://www.lightfeel.com/easy/easydatatable/zh-cn/index.jsp 'EasyDataTable官网主页')
+
 ----------
 
 
@@ -1656,3 +1658,6 @@ EasyDataTable支持使用[jquery-resizable-columns](https://github.com/dobtco/jq
 
 联系、反馈、定制Email：<in.think@gmail.com>
 
+<a href="https://me.alipay.com/inthink" target="_blank">
+<img src="http://www.lightfeel.com/easy/images/donation.png" alt="通过支付宝捐赠" title="通过支付宝捐赠" height="37" width="150"></img>
+</a>
