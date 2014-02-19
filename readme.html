@@ -309,12 +309,12 @@ img {
 <h3 id="-http-www-lightfeel-com-easy-easydatatable-zh-cn-index-jsp-easydatatable-"><a href="http://www.lightfeel.com/easy/easydatatable/zh-cn/index.jsp" title="EasyDataTable官网主页">官网主页</a></h3>
 <hr>
 <h2 id="1-easydatatable-js-css-">1、引入EasyDataTable核心js和css文件</h2>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/datatable.css&quot; type=&quot;text/css&quot; /&gt;
+<pre><code class="lang-HTML">&lt;link rel=&quot;stylesheet&quot; href=&quot;css/datatable.css&quot; type=&quot;text/css&quot; /&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;js/easy.datatable.js&quot;&gt;&lt;/script&gt;</code></pre>
 <h2 id="2-">2、分页表格结构</h2>
 <p>EasyDataTable的结构分为表单、EasyDataTable数据表格（表头行，数据展示行）、分页div三个部分，按照如下结构创建数据表格：</p>
-<pre><code>&lt;!-- 创建表单 action值为分页处理的动态请求地址 --&gt;
+<pre><code class="lang-HTML">&lt;!-- 创建表单 action值为分页处理的动态请求地址 --&gt;
 &lt;form action=&quot;服务器分页地址&quot;&gt;
 
     &lt;!--  EasyDataTable 数据展示表格，必须有id  --&gt;
@@ -333,7 +333,7 @@ img {
 
 &lt;/form&gt;</code></pre>
 <h3 id="-">分页表格实例：</h3>
-<pre><code>&lt;!-- 创建表单 action值为分页处理的请求地址 --&gt;
+<pre><code class="lang-HTML">&lt;!-- 创建表单 action值为分页处理的请求地址 --&gt;
 &lt;form action=&quot;doPage.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;!-- 使用DIV来包装EasyDataTable 数据展示表格，当数据超出DIV高度时，可现实滚动条 --&gt;
        &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
@@ -381,10 +381,18 @@ img {
 <p>EasyDataTable支持HTMl增强和JS两种方式实现分页表格的初始化。</p>
 <h3 id="3-1-html-easydatatable-">3.1、方法一：html增强，使用easydatatable类样式</h3>
 <p>给表格添加<code>easydatatable</code>类样式进行初始化（表格必须有id）</p>
-<pre><code>&lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable3&quot; width=&quot;780px&quot; align=&quot;center&quot;&gt;</code></pre>
+<pre><code class="lang-HTML">&lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable3&quot; width=&quot;780px&quot; align=&quot;center&quot;&gt;</code></pre>
 <h3 id="3-2-javascript-datatable-load-">3.2、方法二：JavaScript，使用 DataTable.load() 函数</h3>
 <p>使用 <code>DataTable.load( 表格id，参数信息)</code>函数对要进行Ajax分页的表格进行初始化<br><strong><code>DataTable.load( tableid [，easydataParameters] );</code></strong></p>
-<p>参数说明：<br><code>tableid</code>：必须参数，显示数据的表格id<br><code>easydataParameters</code>：可选参数，指定<strong>EasyDataTable的初始化分页参数</strong>信息，支持的参数 :<br>    {<br>        <code>pagetheme</code>: ‘分页主题’,<br>        <code>loading</code>: ‘分页加载数据时，Loading提示的方式’,<br>        <code>language</code>: ‘分页标签的语言’,<br>        <code>start</code>: ‘数据开始加载事件处理函数’,<br>        <code>end</code>: ‘数据结束加载事件处理函数’,<br>        <code>row</code>: ‘初始每页加载显示数量’<br>    }</p>
+<p>参数说明：<br><code>tableid</code>：必须参数，显示数据的表格id<br><code>easydataParameters</code>：可选参数，指定<strong>EasyDataTable的初始化分页参数</strong>信息，支持的参数 :  </p>
+<pre><code class="lang-JS">{  
+    `pagetheme`: &#39;分页主题&#39;,  
+    `loading`: &#39;分页加载数据时，Loading提示的方式&#39;,  
+    `language`: &#39;分页标签的语言&#39;,  
+    `start`: &#39;数据开始加载事件处理函数&#39;,  
+    `end`: &#39;数据结束加载事件处理函数&#39;,  
+    `row`: &#39;初始每页加载显示数量&#39;  
+}</code></pre>
 <h4 id="easydataparameters-">easydataParameters 初始化分页参数说明</h4>
 <ul>
 <li><h4 id="pagetheme-">pagetheme——可选，分页标签主题</h4>
@@ -405,7 +413,7 @@ img {
 <p>  <code>&quot;hide&quot;</code>: 隐藏数据内容，分页加载时仅隐藏数据展示行的数据，保留显示单元格边框</p>
 <p>  <code>&quot;任意值&quot;</code>：直接将该内容作为分页加载时提示内容（等同show方式），支持HTML内容</p>
 <p>  示例：</p>
-<pre><code>  loading:&quot;&lt;div&gt;&lt;img src=\&quot;images/loading.gif\&quot;/&gt;&lt;br/&gt;数据正在加载中……&lt;/div&gt;&quot;  </code></pre>
+<pre><code class="lang-JS">loading:&quot;&lt;div&gt;&lt;img src=\&quot;images/loading.gif\&quot;/&gt;&lt;br/&gt;数据正在加载中……&lt;/div&gt;&quot;</code></pre>
 <p>  <strong>该参数支持HTML增强：</strong>     </p>
 <p>  <code>loading</code>参数也可通过数据<code>表格的loading属性</code>设置。加载顺序为html、javascript，后加载的参数会覆盖前面的值。</p>
 </li>
@@ -413,45 +421,45 @@ img {
 <ul>
 <li><h4 id="language-">language——可选,设置分页标签显示的语言</h4>
 <p>  默认分页配置定义在<code>DataTable.default_lang</code>属性中，默认值为：</p>
-<pre><code>  DataTable.default_lang={
-        first:&quot;首页&quot;,
-        previous:&quot;上一页&quot;,
-        next:&quot;下一页&quot;,
-        last:&quot;末页&quot;,
-        totalCount:&quot;共{0}条&quot;,
-        totalPage:&quot;共{0}页&quot;,
-        rowPerPage:&quot;每页显示{0}条&quot;
-  }</code></pre>
+<pre><code class="lang-JS">DataTable.default_lang={
+    first:&quot;首页&quot;,
+    previous:&quot;上一页&quot;,
+    next:&quot;下一页&quot;,
+    last:&quot;末页&quot;,
+    totalCount:&quot;共{0}条&quot;,
+    totalPage:&quot;共{0}页&quot;,
+    rowPerPage:&quot;每页显示{0}条&quot;
+}</code></pre>
 <p>  可直接修改和重新定义该属性的值作为全局默认分页文字和语言。<br>  也可根据需要在初始化参数中为指定数据表格重新定义分页语言，<code>{0}</code>为显示相应数据的占位符,必须存在。</p>
-<pre><code>    &lt;script type=&quot;text/javascript&quot;&gt;
-    $(function(){
-              // 重新自定义分页语言 
-                var pageLanguage={
-                  &quot;first&quot;:&#39;first&#39;,
-                  &quot;previous&quot;:&#39;previous&#39;,
-                  &quot;next&quot;:&#39;next&#39;,
-                  &quot;last&quot;:&#39;last&#39;,
-                  &quot;totalPage&quot;:&#39;total {0} pages&#39;,
-                  &quot;totalCount&quot;:&#39;total {0} rows&#39;,
-                  &quot;rowPerPage&quot;:&#39;page for {0} rows&#39;,
-              };
+<pre><code class="lang-JS">&lt;script type=&quot;text/javascript&quot;&gt;
+$(function(){
+          // 重新自定义分页语言 
+            var pageLanguage={
+              &quot;first&quot;:&#39;first&#39;,
+              &quot;previous&quot;:&#39;previous&#39;,
+              &quot;next&quot;:&#39;next&#39;,
+              &quot;last&quot;:&#39;last&#39;,
+              &quot;totalPage&quot;:&#39;total {0} pages&#39;,
+              &quot;totalCount&quot;:&#39;total {0} rows&#39;,
+              &quot;rowPerPage&quot;:&#39;page for {0} rows&#39;,
+          };
 
-              // 初始化数据表格datatable
-                DataTable.load(&quot;datatable&quot;,{
-                    &quot;pagetheme&quot;:&quot;SIMPLE&quot;,
-                    &quot;loading&quot;:true,
-                    &quot;language&quot;:pageLanguage  //为id为datatale的数据表格指定语言
-                });
+          // 初始化数据表格datatable
+            DataTable.load(&quot;datatable&quot;,{
+                &quot;pagetheme&quot;:&quot;SIMPLE&quot;,
+                &quot;loading&quot;:true,
+                &quot;language&quot;:pageLanguage  //为id为datatale的数据表格指定语言
+            });
 
-              // 初始化数据表格datatable2
-                DataTable.load(&quot;datatable2&quot;);
-    });
-    &lt;/script&gt;</code></pre>
+          // 初始化数据表格datatable2
+            DataTable.load(&quot;datatable2&quot;);
+});
+&lt;/script&gt;</code></pre>
 </li>
 </ul>
 <ul>
 <li><h4 id="start-">start——可选,设置每一次数据加载开始时的处理函数</h4>
-<pre><code>  /*
+<pre><code class="lang-JS">  /*
   o：当前表格对象
   initFlag：true代表第一次加载数据（初始化表格），false代表分页加载
   */
@@ -463,10 +471,8 @@ img {
                 }
             }</code></pre>
 </li>
-</ul>
-<ul>
 <li><h4 id="end-">end——可选,设置每一次数据加载结束时的处理函数</h4>
-<pre><code>  /*
+<pre><code class="lang-JS">  /*
   o：当前表格对象
   initFlag：true代表第一次加载数据（初始化表格），false代表分页加载
   */
@@ -486,10 +492,10 @@ img {
 <h2 id="4-easydatatable-expression-language-">4、EasyDataTable Expression Language 表达式语言使用</h2>
 <h3 id="4-1-easydatatable-property-expression-">4.1 EasyDataTable Property Expression 属性表达式  <code>{数据属性}</code></h3>
 <p><strong>属性表达式用于在数据展示行，显示指定的属性值。</strong><br>在属性表达式中可以直接引用数据属性来获得指定属性的数据。并支持各种数学、比较等JavaScript基本运算符进行运算。    </p>
-<pre><code>{id}    {name}</code></pre>
+<pre><code class="lang-JS">{id}    {name}</code></pre>
 <h3 id="4-2-easydatatable-statement-expression-">4.2 EasyDataTable Statement Expression 语句表达式 <code>%{表达式语句}%</code></h3>
 <p><strong>语句表达式用于在数据展示行，使用编程语句进行控制编程。</strong><br>在语句表达式中支持使用JavaScript编写表达式代码；支持直接调用数据属性；也支持使用EasyDataTable属性表达式（必须使用引号定义在字符串中使用）。<br>语句表达式执行的结果必须使用EasyDataTable语句表达式标准输出方法输出：    <strong><code>DataTable.out(&quot;内容&quot;);</code></strong></p>
-<pre><code>&lt;%--
+<pre><code class="lang-HTML">&lt;%--
 支持JavaScript语言编写表达式。
 属性名：以变量方式引用和处理
 EasyDataTable属性表达式：必须使用引号定义在字符串中使用
@@ -516,7 +522,7 @@ EasyDataTable属性表达式：必须使用引号定义在字符串中使用
 <p><strong>例如：</strong><br>当前数据在所有数据中的索引：<code>{datatableIndex+(pageNo-1)*rowPerPage}</code><br>当前数据在所有数据中的个数：<code>{datatableCount+(pageNo-1)*rowPerPage}</code></p>
 <h2 id="6-">6、排序支持</h2>
 <p>在表头行需要排序字段对应的单元格上添加<code>sort=&quot;排序字段名称&quot;</code>属性即可。</p>
-<pre><code>&lt;tr&gt;
+<pre><code class="lang-HTML">&lt;tr&gt;
     &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
     &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
     &lt;th width=&quot;80&quot;&gt;{index+1}&lt;/th&gt;
@@ -527,10 +533,10 @@ EasyDataTable属性表达式：必须使用引号定义在字符串中使用
 &lt;/tr&gt;</code></pre>
 <p>可排序列会显示排序箭头。点击即可发送服务器需要的排序信息：排序字段sort（sort的值）和排序方式order(asc或desc)到服务器。<br>服务器接收并处理后返回新数据即可实现升序降序切换。</p>
 <p>服务器端通过order和sort参数名获取排序信息。    </p>
-<pre><code>String sort = request.getParameter(&quot;sort&quot;);
+<pre><code class="lang-JAVA">String sort = request.getParameter(&quot;sort&quot;);
 String order = request.getParameter(&quot;order&quot;);</code></pre>
 <p><strong>刷新表格：</strong><br>使用<code>DataTable.reload(‘tableid’);</code>可以刷新指定数据表格，恢复到没有排序状态。</p>
-<pre><code>&lt;div onclick=&quot;DataTable.reload(&#39;datatable3&#39;)&quot;&gt;刷新&lt;/div&gt;</code></pre>
+<pre><code class="lang-HTML">&lt;div onclick=&quot;DataTable.reload(&#39;datatable3&#39;)&quot;&gt;刷新&lt;/div&gt;</code></pre>
 <h3 id="-">排序指示符号自定义</h3>
 <p>EasyDataTable对于可排序的列在外观上通过<strong>排序指示符号</strong>来进行排序提醒。默认在可排序列名上使用上下箭头↑↓（<code>&amp;uarr;&amp;darr;</code>）表示该列可进行点击排序；当升序时显示↑（<code>&amp;uarr;</code>），降序时显示↓（<code>&amp;darr;</code>）来指示当前的升降序方式。</p>
 <p>EasyDataTable支持对可排序列的排序指示符号进行<strong>全局</strong>和<strong>按DataTableID</strong>两种方式的的自定义：</p>
@@ -540,13 +546,13 @@ String order = request.getParameter(&quot;order&quot;);</code></pre>
 <li><code>DataTable.order_up</code> 可排序列的升序指示符号</li>
 <li><code>DataTable.order_down</code> 可排序列的降序指示符号</li>
 </ul>
-<pre><code>//重新定义EasyDataTable的排序指示符号
+<pre><code class="lang-JS">//重新定义EasyDataTable的排序指示符号
 DataTable.order_default=&quot;&lt;img src=&#39;images/order_default.gif&#39;/&gt;&quot;;
 DataTable.order_up=&quot;&lt;img src=&#39;images/order_up.gif&#39;/&gt;&quot;;
 DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot;;</code></pre>
 <p><strong>2. 按DataTableID自定义：仅修改当前DataTableID对应的DataTable对象的排序指示符</strong></p>
 <p><code>DataTable.sort[&quot;DataTableID列表&quot;]</code>可以同时为指定的多个DataTable表格对象设置排序指示符，多个DataTable表格id使用逗号<code>,</code>分隔</p>
-<pre><code>DataTable.sort[&quot;datatable,datatable2,datatable4&quot;]={
+<pre><code class="lang-JS">DataTable.sort[&quot;datatable,datatable2,datatable4&quot;]={
     order_default:&quot;&lt;img src=&#39;images/order_default.gif&#39;/&gt;&quot;,
     order_up:&quot;&lt;img src=&#39;images/order_up.gif&#39;/&gt;&quot;,
     order_down:&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot;
@@ -559,69 +565,67 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
 <ul>
 <li><p><strong>data数据集合支持的两种方式：</strong></p>
 <p>  1、实体对象数据集合：</p>
-<pre><code>  &quot;data&quot; : [ 
-      {
-          &quot;id&quot; : 1,
-          &quot;name&quot; : &quot;USER_1&quot;,
-          &quot;info&quot; : &quot;INFO_1&quot;
-      }, {
-          &quot;id&quot; : 2,
-          &quot;name&quot; : &quot;USER_2&quot;,
-          &quot;info&quot; : &quot;INFO_2&quot;
-      }, {
-          &quot;id&quot; : 3,
-          &quot;name&quot; : &quot;USER_3&quot;,
-          &quot;info&quot; : &quot;INFO_3&quot;
-      }, {
-          &quot;id&quot; : 4,
-          &quot;name&quot; : &quot;USER_4&quot;,
-          &quot;info&quot; : &quot;INFO_4&quot;
-      }, {
-          &quot;id&quot; : 5,
-          &quot;name&quot; : &quot;USER_5&quot;,
-          &quot;info&quot; : &quot;INFO_5&quot;
-      }
-  ]</code></pre>
+<pre><code class="lang-JS">&quot;data&quot; : [ 
+  {
+      &quot;id&quot; : 1,
+      &quot;name&quot; : &quot;USER_1&quot;,
+      &quot;info&quot; : &quot;INFO_1&quot;
+  }, {
+      &quot;id&quot; : 2,
+      &quot;name&quot; : &quot;USER_2&quot;,
+      &quot;info&quot; : &quot;INFO_2&quot;
+  }, {
+      &quot;id&quot; : 3,
+      &quot;name&quot; : &quot;USER_3&quot;,
+      &quot;info&quot; : &quot;INFO_3&quot;
+  }, {
+      &quot;id&quot; : 4,
+      &quot;name&quot; : &quot;USER_4&quot;,
+      &quot;info&quot; : &quot;INFO_4&quot;
+  }, {
+      &quot;id&quot; : 5,
+      &quot;name&quot; : &quot;USER_5&quot;,
+      &quot;info&quot; : &quot;INFO_5&quot;
+  }
+]</code></pre>
 <p>  2、数组对象数据集合：</p>
-<pre><code>  &quot;data&quot;:[
-              [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
-              [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
-              [3,&quot;Sheldon&quot;,&quot;I&#39;m Sheldon&quot;],
-              [4,&quot;Penny&quot;,&quot;I&#39;m Penny&quot;],
-              [5,&quot;Amy&quot;,&quot;I&#39;m Amy&quot;],
-              [6,&quot;Jay2&quot;,&quot;I&#39;m Jay&quot;],
-              [7,&quot;Jolin2&quot;,&quot;I&#39;m Jolin&quot;],
-              [8,&quot;Sheldon2&quot;,&quot;I&#39;m Sheldon&quot;],
-              [9,&quot;Penny2&quot;,&quot;I&#39;m Penny&quot;],
-              [10,&quot;Amy2&quot;,&quot;I&#39;m Amy&quot;],
-              [11,&quot;Jay3&quot;,&quot;I&#39;m Jay&quot;],
-              [12,&quot;Jolin3&quot;,&quot;I&#39;m Jolin&quot;],
-              [13,&quot;Sheldon3&quot;,&quot;I&#39;m Sheldon&quot;],
-              [14,&quot;Penny3&quot;,&quot;I&#39;m Penny&quot;],
-              [15,&quot;Amy3&quot;,&quot;I&#39;m Amy&quot;]
-      ]</code></pre>
+<pre><code class="lang-JS">&quot;data&quot;:[
+          [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
+          [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
+          [3,&quot;Sheldon&quot;,&quot;I&#39;m Sheldon&quot;],
+          [4,&quot;Penny&quot;,&quot;I&#39;m Penny&quot;],
+          [5,&quot;Amy&quot;,&quot;I&#39;m Amy&quot;],
+          [6,&quot;Jay2&quot;,&quot;I&#39;m Jay&quot;],
+          [7,&quot;Jolin2&quot;,&quot;I&#39;m Jolin&quot;],
+          [8,&quot;Sheldon2&quot;,&quot;I&#39;m Sheldon&quot;],
+          [9,&quot;Penny2&quot;,&quot;I&#39;m Penny&quot;],
+          [10,&quot;Amy2&quot;,&quot;I&#39;m Amy&quot;],
+          [11,&quot;Jay3&quot;,&quot;I&#39;m Jay&quot;],
+          [12,&quot;Jolin3&quot;,&quot;I&#39;m Jolin&quot;],
+          [13,&quot;Sheldon3&quot;,&quot;I&#39;m Sheldon&quot;],
+          [14,&quot;Penny3&quot;,&quot;I&#39;m Penny&quot;],
+          [15,&quot;Amy3&quot;,&quot;I&#39;m Amy&quot;]
+  ]</code></pre>
 <p>  <strong>注意：使用数组对象数据集合从数组中获取数据时使用<code>[index]</code>代表指定的数据属性名称，<code>index</code>为数据在数组中的数字索引，在EasyDataTable的属性表达式和语句表达式中均可使用。</strong><br>  <strong>例如<code>[0]</code>，代表第一列数据属性；<code>{[0]}</code>代表获取第一列数据属性的值</strong></p>
 </li>
 </ul>
 <ul>
-<li><p><strong>如果服务器端分页参数封装在PageBean中，如：</strong> </p>
-<pre><code>  public class PageBean {
+<li><strong>如果服务器端分页参数封装在PageBean中，如：</strong> <pre><code class="lang-JAVA">  public class PageBean {
       private List data;
       private int pageNo;
       private int rowPerPage;
       private int totalCount;
      //setters&amp;getters ……
   }</code></pre>
-<p>  例如，服务器端返输出的JSON对象中PageBean名称为<code>pb</code>，则在数据表格<code>table标签</code>上加入<code>value</code>属性，指定分页对象的JSON名称<code>pb</code>：</p>
-<pre><code>  &lt;table class=&quot;datatable&quot; id=&quot;datatable3&quot;  width=&quot;780px&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;</code></pre>
+  例如，服务器端返输出的JSON对象中PageBean名称为<code>pb</code>，则在数据表格<code>table标签</code>上加入<code>value</code>属性，指定分页对象的JSON名称<code>pb</code>：<pre><code class="lang-HTML">  &lt;table class=&quot;datatable&quot; id=&quot;datatable3&quot;  width=&quot;780px&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;</code></pre>
 </li>
 </ul>
 <h2 id="8-">8、刷新指定数据表格</h2>
-<pre><code>DataTable.reload(“tableId”);  //取消排序效果，刷新表格，重新加载数据</code></pre>
+<pre><code class="lang-JS">DataTable.reload(“tableId”);  //取消排序效果，刷新表格，重新加载数据</code></pre>
 <h2 id="9-">9、默认分页条数设置</h2>
 <p>在<strong>初始化分页参数</strong>中使用<code>row参数</code>可以指定默认的分页条数。如果不设置该参数，将使用<code>DataTable.default_row</code>属性的值默认值5（可修改）。</p>
 <p><code>row属性</code>同时支持在分页div标签中使用HTML增强：</p>
-<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;10&quot;&gt;
+<pre><code class="lang-HTML">&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;10&quot;&gt;
 
 &lt;/div&gt;</code></pre>
 <h2 id="10-">10、分页主题设置</h2>
@@ -629,23 +633,22 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
 <p><code>FULL</code>（完全主题，默认显示所有分页选项，默认值）<br><img src="mdImage/pagetheme_full.png" alt="FULL 主题图例" title="FULL 主题图例"></p>
 <p><code>SIMPLE</code> (简单主题，不显示快速跳转页码)<br><img src="mdImage/pagetheme_simple.png" alt="SIMPLE 主题图例" title="SIMPLE 主题图例"></p>
 <h3 id="10-1-javascript-">10.1、使用JavaScript指定分页主题</h3>
-<pre><code>DataTable.load(&quot;datatable&quot;,{
+<pre><code class="lang-JS">DataTable.load(&quot;datatable&quot;,{
       &quot;pagetheme&quot;:&#39;SIMPLE&#39;
  });</code></pre>
 <h3 id="10-2-div-">10.2、在分页DIV标签上指定分页主题</h3>
-<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;FULL&quot;&gt;
+<pre><code class="lang-HTML">&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;FULL&quot;&gt;
 
 &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;SIMPLE&quot;&gt;</code></pre>
 <h3 id="10-3-">10.3、取消分页和主题</h3>
 <p>使用display:none隐藏，或直接删除分页标签部分即可。</p>
-<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;display: none;&quot; size=&quot;5,10,30,50&quot; &gt;</code></pre>
+<pre><code class="lang-HTML">&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;display: none;&quot; size=&quot;5,10,30,50&quot; &gt;</code></pre>
 <h2 id="11-">11、自定义分页</h2>
 <p>EasyDataTable支持分页的自定义，在分页div标签中可编写自定义分页代码。自定义分页代码中支持使用：EasyDataTable内置属性、属性表达式和语句表达式。</p>
 <p>为 <code>分页div标签</code> 添加 <code>pagetheme=&quot;no&quot;</code> 属性（或通过EasyDataTable初始化参数设置），调用<strong><code>DataTable.go(&#39;加载数据的表格id&#39;,&#39;页数&#39;,[每页显示条数])</code></strong>函数，即可实现自定义分页跳转。<br>也可使用<code>row</code>属性指定默认每页显示条数：</p>
-<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px; line-height: 40px;&quot; size=&quot;5,10,30,50&quot;
-            pagetheme=&quot;no&quot; row=&quot;8&quot;&gt;</code></pre>
+<pre><code class="lang-HTML">&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px; line-height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot; row=&quot;8&quot;&gt;</code></pre>
 <p>实例：</p>
-<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot;  row=&quot;8&quot;&gt;
+<pre><code class="lang-HTML">&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot;  row=&quot;8&quot;&gt;
     当前第{pageNo}页/共{maxPage}页 每页{rowPerPage}条/共{totalCount}条    
     &lt;input type=&quot;button&quot; value=&quot;首页&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;,1)&quot;/&gt;
     &lt;input type=&quot;button&quot; value=&quot;上一页&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;/&gt;
@@ -653,14 +656,14 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
     &lt;input type=&quot;button&quot; value=&quot;末页&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{maxPage}&#39;)&quot;/&gt;
 &lt;/div&gt;</code></pre>
 <p>在JavaScript函数调用时，如果参数使用了EasyDataTable属性表达式（如页数<code>{pageNo-1}</code>）则需要通过单引号引起来，作为一个字符串参数，否则IE8下会有警告（不影响实际运行结果）。<br>例如下面代码中的’{pageNo-1}’必须使用引号：</p>
-<pre><code>onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;/&gt;。</code></pre>
+<pre><code class="lang-JS">onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;。</code></pre>
 <h2 id="12-">12、带搜索条件分页</h2>
 <p>将搜索框放入form表单中，通过以下两种方式实现带搜索提交分页。</p>
 <p><strong>搜索按钮提交搜索数据的两种方法</strong></p>
 <p>方法一：使用HTML增强，将搜索按钮放入当前表单，给搜索按钮直接加<code>data_search</code>类样式</p>
-<pre><code>&lt;input type=&quot;button&quot; class=&quot;data_search&quot; value=&quot;立即查询&quot;/&gt;</code></pre>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; class=&quot;data_search&quot; value=&quot;立即查询&quot;/&gt;</code></pre>
 <p>方法二：使用<code>DataTable.load(&#39;数据表格id&#39;)</code>，通过单击事件注册给搜索按钮</p>
-<pre><code>&lt;input type=&quot;button&quot; class=&quot;btn_test&quot; onclick=&quot;DataTable.load(&#39;DataTableID&#39;)&quot; value=&quot;立即查询&quot;/&gt;</code></pre>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; class=&quot;btn_test&quot; onclick=&quot;DataTable.load(&#39;DataTableID&#39;)&quot; value=&quot;立即查询&quot;/&gt;</code></pre>
 <p>服务器端即可获取客户端提交的搜索条件。</p>
 <h2 id="13-easydatatable-">13、EasyDataTable多数据源加载支持</h2>
 <p><strong>EasyDataTable支持3种数据源：</strong>  </p>
@@ -672,16 +675,16 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
 <p><em>注意：EasyDataTable目前支持 1.X 和 2.X 两个版本。EasyDataTable 1.X仅支持动态数据源的加载；EasyDataTable 2.X还支持静态数据源和文件数据源加载。</em></p>
 <h3 id="13-1-1-x-2-x-">13.1、 服务器动态数据源（1.X，2.X）</h3>
 <p><strong>在form的action中指定服务器端分页地址</strong>来动态获取JSON分页数据，实现分页。</p>
-<pre><code>DataTable.load( &#39;tableid&#39; [，easydataParameters] );</code></pre>
+<pre><code class="lang-JS">DataTable.load( &#39;tableid&#39; [，easydataParameters] );</code></pre>
 <h3 id="13-2-2-x-">13.2、 静态数据源（2.X）</h3>
 <p>支持直接加载指定的<strong>JSON数据对象</strong>，实现分页(数据列表支持JSON和Array格式)。  </p>
-<pre><code>DataTable.staticLoad(&#39;tableid&#39; , jsonDataObject [,easydataParams]);</code></pre>
+<pre><code class="lang-JS">DataTable.staticLoad(&#39;tableid&#39; , jsonDataObject [,easydataParams]);</code></pre>
 <h3 id="13-3-2-x-">13.3、 文件数据源（2.X）</h3>
 <p>支持直接加载指定的<strong>JSON数据文件</strong>，实现分页。   </p>
-<pre><code>DataTable.fileLoad(&#39;tableid&#39; , &#39;jsonFile&#39; [,easydataParams]);</code></pre>
+<pre><code class="lang-JS">DataTable.fileLoad(&#39;tableid&#39; , &#39;jsonFile&#39; [,easydataParams]);</code></pre>
 <h2 id="14-2-x-">14、静态排序支持（2.X）</h2>
 <p>EasyDataTable支持对静态数据进行排序，在表头行需要排序字段对应的单元格上添加<code>staticSort=&quot;排序字段名称&quot;</code>属性即可。</p>
-<pre><code>&lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
+<pre><code class="lang-HTML">&lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
 &lt;th width=&quot;100&quot; staticSort=&quot;name&quot;&gt;name&lt;/th&gt;</code></pre>
 <h2 id="15-2-x-">15、静态筛选查询（2.X）</h2>
 <p><strong>EasyDataTable支持对静态数据进行筛选查询，并具有以下三大特性：</strong></p>
@@ -708,7 +711,7 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
 <h3 id="-matchmode-">为表单元素指定MatchMode（查询匹配模式）：</h3>
 <p>EasyDataTable通过8种数据查询匹配模式MatchMode，为使用者提供了全方位的查询支持；同时支持为每个表单选项独立指定不同的查询匹配模式，极大的增强了筛选的灵活性。</p>
 <p><strong>使用方法：</strong><br>使用HTML增强，在相应文本框上添加<code>mode</code>属性，并将值指定为EasyDataTable支持的<code>MathMode名称</code>即可。</p>
-<pre><code>username： 
+<pre><code class="lang-HTML">username： 
 &lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; mode=&quot;sql_i&quot;/&gt; 
 
 userinfo：
@@ -724,33 +727,25 @@ userinfo：
 <h3 id="-">实现数据筛选的两种方法：</h3>
 <p><strong>方法一：使用HTML增强</strong></p>
 <p>NowPage当前页面静态数据范围的数据筛选查询：给搜索按钮添加<code>static_data_search[_or]</code>类样式：</p>
-<pre><code>`data_static_search` 支持多条件的 AND 方式查询。
-
-    &lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static search and&quot; /&gt;
-
-`data_static_search_or` 支持多条件的 OR 方式查询。
-
-    &lt;input type=&quot;button&quot; class=&quot;data_static_search_or&quot; value=&quot;static search or&quot;/&gt;</code></pre>
+<p><code>data_static_search</code> 支持多条件的 AND 方式查询。</p>
+<pre><code class="lang-HTML">        &lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static search and&quot; /&gt;</code></pre>
+<p><code>data_static_search_or</code> 支持多条件的 OR 方式查询。</p>
+<pre><code class="lang-HTML">        &lt;input type=&quot;button&quot; class=&quot;data_static_search_or&quot; value=&quot;static search or&quot;/&gt;</code></pre>
 <p>ALL全部静态数据范围的数据筛选查询：给搜索按钮添加<code>static_data_searchAll[_or]</code>类样式：</p>
-<pre><code>`data_static_searchAll` 支持多条件的 AND 方式查询。
-
-    &lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static searchAll and&quot; /&gt;
-
-`data_static_searchAll_or` 支持多条件的 OR 方式查询。
-
-    &lt;input type=&quot;button&quot; class=&quot;data_static_searchAll_or&quot; value=&quot;static searchAll or&quot;/&gt;</code></pre>
+<p><code>data_static_searchAll</code> 支持多条件的 AND 方式查询。</p>
+<pre><code class="lang-HTML">    &lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static searchAll and&quot; /&gt;</code></pre>
+<p><code>data_static_searchAll_or</code> 支持多条件的 OR 方式查询。</p>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; class=&quot;data_static_searchAll_or&quot; value=&quot;static searchAll or&quot;/&gt;</code></pre>
 <p><strong>方法二：使用内置函数实现静态筛选：</strong>   </p>
 <p>NowPage当前页面静态数据范围的数据筛选查询：<code>DataTable.staticSearch(&#39;tableid&#39; [,true] )</code></p>
-<pre><code>如果第二个参数为true，则按 OR 方式查询；否则按 AND 方式查询。
-
-&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearch(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
+<p>如果第二个参数为true，则按 OR 方式查询；否则按 AND 方式查询。</p>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearch(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
 <p>ALL全部静态数据范围的数据筛选查询：<code>DataTable.staticSearchAll(&#39;tableid&#39; [,true] )</code></p>
-<pre><code>如果第二个参数为true，则按 OR 方式查询；否则按 AND 方式查询。
-
-&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearchAll(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
+<pre><code>如果第二个参数为true，则按 OR 方式查询；否则按 AND 方式查询。</code></pre>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearchAll(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
 <h2 id="16-ajax-">16、表格AJAX分页实例</h2>
 <h3 id="16-1-full-index-count-">16.1、默认FULL分页主题 + 复选框 + index，count内置属性使用</h3>
-<pre><code>&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
         &lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
             &lt;tr&gt;
@@ -784,7 +779,7 @@ userinfo：
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-2-simple-loading-show-">16.2、指定分页主题SIMPLE + Loading=”show” + 带复选框 + 排序属性</h3>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+<pre><code class="lang-HTML">&lt;script type=&quot;text/javascript&quot;&gt;
   DataTable.load(&quot;datatable2&quot;,{
                   &quot;pagetheme&quot;:&#39;SIMPLE&#39;,
                   &quot;loading&quot;:&quot;show&quot;
@@ -826,7 +821,7 @@ userinfo：
         &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
     &lt;/form&gt;</code></pre>
 <h3 id="16-3-datatable-loading-none-10-">16.3、判断语句DataTable表达式使用 + loading=”none” + 默认每页10条</h3>
-<pre><code>&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
          &lt;table class=&quot;datatable easydatatable&quot; loading=&quot;none&quot; id=&quot;datatable3&quot;  width=&quot;100%&quot; align=&quot;center&quot;&gt;
               &lt;tr&gt;
@@ -877,7 +872,7 @@ userinfo：
     &lt;/div&gt;
   &lt;/form&gt;</code></pre>
 <h3 id="16-4-start-end-">16.4、带start和end数据加载事件处理函数的分页 + 自定义排序指示符</h3>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+<pre><code class="lang-HTML">&lt;script type=&quot;text/javascript&quot;&gt;
 
 //为datatable4自定义排序指示符
 DataTable.sort[&quot;datatable4&quot;]={
@@ -893,10 +888,10 @@ $(function(){
                 if(initFlag){ //第一次加载，未初始化
                     console.info(&#39;init start...&#39;);
                     $(&quot;#loading&quot;).show();     //显示loading提示DIV
-                  $(&quot;#dataDiv&quot;).hide();     //隐藏数据div
-                  $(&quot;#dataPageDiv&quot;).hide(); //隐藏分页div
+                    $(&quot;#dataDiv&quot;).hide();     //隐藏数据div
+                    $(&quot;#dataPageDiv&quot;).hide(); //隐藏分页div
                 }else{ 
-                  console.info(&#39;load start...&#39;);
+                    console.info(&#39;load start...&#39;);
                 }
 
             },
@@ -958,7 +953,7 @@ $(function(){
 
 &lt;/form&gt;</code></pre>
 <h3 id="16-5-">16.5 取消分页标签</h3>
-<pre><code>&lt;form action=&quot;zh_CN/doPage.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;zh_CN/doPage.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
         &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable5&quot; width=&quot;100%&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;
             &lt;tr&gt;
@@ -996,7 +991,7 @@ $(function(){
     &lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-6-1">16.6、自定义分页1</h3>
-<pre><code>&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
         &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable6&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
             &lt;tr&gt;
@@ -1032,7 +1027,7 @@ $(function(){
     &lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-7-2">16.7、自定义分页2</h3>
-<pre><code>&lt;form action=&quot;zh_CN/doPage.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;zh_CN/doPage.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
         &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable7&quot; width=&quot;100%&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;
             &lt;tr&gt;
@@ -1067,7 +1062,7 @@ $(function(){
     &lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-8-loading-hide-">16.8、带搜索条件分页 + loading=”hide”</h3>
-<pre><code>DataTable.load(&quot;datatable8&quot;, {
+<pre><code class="lang-HTML">DataTable.load(&quot;datatable8&quot;, {
         &quot;loading&quot; : &quot;hide&quot;
 });
 
@@ -1116,7 +1111,7 @@ $(function(){
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-9-nowpage-like_i-2-x-">16.9、 动态数据源加载 + NowPage范围静态数据筛选查询排序 + 默认like_i查询匹配模式（2.X）</h3>
-<pre><code>&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;margin: 20px auto;&quot;&gt;
         username：&lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; value=&quot;4&quot; /&gt;
         userinfo：&lt;input type=&quot;text&quot; name=&quot;info&quot; class=&quot;txt_test&quot; value=&quot;INFO_2&quot;/&gt;
@@ -1168,7 +1163,7 @@ $(function(){
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;30&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-10-json-nowpage-2-x-">16.10、JSON静态数据源加载 + NowPage范围静态数据筛选查询排序 + 无分页 （2.X）</h3>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+<pre><code class="lang-HTML">&lt;script type=&quot;text/javascript&quot;&gt;
     //静态JSON数据
     var jsonData ={
         &quot;rowPerPage&quot;: 10,
@@ -1355,7 +1350,7 @@ $(function(){
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;30&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-11-json-all-2-x-">16.11、JSON文件数据源加载 + All范围静态数据筛选查询排序  （2.X）</h3>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+<pre><code class="lang-HTML">&lt;script type=&quot;text/javascript&quot;&gt;
     $(function(){
         DataTable.fileLoad(&quot;datatable11&quot;,&quot;jsonData.json&quot;);
     });
@@ -1414,7 +1409,7 @@ $(function(){
 &lt;/form&gt;</code></pre>
 <h2 id="17-">17、数组对象数据集合加载分页</h2>
 <p>EasyDataTable在数据分页时除了支持使用JSON数据集合外，<strong>还支持使用Array数组对象数据集合</strong>。服务器动态数据源或静态数据源均可使用数组保存数据集合。例如：</p>
-<pre><code>data:[
+<pre><code class="lang-JS">data:[
             [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
             [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
             [3,&quot;Sheldon&quot;,&quot;I&#39;m Sheldon&quot;],
@@ -1433,7 +1428,7 @@ $(function(){
     ]</code></pre>
 <p><strong>数组对象数据集合从数组中获取数据时使用<code>[index]</code>代表指定的数据属性名称，<code>index</code>为数据在数组中的数字索引，在EasyDataTable的属性表达式和语句表达式中均可使用。</strong><br><strong>例如<code>[0]</code>，代表第一列数据属性；<code>{[0]}</code>代表获取第一列数据属性的值</strong></p>
 <h3 id="-nowpage-2-x-">实例一：数组对象数据集合(服务器动态数据源) + NowPage范围数据筛选 （2.X）</h3>
-<pre><code>&lt;form action=&quot;zh_CN/doPage3.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;zh_CN/doPage3.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;margin: 20px auto;&quot;&gt;
         username（ sql_i 模式）： &lt;input type=&quot;text&quot; name=&quot;[1]&quot; class=&quot;txt_test&quot; value=&quot;USER_1%&quot; mode=&quot;sql_i&quot; /&gt;
         userinfo（ like_i 模式）：&lt;input type=&quot;text&quot; name=&quot;[2]&quot; class=&quot;txt_test&quot; value=&quot;i&quot;/&gt;
@@ -1493,7 +1488,7 @@ $(function(){
 
 &lt;/form&gt;</code></pre>
 <h3 id="-all-2-x-">实例二： 数组对象数据集合（静态数据源）  + All范围数据筛选 （2.X）</h3>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+<pre><code class="lang-HTML">&lt;script type=&quot;text/javascript&quot;&gt;
     //静态数据源——数组数据集合            
     var arrayData={
         data:[
@@ -1578,7 +1573,7 @@ $(function(){
 <h2 id="18-">18、插件扩展：列宽拖动调整插件</h2>
 <p>EasyDataTable支持使用<a href="https://github.com/dobtco/jquery-resizable-columns" title="Viw on GitHub">jquery-resizable-columns</a>插件实现数据表格的列宽拖动调整。</p>
 <p>18.1、 为需要列拖动的数据表格的行首添加<code>&lt;thead&gt;</code>标签</p>
-<pre><code>&lt;table class=&quot;datatable&quot; id=&quot;datatable12&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+<pre><code class="lang-HTML">&lt;table class=&quot;datatable&quot; id=&quot;datatable12&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
           &lt;thead&gt;  &lt;!-- resizableColumns need--&gt;
               &lt;tr&gt;
                 &lt;!-- checkbox --&gt;
@@ -1596,7 +1591,7 @@ $(function(){
         ……
 &lt;/table&gt;</code></pre>
 <p>18.2、使用 <code>$(&quot;#datatable12&quot;).resizableColumns();</code>初始化即可</p>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;resizable/jquery.resizableColumns.css&quot; type=&quot;text/css&quot;&gt;&lt;/link&gt;
+<pre><code class="lang-HTML">&lt;link rel=&quot;stylesheet&quot; href=&quot;resizable/jquery.resizableColumns.css&quot; type=&quot;text/css&quot;&gt;&lt;/link&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;resizable/jquery.resizableColumns.js&quot;&gt;&lt;/script&gt;
 
 &lt;script type=&quot;text/javascript&quot;&gt;
@@ -1605,7 +1600,7 @@ $(function(){
   });
 &lt;/script&gt;</code></pre>
 <p><a href="http://www.lightfeel.com/easy/easydatatable/zh-cn/index.jsp#demo" title="在线 Demo">在线Demo</a></p>
-<p>联系、反馈、定制Email：<a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x69;&#110;&#46;&#116;&#104;&#105;&#110;&#107;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#x69;&#110;&#46;&#116;&#104;&#105;&#110;&#107;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a></p>
+<p>联系、反馈、定制Email：<a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x69;&#110;&#x2e;&#x74;&#x68;&#x69;&#x6e;&#x6b;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x69;&#110;&#x2e;&#x74;&#x68;&#x69;&#x6e;&#x6b;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a></p>
 <p><a href="https://me.alipay.com/inthink" target="_blank"><br><img src="http://www.lightfeel.com/easy/images/donation.png" alt="通过支付宝捐赠" title="通过支付宝捐赠" height="37" width="150"></img><br></a></p>
 
 </body>
