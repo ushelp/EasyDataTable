@@ -1664,6 +1664,12 @@ EasyDataTable支持使用[jquery-resizable-columns](https://github.com/dobtco/jq
 
 联系、反馈、定制Email：<inthinkcolor@gmail.com>
 
-<a href="https://me.alipay.com/inthink" target="_blank">
-<img src="http://www.lightfeel.com/easy/images/donation.png" alt="通过支付宝捐赠" title="通过支付宝捐赠" height="37" width="150"></img>
-</a>
+
+
+
+<p>
+<strong>支付宝钱包扫一扫捐助：</strong>
+</p>
+<p>
+
+<img alt="支付宝钱包扫一扫捐助" src="http://www.lightfeel.com/easy/images/s.png"  title="支付宝钱包扫一扫捐助"  height="256" width="256"></img>
