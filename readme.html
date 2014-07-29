@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
 <title>readme</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -288,11 +288,157 @@ table tr:nth-child(2n) {
 img {
   max-width: 100%
 }
-</style>
+
+/* GitHub Theme */
+.prettyprint {
+  
+  font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+ 
+}
+.codeSpan{ font-size: 13px;
+  font-family: "Bitstream Vera Sans Mono", "Consolas", "Courier New", Courier, monospace !important;
+}
+.pln {
+  color: #333333;
+}
+
+@media screen {
+	
+  .str {
+    color: #dd1144;
+  }
+
+  .kwd {
+    color: #333333;
+  }
+
+  .com {
+    color: #999988;
+    font-style: italic;
+  }
+
+  .typ {
+    color: #445588;
+  }
+
+  .lit {
+    color: #008484; font-weight: bold;
+  }
+
+  .pun {
+    color: #333333;
+  }
+
+  .opn {
+    color: #333333;
+  }
+
+  .clo {
+    color: #333333;
+  }
+
+  .tag {
+    color: navy;
+  }
+
+  .atn {
+    color: teal;
+  }
+
+  .atv {
+    color: #dd1144;
+  }
+
+  .dec {
+    color: #333333;
+  }
+
+  .var {
+    color: teal;
+  }
+
+  .fun {
+    color: #990000;
+  }
+}
+@media print, projection {
+  .str {
+    color: #006600;
+  }
+
+  .kwd {
+    color: #006;
+    font-weight: bold;
+  }
+
+  .com {
+    color: #600;
+    font-style: italic;
+  }
+
+  .typ {
+    color: #404;
+    font-weight: bold;
+  }
+
+  .lit {
+    color: #004444;
+  }
+
+  .pun, .opn, .clo {
+    color: #444400;
+  }
+
+  .tag {
+    color: #006;
+    font-weight: bold;
+  }
+
+  .atn {
+    color: #440044;
+  }
+
+  .atv {
+    color: #006600;
+  }
+}
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* IE indents via margin-left */
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  /* */
+}
+
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+  /* */
+}
+ </style>
+
 </head>
 <body>
 <h1 id="easydatatable-ajax-">EasyDataTable AJAX分页插件使用手册</h1>
-<p>说明：该插件与DataTable插件为同一插件，是DataTable的中文版本，提示消息和使用手册均为中文版。<br>Notice：It’s same to DataTable,This plugin is DataTable the Chinese version, the English version please refer to：<a href="https://github.com/ushelp/DataTable">https://github.com/ushelp/DataTable</a></p>
+<p>说明：该插件与DataTable插件为同一插件，是DataTable的中文版本，提示消息和使用手册均为中文版。<br>Notice：It&#39;s same to DataTable,This plugin is DataTable the Chinese version, the English version please refer to：<a href="https://github.com/ushelp/DataTable">https://github.com/ushelp/DataTable</a></p>
 <p>使用Ajax分页可以提高数据加载和显示速度，减少网络流量，提升客户体验度；同时能够只刷新局部，解决当页面上有多个数据显示表格区域时，传统的分页方式会导致页面全部刷新。   </p>
 <p>EasyDataTable AJAX分页插件是基于jQuery最好的纯Ajax分页插件，支持HTML增强和JS编程两种途径实现分页，最大的特点是：简单、易用、灵活。支持多种数据源加载（服务器动态数据源，静态数据源，JSON文件数据源）；自带分页标签；支持自定义分页；自定义Loading提示；数据表格UI可自定义；支持列点击排序，支持静态数据排序；支持条件动态查询，静态数据条件筛选查询，支持范围、方式及模式支持，内置8种静态数据查询匹配模式；内置EasyDataTable表达式语言、事件支持，能够通过JavaScript编程增强分页。</p>
 <p><strong>兼容性</strong>：EasyDataTable完全兼容IE6及以上版本、Firefox、Chrome、Safari、Opera等各内核（Trident、Gecko、Webkit、Presto）浏览器，并兼容多平台及系统（PC，TabletPC，Mobile）。</p>
@@ -311,7 +457,7 @@ img {
 <h2 id="1-easydatatable-js-css-">1、引入EasyDataTable核心js和css文件</h2>
 <pre><code class="lang-HTML">&lt;link rel=&quot;stylesheet&quot; href=&quot;css/datatable.css&quot; type=&quot;text/css&quot; /&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;js/easy.datatable.js&quot;&gt;&lt;/script&gt;</code></pre>
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/easy.datatable.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 <h2 id="2-">2、分页表格结构</h2>
 <p>EasyDataTable的结构分为表单、EasyDataTable数据表格（表头行，数据展示行）、分页div三个部分，按照如下结构创建数据表格：</p>
 <pre><code class="lang-HTML">&lt;!-- 创建表单 action值为分页处理的动态请求地址 --&gt;
@@ -408,7 +554,7 @@ img {
 <p>  由于Ajax程序在执行过程中并不刷新网页，所以在执行分页等操作时，Ajax应用应当当给客户给出相应加载执行的提示和反馈，否则用户可能会认为任务未执行或失败，影响体验度。</p>
 <p>  EasyDataTable在分页加载时支持进行Loading配置，可选值为：<code>&quot;default&quot;</code>、<code>&quot;show&quot;</code>、<code>&quot;none&quot;</code>、<code>&quot;hide&quot;</code>或<code>&quot;任意值&quot;</code>。（值不区分大小写）</p>
 <p>  <code>&quot;default&quot;</code>: 默认值，分页加载时禁用表格操作(禁用超链，按钮)，数据显示为灰色</p>
-<p>  <code>&quot;show&quot;</code>: 显示文字加载提示，分页加载时显示DataTable.loading_msg定义的loading提示内容（可修改）”数据正在读取中……”</p>
+<p>  <code>&quot;show&quot;</code>: 显示文字加载提示，分页加载时显示DataTable.loading_msg定义的loading提示内容（可修改）&quot;数据正在读取中……&quot;</p>
 <p>  <code>&quot;none&quot;</code>: 隐藏数据展示行，分页加载时隐藏数据展示行的数据+单元格，显示完全为空白</p>
 <p>  <code>&quot;hide&quot;</code>: 隐藏数据内容，分页加载时仅隐藏数据展示行的数据，保留显示单元格边框</p>
 <p>  <code>&quot;任意值&quot;</code>：直接将该内容作为分页加载时提示内容（等同show方式），支持HTML内容</p>
@@ -491,10 +637,13 @@ $(function(){
 </ul>
 <h2 id="4-easydatatable-expression-language-">4、EasyDataTable Expression Language 表达式语言使用</h2>
 <h3 id="4-1-easydatatable-property-expression-">4.1 EasyDataTable Property Expression 属性表达式  <code>{数据属性}</code></h3>
-<p><strong>属性表达式用于在数据展示行，显示指定的属性值。</strong><br>在属性表达式中可以直接引用数据属性来获得指定属性的数据。并支持各种数学、比较等JavaScript基本运算符进行运算。    </p>
+<p><strong>属性表达式用于在数据展示行，显示指定的属性值。</strong>    </p>
+<p>在属性表达式中可以直接引用数据属性来获得指定属性的数据。并支持各种数学、比较等JavaScript基本运算符进行运算。    </p>
 <pre><code class="lang-JS">{id}    {name}</code></pre>
 <h3 id="4-2-easydatatable-statement-expression-">4.2 EasyDataTable Statement Expression 语句表达式 <code>%{表达式语句}%</code></h3>
-<p><strong>语句表达式用于在数据展示行，使用编程语句进行控制编程。</strong><br>在语句表达式中支持使用JavaScript编写表达式代码；支持直接调用数据属性；也支持使用EasyDataTable属性表达式（必须使用引号定义在字符串中使用）。<br>语句表达式执行的结果必须使用EasyDataTable语句表达式标准输出方法输出：    <strong><code>DataTable.out(&quot;内容&quot;);</code></strong></p>
+<p><strong>语句表达式用于在数据展示行，使用编程语句进行控制编程。</strong>   </p>
+<p>在语句表达式中支持使用JavaScript编写表达式代码；支持直接调用数据属性；也支持使用EasyDataTable属性表达式（必须使用引号定义在字符串中使用）。<br>语句表达式执行的结果必须使用EasyDataTable语句表达式标准输出方法输出：    <strong><code>DataTable.out(&quot;内容&quot;);</code></strong></p>
+<p>JS脚本中的&lt;、&gt;等特殊符号，也可使用对应字符实体代替。 </p>
 <pre><code class="lang-HTML">&lt;%--
 支持JavaScript语言编写表达式。
 属性名：以变量方式引用和处理
@@ -505,7 +654,7 @@ EasyDataTable属性表达式：必须使用引号定义在字符串中使用
     DataTable.out(res);   
 }% 
 
-%{ 
+%{
     if(id%2==0){ 
         var op=&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id=&#39;+id+&#39;&quot;&gt;查看&lt;/a&gt;&amp;nbsp;&amp;nbsp;&#39;; 
         op+=&#39;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;修改&lt;/a&gt;&#39;;
@@ -514,6 +663,21 @@ EasyDataTable属性表达式：必须使用引号定义在字符串中使用
     }else{ 
          DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;查看&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;修改&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;删除&lt;/a&gt;&#39;);  
     } 
+}%</code></pre>
+<p><strong>注意：</strong><br>由于EasyDataTable语句表达式是获得整段执行代码的最终结果，所以如下代码并不会执行10次输出：</p>
+<pre><code class="lang-JS">%{ 
+    for(var i=0;i&lt;=10;i++){
+       DataTable.out(i);
+    }
+}%</code></pre>
+<p>如果希望输出10次，必须使用变量保存循环结果，最后输出：</p>
+<pre><code class="lang-JS">%{ 
+    var res=&quot;&quot;;
+    for(var i=0;i&lt;=10;i++){
+        res+=i;
+    }
+
+    DataTable.out(res);
 }%</code></pre>
 <h2 id="5-easydatatable-">5、EasyDataTable内置数据属性</h2>
 <p><strong>EasyDataTable内置了与数据及分页相关的内置属性，可在数据展示行或分页标签行直接使用。</strong></p>
@@ -655,7 +819,7 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
     &lt;input type=&quot;button&quot; value=&quot;下一页&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo+1}&#39;)&quot;/&gt;
     &lt;input type=&quot;button&quot; value=&quot;末页&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{maxPage}&#39;)&quot;/&gt;
 &lt;/div&gt;</code></pre>
-<p>在JavaScript函数调用时，如果参数使用了EasyDataTable属性表达式（如页数<code>{pageNo-1}</code>）则需要通过单引号引起来，作为一个字符串参数，否则IE8下会有警告（不影响实际运行结果）。<br>例如下面代码中的’{pageNo-1}’必须使用引号：</p>
+<p>在JavaScript函数调用时，如果参数使用了EasyDataTable属性表达式（如页数<code>{pageNo-1}</code>）则需要通过单引号引起来，作为一个字符串参数，否则IE8下会有警告（不影响实际运行结果）。<br>例如下面代码中的&#39;{pageNo-1}&#39;必须使用引号：</p>
 <pre><code class="lang-JS">onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;。</code></pre>
 <h2 id="12-">12、带搜索条件分页</h2>
 <p>将搜索框放入form表单中，通过以下两种方式实现带搜索提交分页。</p>
@@ -778,7 +942,7 @@ userinfo：
     &lt;/div&gt;
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
-<h3 id="16-2-simple-loading-show-">16.2、指定分页主题SIMPLE + Loading=”show” + 带复选框 + 排序属性</h3>
+<h3 id="16-2-simple-loading-show-">16.2、指定分页主题SIMPLE + Loading=&quot;show&quot; + 带复选框 + 排序属性</h3>
 <pre><code class="lang-HTML">&lt;script type=&quot;text/javascript&quot;&gt;
   DataTable.load(&quot;datatable2&quot;,{
                   &quot;pagetheme&quot;:&#39;SIMPLE&#39;,
@@ -820,7 +984,7 @@ userinfo：
         &lt;/div&gt;
         &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
     &lt;/form&gt;</code></pre>
-<h3 id="16-3-datatable-loading-none-10-">16.3、判断语句DataTable表达式使用 + loading=”none” + 默认每页10条</h3>
+<h3 id="16-3-datatable-loading-none-10-">16.3、判断语句DataTable表达式使用 + loading=&quot;none&quot; + 默认每页10条</h3>
 <pre><code class="lang-HTML">&lt;form action=&quot;zh_CN/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
          &lt;table class=&quot;datatable easydatatable&quot; loading=&quot;none&quot; id=&quot;datatable3&quot;  width=&quot;100%&quot; align=&quot;center&quot;&gt;
@@ -1061,7 +1225,7 @@ $(function(){
             onclick=&quot;DataTable.go(&#39;datatable7&#39;,&#39;{maxPage}&#39;)&quot;&gt;
     &lt;/div&gt;
 &lt;/form&gt;</code></pre>
-<h3 id="16-8-loading-hide-">16.8、带搜索条件分页 + loading=”hide”</h3>
+<h3 id="16-8-loading-hide-">16.8、带搜索条件分页 + loading=&quot;hide&quot;</h3>
 <pre><code class="lang-HTML">DataTable.load(&quot;datatable8&quot;, {
         &quot;loading&quot; : &quot;hide&quot;
 });
@@ -1600,7 +1764,7 @@ $(function(){
   });
 &lt;/script&gt;</code></pre>
 <p><a href="http://www.lightfeel.com/easy/easydatatable/zh-cn/index.jsp#demo" title="在线 Demo">在线Demo</a></p>
-<p>联系、反馈、定制Email：<a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#105;&#110;&#x74;&#x68;&#105;&#x6e;&#x6b;&#99;&#x6f;&#108;&#x6f;&#x72;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#105;&#110;&#x74;&#x68;&#105;&#x6e;&#x6b;&#99;&#x6f;&#108;&#x6f;&#x72;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a></p>
+<p>联系、反馈、定制Email：<a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#105;&#x6e;&#x74;&#x68;&#105;&#110;&#x6b;&#x63;&#111;&#x6c;&#x6f;&#114;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#105;&#x6e;&#x74;&#x68;&#105;&#110;&#x6b;&#x63;&#111;&#x6c;&#x6f;&#114;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a></p>
 <p><p><br><strong>支付宝钱包扫一扫捐助：</strong><br></p></p>
 <p>
 

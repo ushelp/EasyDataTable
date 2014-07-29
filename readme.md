@@ -29,7 +29,7 @@ EasyDataTable AJAX分页插件是基于jQuery最好的纯Ajax分页插件，支�
 ```HTML	
 <link rel="stylesheet" href="css/datatable.css" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="js/easy.datatable.js"></script>
+<script type="text/javascript" src="js/easy.datatable.min.js"></script>
 ```
 
 
@@ -268,15 +268,21 @@ DataTable.default_lang={
 ## 4、EasyDataTable Expression Language 表达式语言使用
 
 ### 4.1 EasyDataTable Property Expression 属性表达式  `{数据属性}`
+
 **属性表达式用于在数据展示行，显示指定的属性值。**    
+
 在属性表达式中可以直接引用数据属性来获得指定属性的数据。并支持各种数学、比较等JavaScript基本运算符进行运算。    
  ```JS
 {id}    {name}
  ```
 ### 4.2 EasyDataTable Statement Expression 语句表达式 `%{表达式语句}%`
+
 **语句表达式用于在数据展示行，使用编程语句进行控制编程。**   
-在语句表达式中支持使用JavaScript编写表达式代码；支持直接调用数据属性；也支持使用EasyDataTable属性表达式（必须使用引号定义在字符串中使用）。   
+
+在语句表达式中支持使用JavaScript编写表达式代码；支持直接调用数据属性；也支持使用EasyDataTable属性表达式（必须使用引号定义在字符串中使用）。 
 语句表达式执行的结果必须使用EasyDataTable语句表达式标准输出方法输出：    **`DataTable.out("内容");`**
+
+JS脚本中的<、>等特殊符号，也可使用对应字符实体代替。 
 
  ```HTML
 <%--
@@ -289,7 +295,7 @@ EasyDataTable属性表达式：必须使用引号定义在字符串中使用
 	DataTable.out(res);   
 }% 
 				   		
-%{ 
+%{
 	if(id%2==0){ 
 		var op='<a href="doUser.jsp?o=show&id='+id+'">查看</a>&nbsp;&nbsp;'; 
 		op+='<a href="doUser.jsp?o=edit&id={id }">修改</a>';
@@ -300,9 +306,26 @@ EasyDataTable属性表达式：必须使用引号定义在字符串中使用
 	} 
 }%
  ```
-
-
-
+**注意：**
+由于EasyDataTable语句表达式是获得整段执行代码的最终结果，所以如下代码并不会执行10次输出：
+```JS
+%{ 
+	for(var i=0;i<=10;i++){
+	   DataTable.out(i);
+	}
+}%
+```
+如果希望输出10次，必须使用变量保存循环结果，最后输出：
+```JS
+%{ 
+	var res="";
+	for(var i=0;i<=10;i++){
+		res+=i;
+	}
+	
+	DataTable.out(res);
+}%
+```
 
 
 ## 5、EasyDataTable内置数据属性
