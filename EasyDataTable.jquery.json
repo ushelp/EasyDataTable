@@ -29,10 +29,10 @@
             "url": "https://github.com/srchulo/jQuery-Facets/blob/master/LICENSE"
         }
     ],
-	"demo":"http://www.lightfeel.com/easy/easydatatable/zh-cn/index.jsp#demo",
+	"demo":"http://www.easyproject.cn/easydatatable/zh-cn/index.jsp#demo",
     "bugs": "https://github.com/ushelp/EasyDataTable/issues",
-    "homepage": "http://www.lightfeel.com/easy/easydatatable/zh-cn/index.jsp",
-    "docs": "http://www.lightfeel.com/easy/easydatatable/zh-cn/index.jsp#readme",
+    "homepage": "http://www.easyproject.cn/easydatatable/zh-cn/index.jsp",
+    "docs": "http://www.easyproject.cn/easydatatable/zh-cn/index.jsp#readme",
     "download": "https://github.com/ushelp/EasyDataTable/archive/master.zip",
     "dependencies": {
         "jquery": ">=1.5"
