@@ -10,17 +10,17 @@
 "EasyDataTable",
 "EDataTable","jquery","ui","Pagination","page","easy"
     ],
-    "version": "2.2.0",
+    "version": "2.3.0",
     "author": {
         "name": "Ray",
 "email": "inthinkcolor@gmail.com",
-        "url": ""
+        "url": "http://www.easyproject.cn"
     },
     "maintainers": [
         {
             "name": "Ray",
             "email": "inthinkcolor@gmail.com",
-            "url": ""
+            "url": "http://www.easyproject.cn"
         }
     ],
     "licenses": [
