@@ -22,7 +22,7 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
 - **版本升级重要说明：**
 
  由1.X 之前版本升级到 `1.10.0`（包括）以后版本，2.X 之前版本升级到 `2.3.0`（包括）以后版本，需要进行以下更换：
- 1. 通过引入相应独立的语言JS文件实现语言切换（无需独立下载英文版 DataTable 和中文版 EasyDataTable ）
+ 1.通过引入相应独立的语言JS文件实现语言切换（无需独立下载英文版 DataTable 和中文版 EasyDataTable ）
      ```HTML
     <-- CSS -->
     <link rel="stylesheet" href="easydatatable/css/datatable.css" type="text/css" id="themecss"></link>
@@ -33,7 +33,7 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
     如果需要增加其他语言可以参考语言文件，通过添加新的国际化语言文件实现。
      >  默认语言为英文，但由于语言文件内部执行了`DataTable.init()`函数完成DataTable自动初始化，所以如果不引入语言文件，则必须手动调用`DataTable.init()`函数来初始化DataTable。设计原因参考——《3、对Ajax分页表格进行数据初始化：EasyDataTable在基于Ajax加载内容的场景中使用特别说明》。
 
- 2. 如果使用了**自定义排序指示符号**，则以下代码需要进行更换
+ 2.如果使用了**自定义排序指示符号**，则以下代码需要进行更换
    - 全局自定义：默认修改所有DataTable对象的排序指示符
      旧代码：
      ```JS
@@ -49,7 +49,7 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
     			order_down:"<img src='easydatatable/images/order_down.gif'/>"
     		});
     ```
-   - 按DataTableID自定义：仅修改当前DataTableID对应的DataTable对象的排序指示符
+    - 按DataTableID自定义：仅修改当前DataTableID对应的DataTable对象的排序指示符
     旧代码：
     ```JS
     DataTable.sort["datatable,datatable2,datatable4"]={
@@ -68,7 +68,7 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
     			"datatable4");
     ```
 
- 3. 自定义分页，将分页内容定义在 `<div class="customPaging"> </div>`中，可以防止自定义的内容在渲染完成前显示
+ 3.自定义分页，将分页内容定义在 `<div class="customPaging"> </div>`中，可以防止自定义的内容在渲染完成前显示
      ```HTML
     <div class="panelBar" style="width: 780px;height: 40px; line-height: 40px;" size="5,10,30,50" pagetheme="no" row="8">
            <div class="customPaging">
