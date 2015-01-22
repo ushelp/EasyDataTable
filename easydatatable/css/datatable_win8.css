@@ -53,12 +53,12 @@
 .datatable a {color:#3C7FB1; font-size:13px; line-height:20px;}
 .datatable a:hover {text-decoration:underline; line-height:20px;}
 
-.evenColor{	background: #fff;
+.datatable tr.evenColor{	background: #fff;
 	color: #000;}
-.tdHover{background-color:#FDCF17;color: #fff; }
-.tdHover A{background-color:#FDCF17;color: #fff; }
-.tdClick{background-color:#E3A21A; }
-.tdClick A{background-color:#E3A21A;color: #fff; }
+.datatable tr.trHover{background-color:#FDCF17;color: #fff; }
+.datatable tr.trHover A{background-color:#FDCF17;color: #fff; }
+.datatable tr.trClick{background-color:#E3A21A; }
+.datatable tr.trClick A{background-color:#E3A21A;color: #fff; }
 
 .dataTableScrollDiv{border: 1px solid #ededed;}
 
@@ -67,6 +67,7 @@
 .panelBar .pages span { float:left; line-height:21px;}
 .panelBar .pages label {  line-height:21px; padding-left:3px;padding-right: 3px; }
 .panelBar .pages select { float:left; margin:0 3px; font-size: 13px;font-family:Arial, sans-serif;}
+.panelBar .customPaging{display: none;}
 
 .pageGoHover{background-color:#FAFBFC;color:#FD9511 }
 .totalPage{margin-right: 10px;}

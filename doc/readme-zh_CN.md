@@ -37,8 +37,7 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
  >  默认语言为英文，但由于语言文件内部执行了`DataTable.init()`函数完成DataTable自动初始化，所以如果不引入语言文件，则必须手动调用`DataTable.init()`函数来初始化DataTable。设计原因参考——《3、对Ajax分页表格进行数据初始化：EasyDataTable在基于Ajax加载内容的场景中使用特别说明》。
 
 2. 如果使用了**自定义排序指示符号**，则以下代码需要进行更换
-
-- 全局自定义：默认修改所有DataTable对象的排序指示符
+  - 全局自定义：默认修改所有DataTable对象的排序指示符
 旧代码：
 ```JS
 DataTable.order_default="<img src='images/order_default.gif'/>";
@@ -54,7 +53,7 @@ DataTable.setOrder({
 		});
 ```
 
-- 按DataTableID自定义：仅修改当前DataTableID对应的DataTable对象的排序指示符
+  - 按DataTableID自定义：仅修改当前DataTableID对应的DataTable对象的排序指示符
 旧代码：
 ```JS
 DataTable.sort["datatable,datatable2,datatable4"]={
@@ -73,6 +72,15 @@ DataTable.setOrder({
 			"datatable4");
 ```
 
+3. 自定义分页，将分页内容定义在 `<div class="customPaging"> </div>`中，可以防止自定义的内容在渲染完成前显示
+
+ ```HTML
+<div class="panelBar" style="width: 780px;height: 40px; line-height: 40px;" size="5,10,30,50" pagetheme="no" row="8">
+       <div class="customPaging">
+           <!-- 自定义分页内容 -->
+       </div>
+</div
+```
 
 ### [官网主页](http://www.easyproject.cn/easydatatable/zh-cn/index.jsp 'EasyDataTable官网主页')
 
@@ -526,10 +534,44 @@ DataTable.setOrder({
 
 
 
+## 7、Row行事件注册
 
+为DataTable的数据行注册事件。
+```JS
+/**
+ * 为Datatable的行注册各种处理事件
+ * @param events 注册的事件处理列表 {事件名: 事件处理函数, ... } 
+ * @param datatableid 可选，将事件列表注册到id指定的DataTable
+ */
+DataTable.setRowEvent(events[, datatableid])
+```
 
+示例：
+```JS
+//注册给所有DataTable
+DataTable.setRowEvent({	
+    // 事件名:事件处理函数
+	click:function(event){
+		console.info($(this));
+	},
+	mouseover:function(event){
+		console.info($(this));
+	}
+});
 
-## 7、服务器端数据要求    
+//注册给id指定的DataTable
+DataTable.setRowEvent({	
+    // 事件名:事件处理函数
+	click:function(event){
+		console.info($(this));
+	},
+	mouseover:function(event){
+		console.info($(this));
+	}
+}, "datatable4");
+```
+
+## 8、服务器端数据要求    
 
 **EasyDataTable可以自动解析服务器端返回的JSON结果，并实现分页。**  
 
@@ -616,7 +658,7 @@ DataTable.setOrder({
 
 
 
-## 8、刷新指定数据表格
+## 9、刷新指定数据表格
  ```JS
 DataTable.reload(“tableId”);  //取消排序效果，刷新表格，重新加载数据
  ```
@@ -625,7 +667,7 @@ DataTable.reload(“tableId”);  //取消排序效果，刷新表格，重新�
 
 
 
-## 9、默认分页条数设置
+## 10、默认分页条数设置
 
 在**初始化分页参数**中使用`row参数`可以指定默认的分页条数。如果不设置该参数，将使用`DataTable.default_row`属性的值默认值5（可修改）。
 
@@ -639,7 +681,7 @@ DataTable.reload(“tableId”);  //取消排序效果，刷新表格，重新�
 
 
 
-## 10、分页主题设置
+## 11、分页主题设置
 
 DataTable内置分页实现，并提供了两套主题：
 
@@ -651,20 +693,20 @@ DataTable内置分页实现，并提供了两套主题：
 ![SIMPLE 主题图例](images/pagetheme_simple.png "SIMPLE 主题图例")
 
  
-### 10.1、使用JavaScript指定分页主题
+### 11.1、使用JavaScript指定分页主题
  ```JS
 DataTable.load("datatable",{
   	"pagetheme":'SIMPLE'
  });
  ```
 
-### 10.2、在分页DIV标签上指定分页主题
+### 11.2、在分页DIV标签上指定分页主题
  ```HTML
 <div class="panelBar" style="width: 780px;height: 40px;" size="5,10,30,50" pagetheme="FULL">
 
 <div class="panelBar" style="width: 780px;height: 40px;" size="5,10,30,50" pagetheme="SIMPLE">
  ```
-### 10.3、取消分页和主题
+### 11.3、取消分页和主题
 
 使用display:none隐藏，或直接删除分页标签部分即可。
  ```HTML
@@ -676,25 +718,46 @@ DataTable.load("datatable",{
 
 
 
-## 11、自定义分页
+## 12、自定义分页
 EasyDataTable支持分页的自定义，在分页div标签中可编写自定义分页代码。自定义分页代码中支持使用：EasyDataTable内置属性、属性表达式和语句表达式。
 
-为 `分页div标签` 添加 `pagetheme="no"` 属性（或通过EasyDataTable初始化参数设置），调用**`DataTable.go('加载数据的表格id','页数',[每页显示条数]) `**函数，即可实现自定义分页跳转。    
-也可使用`row`属性指定默认每页显示条数：
+为 `分页div标签` 添加 `pagetheme="no"` 属性（或通过EasyDataTable初始化参数设置），调用**`DataTable.go('加载数据的表格id','页数',[每页显示条数]) `**函数，即可实现自定义分页跳转。也可使用`row`属性指定默认每页显示条数。
+
+自定义分页结构：
  ```HTML
 <div class="panelBar" style="width: 780px;height: 40px; line-height: 40px;" size="5,10,30,50" pagetheme="no" row="8">
+    <div class="customPaging">
+        <!-- 自定义分页内容 -->
+    </div>
+</div>
  ```
 实例：
  ```HTML
-<div class="panelBar" style="width: 780px;height: 40px;" size="5,10,30,50" pagetheme="no"  row="8">
-	当前第{pageNo}页/共{maxPage}页 每页{rowPerPage}条/共{totalCount}条	
-	<input type="button" value="首页" onclick="DataTable.go('datatable7',1)"/>
-	<input type="button" value="上一页" onclick="DataTable.go('datatable7', '{pageNo-1}')"/>
-	<input type="button" value="下一页" onclick="DataTable.go('datatable7', '{pageNo+1}')"/>
-	<input type="button" value="末页" onclick="DataTable.go('datatable7', '{maxPage}')"/>
+<div class="panelBar" style="font-size:14px; width: 780px;height: 40px;line-height: 40px;"
+	 pagetheme="no" row="3">
+	<div class="customPaging">
+	当前第{pageNo}页/共{maxPage}页&nbsp;&nbsp;每页{rowPerPage}条/共{totalCount}条 {order} {sort} &nbsp;&nbsp; <a href="#"
+		onclick="DataTable.go('datatable6',1,3);return false;">首页</a> &nbsp;&nbsp;<a href="#"
+		onclick="DataTable.go('datatable6','{pageNo-1}',3);return false;">上一页</a> &nbsp;&nbsp;<a href="#"
+		onclick="DataTable.go('datatable6','{pageNo+1}',3);return false;">下一页</a> &nbsp;&nbsp;<a href="#"
+		onclick="DataTable.go('datatable6','{maxPage}',3);return false;">末页</a>
+	</div>
+</div>
+
+
+
+<div class="panelBar" style="width: 780px;height: 40px; line-height: 40px;"
+	pagetheme="no" row="3">
+	<div class="customPaging">
+	当前第{pageNo}页/共{maxPage}页 每页{rowPerPage}条/共{totalCount}条 {order} {sort} <input type="button" value="首页"
+		onclick="DataTable.go('datatable7',1)"> <input type="button" value="上一页"
+		onclick="DataTable.go('datatable7','{pageNo-1}')"> <input type="button" value="下一页"
+		onclick="DataTable.go('datatable7','{pageNo+1}')"> <input type="button" value="末页"
+		onclick="DataTable.go('datatable7','{maxPage}')">
+   </div>
 </div>
  ```
-在JavaScript函数调用时，如果参数使用了EasyDataTable属性表达式（如页数`{pageNo-1}`）则需要通过单引号引起来，作为一个字符串参数，否则IE8下会有警告（不影响实际运行结果）。   
+在JavaScript函数调用时，如果参数使用了EasyDataTable属性表达式（如页数`{pageNo-1}`）则需要通过单引号引起来，作为一个字符串参数，否则IE8下会有警告（不影响实际运行结果），数字无需。   
 例如下面代码中的'{pageNo-1}'必须使用引号：
  ```JS
 onclick="DataTable.go('datatable7', '{pageNo-1}')"。
@@ -704,7 +767,7 @@ onclick="DataTable.go('datatable7', '{pageNo-1}')"。
 
 
 
-## 12、带搜索条件分页
+## 13、带搜索条件分页
 
 将搜索框放入form表单中，通过以下两种方式实现带搜索提交分页。
 
@@ -726,7 +789,7 @@ onclick="DataTable.go('datatable7', '{pageNo-1}')"。
 
 
 
-## 13、EasyDataTable多数据源加载支持
+## 14、EasyDataTable多数据源加载支持
 
 **EasyDataTable支持3种数据源：**  
 1. 服务器动态数据源（1.X，2.X支持）       
@@ -736,19 +799,19 @@ onclick="DataTable.go('datatable7', '{pageNo-1}')"。
 _注意：EasyDataTable目前支持 1.X 和 2.X 两个版本。EasyDataTable 1.X仅支持动态数据源的加载；EasyDataTable 2.X还支持静态数据源和文件数据源加载。_
 
 
-### 13.1、 服务器动态数据源（1.X，2.X）
+### 14.1、 服务器动态数据源（1.X，2.X）
 **在form的action中指定服务器端分页地址**来动态获取JSON分页数据，实现分页。
  ```JS
 DataTable.load( 'tableid' [，easydataParameters] );
  ```
 
-### 13.2、 静态数据源（2.X）
+### 14.2、 静态数据源（2.X）
 支持直接加载指定的**JSON数据对象**，实现分页(数据列表支持JSON和Array格式)。  
  ```JS
 DataTable.staticLoad('tableid' , jsonDataObject [,easydataParams]);
  ```
 
-### 13.3、 文件数据源（2.X）
+### 14.3、 文件数据源（2.X）
 支持直接加载指定的**JSON数据文件**，实现分页。   
 ```JS
 DataTable.fileLoad('tableid' , 'jsonFile' [,easydataParams]);
@@ -759,7 +822,7 @@ DataTable.fileLoad('tableid' , 'jsonFile' [,easydataParams]);
 
 
 
-## 14、静态排序支持（2.X）
+## 15、静态排序支持（2.X）
 
 EasyDataTable支持对静态数据进行排序，在表头行需要排序字段对应的单元格上添加`staticSort="排序字段名称"`属性即可。
  ```HTML
@@ -770,7 +833,7 @@ EasyDataTable支持对静态数据进行排序，在表头行需要排序字段�
 
 
 
-## 15、静态筛选查询（2.X）
+## 16、静态筛选查询（2.X）
 
 **EasyDataTable支持对静态数据进行筛选查询，并具有以下三大特性：**
 
@@ -869,9 +932,9 @@ ALL全部静态数据范围的数据筛选查询：`DataTable.staticSearchAll('t
 
 
 
-## 16、表格AJAX分页实例
+## 17、表格AJAX分页实例
 
-### 16.1、默认FULL分页主题 + 复选框 + index，count内置属性使用 
+### 17.1、默认FULL分页主题 + 复选框 + index，count内置属性使用 
  ```HTML
 <form action="zh_CN/doPage2.jsp" name="myform">
 	<div style="height: 260px;overflow:auto;width: 780px;" class="dataTableScrollDiv">
@@ -908,7 +971,7 @@ ALL全部静态数据范围的数据筛选查询：`DataTable.staticSearchAll('t
 </form>
  ```
 
-### 16.2、指定分页主题SIMPLE + Loading="show" + 带复选框 + 排序属性
+### 17.2、指定分页主题SIMPLE + Loading="show" + 带复选框 + 排序属性
  ```HTML
 <script type="text/javascript">
   DataTable.load("datatable2",{
@@ -953,7 +1016,7 @@ ALL全部静态数据范围的数据筛选查询：`DataTable.staticSearchAll('t
 	</form>
  ```
 
-### 16.3、判断语句DataTable表达式使用 + loading="none" + 默认每页10条
+### 17.3、判断语句DataTable表达式使用 + loading="none" + 默认每页10条
  ```HTML
 <form action="zh_CN/doPage2.jsp" name="myform">
 	<div style="height: 260px;overflow:auto;width: 780px;" class="dataTableScrollDiv">
@@ -1008,7 +1071,7 @@ ALL全部静态数据范围的数据筛选查询：`DataTable.staticSearchAll('t
 ```
 
 
-### 16.4、带start和end数据加载事件处理函数的分页 + 自定义排序指示符
+### 17.4、带start和end数据加载事件处理函数的分页 + 自定义排序指示符
 ```HTML
 <script type="text/javascript">
 
@@ -1093,7 +1156,7 @@ $(function(){
 ```
 
 
-### 16.5 取消分页标签
+### 17.5 取消分页标签
 ```HTML
 <form action="zh_CN/doPage.jsp" name="myform">
 	<div style="height: 280px;overflow:auto;width: 780px;">
@@ -1135,7 +1198,7 @@ $(function(){
 ```
 
 
-### 16.6、自定义分页1
+### 17.6、自定义分页1
 ```HTML
 <form action="zh_CN/doPage2.jsp" name="myform">
 	<div style="height: 280px;overflow:auto;width: 780px;">
@@ -1175,7 +1238,7 @@ $(function(){
 ```
 
 
-### 16.7、自定义分页2
+### 17.7、自定义分页2
 ```HTML
 <form action="zh_CN/doPage.jsp" name="myform">
 	<div style="height: 280px;overflow:auto;width: 780px;">
@@ -1214,7 +1277,7 @@ $(function(){
 ```
 
 
-### 16.8、带搜索条件分页 + loading="hide"
+### 17.8、带搜索条件分页 + loading="hide"
 ```HTML
 DataTable.load("datatable8", {
 		"loading" : "hide"
@@ -1266,7 +1329,7 @@ DataTable.load("datatable8", {
 </form>
 ```
 
-### 16.9、 动态数据源加载 + NowPage范围静态数据筛选查询排序 + 默认like_i查询匹配模式（2.X）
+### 17.9、 动态数据源加载 + NowPage范围静态数据筛选查询排序 + 默认like_i查询匹配模式（2.X）
 ```HTML
 <form action="zh_CN/doPage2.jsp" name="myform">
 	<div style="margin: 20px auto;">
@@ -1321,7 +1384,7 @@ DataTable.load("datatable8", {
 </form>
 ```
 
-### 16.10、JSON静态数据源加载 + NowPage范围静态数据筛选查询排序 + 无分页 （2.X）
+### 17.10、JSON静态数据源加载 + NowPage范围静态数据筛选查询排序 + 无分页 （2.X）
 
 ```HTML
 <script type="text/javascript">
@@ -1513,7 +1576,7 @@ DataTable.load("datatable8", {
 ```
 
 
-### 16.11、JSON文件数据源加载 + All范围静态数据筛选查询排序  （2.X）
+### 17.11、JSON文件数据源加载 + All范围静态数据筛选查询排序  （2.X）
 ```HTML
 <script type="text/javascript">
 	$(function(){
@@ -1576,7 +1639,7 @@ DataTable.load("datatable8", {
 
 
 
-## 17、数组对象数据集合加载分页
+## 18、数组对象数据集合加载分页
 
 EasyDataTable在数据分页时除了支持使用JSON数据集合外，**还支持使用Array数组对象数据集合**。服务器动态数据源或静态数据源均可使用数组保存数据集合。例如：
 ```JS
@@ -1756,11 +1819,11 @@ data:[
 ```
 
 
-## 18、插件扩展：列宽拖动调整插件
+## 19、插件扩展：列宽拖动调整插件
 
 EasyDataTable支持使用[jquery-resizable-columns](https://github.com/dobtco/jquery-resizable-columns 'Viw on GitHub')插件实现数据表格的列宽拖动调整。
 
-18.1、 为需要列拖动的数据表格的行首添加`<thead>`标签
+19.1、 为需要列拖动的数据表格的行首添加`<thead>`标签
 ```HTML
 <table class="datatable" id="datatable12" width="100%" align="center">
 		  <thead>  <!-- resizableColumns need-->
@@ -1780,7 +1843,7 @@ EasyDataTable支持使用[jquery-resizable-columns](https://github.com/dobtco/jq
 	    ……
 </table>
 ```
-18.2、使用 `$("#datatable12").resizableColumns();`初始化即可
+19.2、使用 `$("#datatable12").resizableColumns();`初始化即可
 ```HTML
 <link rel="stylesheet" href="resizable/jquery.resizableColumns.css" type="text/css"></link>
 <script type="text/javascript" src="resizable/jquery.resizableColumns.js"></script>
@@ -1810,7 +1873,4 @@ EasyDataTable支持使用[jquery-resizable-columns](https://github.com/dobtco/jq
 
 <img alt="支付宝钱包扫一扫捐助" src="http://www.easyproject.cn/images/s.png"  title="支付宝钱包扫一扫捐助"  height="256" width="256"></img>
 
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/>

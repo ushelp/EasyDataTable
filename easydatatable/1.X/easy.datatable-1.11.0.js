@@ -1,7 +1,7 @@
 /**
  * jQuery EasyDataTable Plugin
  * 
- * Version 1.10.0
+ * Version 1.11.0
  * 
  * http://easyproject.cn
  * https://github.com/ushelp/EasyDataTable
@@ -12,7 +12,7 @@
  * 
  */
 (function(window) {
-    var cacheData = {}, cacheDataRow = {}, cacheThLength = {}, cachePageTheme = {}, cacheLanguage = {}, cacheOrderArrow = {}, cacheInitLoading = {}, cacheStartFun = {}, cacheEndFun = {}, cacheUserPage = {}, cacheInit = {}, cacheDefaultRow = {},order_default="&uarr;&darr;",order_up="&uarr;",order_down="&darr;",orderCache={}, cacheLoadDefault = {}, cacheSizeArray = {}, innerLoad = function(tableid, easydataParams, jsonData) {
+    var cacheData = {}, cacheDataRow = {}, cacheThLength = {}, cachePageTheme = {}, cacheLanguage = {}, cacheOrderArrow = {}, cacheInitLoading = {}, cacheStartFun = {}, cacheEndFun = {}, cacheUserPage = {}, cacheInit = {}, cacheDefaultRow = {},order_default="&uarr;&darr;",order_up="&uarr;",order_down="&darr;",orderCache={}, rowEvents={}, rowEventsDT={},cacheLoadDefault = {}, cacheSizeArray = {}, innerLoad = function(tableid, easydataParams, jsonData) {
         var nowDataTable = $("[id='" + tableid + "']");
         if (nowDataTable.length == 0) {
             return;
@@ -324,20 +324,8 @@
         nowDataTable.find(" tr:gt(0)").remove();
         $("[id='" + tableid + "_loading_div']").remove();
         nowDataTable.append(res.content);
-        nowDataTable.find(" tr:even").addClass("evenColor");
-        nowDataTable.find(" tr").hover(function() {
-            $(this).addClass("tdHover");
-        }, function() {
-            $(this).removeClass("tdHover");
-        });
-        var oldTr;
-        nowDataTable.find(" tr").on("click", function() {
-            if (oldTr) {
-                oldTr.removeClass("tdClick");
-            }
-            $(this).addClass("tdClick");
-            oldTr = $(this);
-        });
+     // 表格效果事件
+    	addRowEvent(nowDataTable);
     }, dataObject = function(k, v) {
         this.k = k;
         this.v = v;
@@ -610,6 +598,7 @@
             }
         }
         dataForm.find(".panelBar").html(formatContent(content, cacheData[tableid]));
+        dataForm.find(".panelBar .customPaging").show();
     }, loadInit = function() {
         $(".pagego").hover(function() {
             $(this).addClass("pageGoHover");
@@ -772,6 +761,44 @@
     							arrowObj.addClass("sortArrowHover");
     							});
     				});
+    },
+  //表格效果事件
+    addRowEvent=function(nowDataTable){
+    	nowDataTable.find(" tr:even").addClass("evenColor");
+    	nowDataTable.find(" tr").hover(function() {
+    		$(this).addClass("trHover");
+    	}, function() {
+    		$(this).removeClass("trHover");
+    	});
+    	var oldTr;
+    	nowDataTable.find(" tr").on("click", function() {
+    		if($(this).hasClass("trClick")){
+    			$(this).removeClass("trClick");
+    			oldTr=null;
+    		}else{
+    			if (oldTr) {
+    				oldTr.removeClass("trClick");
+    			}
+    			
+    			$(this).addClass("trClick");
+    			oldTr = $(this);			
+    		}
+    	});
+    	var tableid=nowDataTable.attr("id");
+    	
+    	if(rowEventsDT[tableid]){
+    		$.each(rowEventsDT[tableid],function(eventName,fn){
+    			nowDataTable.find(" tr").on(eventName,fn);
+    		});
+    	}else{
+    		if(rowEvents){
+    			$.each(rowEvents,function(eventName,fn){
+    				nowDataTable.find(" tr").on(eventName,fn);
+    			});
+    		}
+    		
+    	}
+
     }
     ;
     
@@ -912,6 +939,23 @@
 			}
 			
 			dtSort();
+		},
+		/**
+		 * 为Datatable的行注册各种处理事件
+		 * @param events 注册的事件处理列表
+		 * @param datatableid 可选，将事件列表注册到id指定的DataTable
+		 */
+		setRowEvent: function(events, datatableid){
+			if(datatableid){
+				rowEventsDT[datatableid]=events;
+			}else{
+				rowEvents=events;
+			}
+			
+			$(".datatable").each(function(){
+				addRowEvent($(this));
+			});
+			
 		},
         init:function() {
             $(".pagego").hover(function() {

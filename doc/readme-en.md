@@ -41,7 +41,7 @@ If you need to add other languages to refer to the language file, by adding a ne
 
 2. If you use a **custom sort indicator**, the following code needs to be replaced:
 
-- Global Customization: Modify the default sort all DataTable objects indicator
+ - Global Customization: Modify the default sort all DataTable objects indicator
 Old code:
 ```JS
 DataTable.order_default="<img src='images/order_default.gif'/>";
@@ -56,8 +56,7 @@ DataTable.setOrder({
 			order_down:"<img src='easydatatable/images/order_down.gif'/>"
 		});
 ```
-
-- Press DataTableID Custom: Modify only the current sort indicator DataTableID corresponding DataTable object
+ - Press DataTableID Custom: Modify only the current sort indicator DataTableID corresponding DataTable object
 Old code:
 ```JS
 DataTable.sort["datatable,datatable2,datatable4"]={
@@ -76,6 +75,15 @@ DataTable.setOrder({
 			"datatable4");
 ```
 
+3. Custom paging, paging content is defined in the `<div class ="customPaging"> </div>` can be prevented custom content displayed before the rendering is complete
+4. 
+ ```HTML
+<div class="panelBar" style="width: 780px;height: 40px; line-height: 40px;" size="5,10,30,50" pagetheme="no" row="8">
+       <div class="customPaging">
+           <!-- Custom Paging content -->
+       </div>
+</div
+```
 
 ### [The official site](http://www.easyproject.cn/easydatatable/en/index.jsp 'EasyDataTable official site home page')
 ----------
@@ -532,7 +540,45 @@ DataTable.setOrder({
 			"datatable4");
 ```
 
-## 7, Server-side data requirements    
+
+## 7, Row-line event registration
+
+Data line registration event for the DataTable.
+```JS
+/**
+ * Datatable row for various processing event registration
+ * @param events List of registered event handling : {eventName:eventHandler, ... }
+ * @param datatableid Optionally, the list of events registered to id specified DataTable
+ */
+DataTable.setRowEvent(events[, datatableid])
+```
+
+示例：
+```JS
+//Registration to all DataTable
+DataTable.setRowEvent({	
+    // EventName: Eventhandler
+	click:function(event){
+		console.info($(this));
+	},
+	mouseover:function(event){
+		console.info($(this));
+	}
+});
+
+//Registration to the id specified DataTable
+DataTable.setRowEvent({	
+    // EventName: Eventhandler
+	click:function(event){
+		console.info($(this));
+	},
+	mouseover:function(event){
+		console.info($(this));
+	}
+}, "datatable4");
+```
+
+## 8, Server-side data requirements    
 
 **EasyDataTable can automatically parse JSON results returned by the server, and implement paging.**  
 
@@ -621,7 +667,7 @@ public class PageBean {
 
 
 
-## 8, Refresh specified data table
+## 9, Refresh specified data table
 ```JS
 DataTable.reload(“tableId”);  //Cancel sorting effect, Refresh table, reload the data
 ```
@@ -630,7 +676,7 @@ DataTable.reload(“tableId”);  //Cancel sorting effect, Refresh table, reload
 
 
 
-## 9, Set the number of default paging
+## 10, Set the number of default paging
 
 Use `row paging parameters` in the **initialization parameter** can specify the number of the default paging. If you do not set this parameter, the value of the property `DataTable.default_row` default value of 5 (can edit).
 
@@ -644,7 +690,7 @@ Use `row paging parameters` in the **initialization parameter** can specify the 
 
 
 
-## 10, Paging theme settings
+## 11, Paging theme settings
 
 DataTable built-in paging achieved and provides two sets of topics:
 
@@ -652,7 +698,7 @@ DataTable built-in paging achieved and provides two sets of topics:
 
 `SIMPLE`(Simple theme, do not show quick jump page)
  
-### 10.1, Specify the page using JavaScript theme
+### 11.1, Specify the page using JavaScript theme
 ```JS
 DataTable.load("datatable",{
   	"pagetheme":'SIMPLE'
@@ -660,7 +706,7 @@ DataTable.load("datatable",{
 ```
 
 
-### 10.2, Paging Paging specified topic in the DIV tag
+### 11.2, Paging Paging specified topic in the DIV tag
 
 ```HTML
 <div class="panelBar" style="width: 780px;height: 40px;" size="5,10,30,50" pagetheme="FULL">
@@ -668,7 +714,7 @@ DataTable.load("datatable",{
 <div class="panelBar" style="width: 780px;height: 40px;" size="5,10,30,50" pagetheme="SIMPLE">
 ```
 
-### 10.3, Cancel paging and themes
+### 11.3, Cancel paging and themes
 
 Use display: none to hide, or you can directly delete tabs section.
 
@@ -682,30 +728,49 @@ Use display: none to hide, or you can directly delete tabs section.
 
 
 
-## 11, Custom Paging
+## 12, Custom Paging
 EasyDataTable support custom paging, the paging div tag can write custom paging code. Custom paging code supports: EasyDataTable built-in properties, attributes, expressions and statements expressions.
 
+
+
+
 ` Pagination div tag ` Add `pagetheme= "no" ` 
-Properties (or parameters set by EasyDataTable initialization), call **`DataTable.go ('load data tables id', 'pages', [page displays the number of])`** function, you can implement custom paging jump.
-You can also use `row` attribute specifies the default page displays the number of:
+Properties (or parameters set by EasyDataTable initialization), call **`DataTable.go ('load data tables id', 'pages', [page displays the number of])`** function, you can implement custom paging jump.You can also use `row` attribute specifies the default page displays the number of:
 
-```HTML
+Custom Paging structure:
+ ```HTML
 <div class="panelBar" style="width: 780px;height: 40px; line-height: 40px;" size="5,10,30,50" pagetheme="no" row="8">
-```
-
-Example:
-
-```HTML
-<div class="panelBar" style="width: 780px;height: 40px;" size="5,10,30,50" pagetheme="no"  row="8">
-	now {pageNo}/ {maxPage} page Now {rowPerPage} row/{totalCount} row	
-	<input type="button" value="first" onclick="DataTable.go('datatable7',1)"/>
-	<input type="button" value="previous" onclick="DataTable.go('datatable7', '{pageNo-1}')"/>
-	<input type="button" value="next" onclick="DataTable.go('datatable7', '{pageNo+1}')"/>
-	<input type="button" value="last" onclick="DataTable.go('datatable7', '{maxPage}')"/>
+    <div class="customPaging">
+        <!-- Custom Paging content -->
+    </div>
 </div>
-```
+ ```
+Examples:
+ ```HTML
+<div class="panelBar" style="font-size:14px; width: 780px;height: 40px;line-height: 40px;" size="5,10,30,50" pagetheme="no">
+	<div class="customPaging">
+	Now {pageNo}/{maxPage}  page&nbsp;&nbsp; Now {rowPerPage}/{totalCount} row {order} {sort} &nbsp;&nbsp; <a href="#"
+		onclick="DataTable.go('datatable6',1,5);return false;">first</a> &nbsp;&nbsp;<a href="#"
+		onclick="DataTable.go('datatable6','{pageNo-1}',5);return false;">previous </a> &nbsp;&nbsp;<a href="#"
+		onclick="DataTable.go('datatable6','{pageNo+1}',5);return false;">next</a> &nbsp;&nbsp;<a href="#"
+		onclick="DataTable.go('datatable6','{maxPage}',5);return false;">last</a>
+	</div>
+</div>
 
-When the JavaScript function call, if the parameter used EasyDataTable property expressions (such as pages `{pageNo-1}`) is required by single quotation marks, as a string parameter, otherwise there will be a warning under IE8 (does not affect the actual the results).
+
+
+<div class="panelBar" style="width: 780px;height: 40px; line-height: 40px;" size="5,10,30,50" pagetheme="no" row="8">
+	<div class="customPaging">
+	Now{pageNo}/{maxPage} page Now{rowPerPage}/{totalCount} row {order} {sort} <input type="button" value="first"
+		onclick="DataTable.go('datatable7',1)"> <input type="button" value="previous "
+		onclick="DataTable.go('datatable7','{pageNo-1}')"> <input type="button" value="next"
+		onclick="DataTable.go('datatable7','{pageNo+1}')"> <input type="button" value="last"
+		onclick="DataTable.go('datatable7','{maxPage}')">
+	</div>
+</div>
+ ```
+
+When the JavaScript function call, if the parameter used EasyDataTable property expressions (such as pages `{pageNo-1}`) is required by single quotation marks, as a string parameter, otherwise there will be a warning under IE8 (does not affect the actual the results)，digital without.
 For example, the following code '{pageNo-1}' must use quotes:
 
 ```HTML
@@ -714,9 +779,7 @@ onclick="DataTable.go('datatable7', '{pageNo-1}')"。
 
 
 
-
-
-## 12, With a search page
+## 13, With a search page
 
 Form into the search box form, with the following two ways to search submission page.
 
@@ -742,7 +805,7 @@ Server to obtain the search criteria submitted by the client.
 
 
 
-## 13, EasyDataTable load support multiple data sources
+## 14, EasyDataTable load support multiple data sources
 
 **EasyDataTable supports three kinds of data sources:**    
 1. server dynamic data sources (1.X, 2.X support)
@@ -753,7 +816,7 @@ Server to obtain the search criteria submitted by the client.
 _Note: EasyDataTable currently supports two versions 1.X and 2.X. EasyDataTable 1.X only supports dynamic loading of data sources; EasyDataTable 2.X also supports static data sources and data source file is loaded。_
 
 
-### 13.1,  Server dynamic data sources (1.X, 2.X)
+### 14.1,  Server dynamic data sources (1.X, 2.X)
 **Specify the server-side paging address in the form of action** to dynamically obtain JSON paging data to achieve paging.
 
 ```JS
@@ -761,7 +824,7 @@ DataTable.load( 'tableid' [，easydataParameters] );
 ```
 
 
-### 13.2,  Static data sources (2.X)
+### 14.2,  Static data sources (2.X)
 **JSON supports direct loading** of the specified data objects, implement paging. (Data List of supported data format JSON and Array)
 
  ```JS
@@ -769,7 +832,7 @@ DataTable.staticLoad('tableid' , jsonDataObject [,easydataParams]);
 ```
 
 
-### 13.3,  File data sources (2.X)
+### 14.3,  File data sources (2.X)
 Supports direct loading specified **JSON data files**, implement paging.
  
 ```JS
@@ -781,7 +844,7 @@ DataTable.fileLoad('tableid' , 'jsonFile' [,easydataParams]);
 
 
 
-## 14, Static sorting support (2.X)
+## 15, Static sorting support (2.X)
 
 EasyDataTable support for static sort data in the header row to add `staticSort need to sort on a field corresponding cells =" Sort Field Name "` attribute.
 
@@ -793,7 +856,7 @@ EasyDataTable support for static sort data in the header row to add `staticSort 
 
 
 
-## 15,Static filtering query (2.X)
+## 16,Static filtering query (2.X)
 
 **EasyDataTable support for static data filtering query, and has the following three characteristics:**
 
@@ -902,9 +965,9 @@ ALL all static data range of data filtering query:`DataTable.staticSearchAll('ta
 
 
 
-## 16, Form AJAX pagination instances
+## 17, Form AJAX pagination instances
 
-### 16.1, FULL Paging default theme +checkbox + index, count the use of built-in properties 
+### 17.1, FULL Paging default theme +checkbox + index, count the use of built-in properties 
 ```HTML
 <form action="easydatatable/en/doPage2.jsp" name="myform">
 	<div style="height: 260px;overflow:auto;width: 780px;" class="dataTableScrollDiv">
@@ -942,7 +1005,7 @@ ALL all static data range of data filtering query:`DataTable.staticSearchAll('ta
 </form>
 ```
 
-### 16.2, Specify paging theme SIMPLE + Loading = "show" with tips + Sort Properties
+### 17.2, Specify paging theme SIMPLE + Loading = "show" with tips + Sort Properties
 ```HTML
 <script type="text/javascript">
   DataTable.load("datatable2",{
@@ -987,7 +1050,7 @@ ALL all static data range of data filtering query:`DataTable.staticSearchAll('ta
 </form>
 ```
 
-### 16.3, Judge sentences DataTable expression + Loading = "none" + row = "10"
+### 17.3, Judge sentences DataTable expression + Loading = "none" + row = "10"
 ```HTML
 <form action="easydatatable/en/doPage2.jsp" name="myform">
 	<div style="height: 260px;overflow:auto;width: 780px;" class="dataTableScrollDiv">
@@ -1026,7 +1089,7 @@ ALL all static data range of data filtering query:`DataTable.staticSearchAll('ta
 ```HTML
 
 
-### 16.4, With start and end data loading paging event handler + Custom sort indicator
+### 17.4, With start and end data loading paging event handler + Custom sort indicator
 ```HTML
 <script type="text/javascript">
 
@@ -1119,7 +1182,7 @@ $(function(){
 ```
 
 
-### 16.5 Cancel tabs
+### 17.5 Cancel tabs
 ```HTML
 <form action="easydatatable/en/doPage.jsp" name="myform">
 	<div style="height: 280px;overflow:auto;width: 780px;">
@@ -1151,7 +1214,7 @@ $(function(){
 ```
 
 
-### 16.6, Custom Paging Example 1
+### 17.6, Custom Paging Example 1
 ```HTML
 <form action="easydatatable/en/doPage2.jsp" name="myform">
 	<div style="height: 280px;overflow:auto;width: 780px;">
@@ -1193,7 +1256,7 @@ $(function(){
 ```
 
 
-### 16.7, Custom Paging Example 2
+### 17.7, Custom Paging Example 2
 ```HTML
 <form action="easydatatable/en/doPage.jsp" name="myform">
 	<div style="height: 280px;overflow:auto;width: 780px;">
@@ -1231,7 +1294,7 @@ $(function(){
 ```
 
 
-### 16.8, With a search page + loading="hide"
+### 17.8, With a search page + loading="hide"
 ```HTML
 DataTable.load("datatable8", {
 		"loading" : "hide"
@@ -1284,7 +1347,7 @@ DataTable.load("datatable8", {
 ```
 
 
-### 16.9,  Dynamic range of data sources to load + NowPage sort of static data filtering query + default like_i query matching MatchMode
+### 17.9,  Dynamic range of data sources to load + NowPage sort of static data filtering query + default like_i query matching MatchMode
 
 ```HTML
 <form action="easydatatable/en/doPage2.jsp" name="myform">
@@ -1341,7 +1404,7 @@ DataTable.load("datatable8", {
 ```
 
 
-### 16.10, Static load JSON data source + NowPage range of static data filtering query without sorting + paging (2.X)
+### 17.10, Static load JSON data source + NowPage range of static data filtering query without sorting + paging (2.X)
 
 ```HTML
 <script type="text/javascript">
@@ -1533,7 +1596,7 @@ DataTable.load("datatable8", {
 ```
 
 
-### 16.11, JSON file data source load + All range of static data filtering query sorting (2.X)
+### 17.11, JSON file data source load + All range of static data filtering query sorting (2.X)
 ```HTML
 <script type="text/javascript">
 	$(function(){
@@ -1598,7 +1661,7 @@ DataTable.load("datatable8", {
 
 
 
-## 17、An array of objects loaded paged data collection
+## 18、An array of objects loaded paged data collection
 
 EasyDataTable paging when data support the use of JSON data collection in addition, **it also supports the use of Array object data collection**. Dynamic Server data source or static array of data sources can be used to save data collection. For example:
 
@@ -1782,11 +1845,11 @@ data:[
 ```
 
 
-## 18、Add-ons: adjust the column width by dragging the plug
+## 19、Add-ons: adjust the column width by dragging the plug
 
 EasyDataTable support the use of [jquery-resizable-columns](https://github.com/dobtco/jquery-resizable-columns 'Viw on GitHub') plug-in data table and drag to adjust the column width。
 
-18.1、 Need to drag out the first row of the data table to add `<thead>` tags
+19.1、 Need to drag out the first row of the data table to add `<thead>` tags
 
 ```HTML
 <table class="datatable" id="datatable12" width="100%" align="center">
@@ -1807,7 +1870,7 @@ EasyDataTable support the use of [jquery-resizable-columns](https://github.com/d
 	    ……
 </table>
 ```
-18.2、Use `$("#datatable12").resizableColumns();` initialize
+19.2、Use `$("#datatable12").resizableColumns();` initialize
 ```HTML
 <link rel="stylesheet" href="resizable/jquery.resizableColumns.css" type="text/css"></link>
 <script type="text/javascript" src="resizable/jquery.resizableColumns.js"></script>

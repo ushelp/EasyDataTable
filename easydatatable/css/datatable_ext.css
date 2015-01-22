@@ -40,9 +40,9 @@
 .datatable a {color:#3C7FB1; font-size:13px; line-height:20px;}
 .datatable a:hover {text-decoration:underline; line-height:20px;}
 
-.evenColor{}
-.tdHover{background-color:#EFEFEF; }
-.tdClick{background-color:#D9E8FB; }
+.datatable tr.evenColor{}
+.datatable tr.trHover{background-color:#EFEFEF; }
+.datatable tr.trClick{background-color:#D9E8FB; }
 
 .dataTableScrollDiv{border: 1px solid #99BBE8;}
 
@@ -52,6 +52,7 @@
 .panelBar .pages span { float:left; line-height:21px;}
 .panelBar .pages label {  line-height:21px; padding-left:3px;padding-right: 3px; }
 .panelBar .pages select { float:left; margin:0 3px; font-size: 13px;font-family:Arial, sans-serif;}
+.panelBar .customPaging{display: none;}
 
 .pageGoHover{background-color:#FAFBFC; }
 .totalPage{margin-right: 10px;}

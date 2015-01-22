@@ -1,7 +1,7 @@
 /**
  * jQuery EasyDataTable Plugin
  * 
- * Version 2.3.0
+ * Version 2.4.0
  * 
  * http://easyproject.cn
  * https://github.com/ushelp/EasyDataTable
@@ -33,6 +33,8 @@
 	order_up="&uarr;",
 	order_down="&darr;",
 	orderCache={},//按DataTableID自定义排序指示符
+	rowEvents={},
+	rowEventsDT={},
 	/**
  * DataTable数据加载
  * @param tableid 数据表格id
@@ -131,10 +133,8 @@ innerLoad=function(tableid, easydataParams, jsonData, staticFlag) {
 		}
 		if (!cacheInit[tableid]) {
 			// 初始化时保存自定义分页content
+			cacheUserPage[tableid] = dataForm.find(".panelBar").html();
 			
-			
-			cacheUserPage[tableid] = dataForm.find(".panelBar")
-					.html();
 			if(cacheUserPage[tableid]){
 				cacheUserPage[tableid]=cacheUserPage[tableid].replace(/\n/g, "").replace(/\r/g, "").replace("}%","}%\r\n");
 			}
@@ -838,25 +838,9 @@ dataShow= function(tableid, nowDataTable, dataForm, data, params, or,all) {
 	$("[id='" + tableid + "_loading_div']").remove();
 	// 显示数据
 	nowDataTable.append(res.content);
-
 	// 表格效果事件
-	nowDataTable.find(" tr:even").addClass("evenColor");
-	nowDataTable.find(" tr").hover(function() {
-		$(this).addClass("tdHover");
-	}, function() {
-		$(this).removeClass("tdHover");
-	});
-
-	var oldTr;
-
-	nowDataTable.find(" tr").on("click", function() {
-		if (oldTr) {
-			oldTr.removeClass("tdClick");
-		}
-		$(this).addClass("tdClick");
-		oldTr = $(this);
-	});
-
+	addRowEvent(nowDataTable);
+	
 },
 dataObject = function(k, v) {
 	this.k = k;
@@ -1206,6 +1190,7 @@ pageTheme = function(tableid, theme) {
 
 	dataForm.find(".panelBar").html(
 			formatContent(content, cacheData[tableid]));
+	dataForm.find(".panelBar .customPaging").show();
 },
 loadInit = function() {
 	$(".pagego").hover(function() {
@@ -1456,6 +1441,44 @@ dtSort=function(){
 							arrowObj.addClass("sortArrowHover");
 							});
 				});
+},
+//表格效果事件
+addRowEvent=function(nowDataTable){
+	nowDataTable.find(" tr:even").addClass("evenColor");
+	nowDataTable.find(" tr").hover(function() {
+		$(this).addClass("trHover");
+	}, function() {
+		$(this).removeClass("trHover");
+	});
+	var oldTr;
+	nowDataTable.find(" tr").on("click", function() {
+		if($(this).hasClass("trClick")){
+			$(this).removeClass("trClick");
+			oldTr=null;
+		}else{
+			if (oldTr) {
+				oldTr.removeClass("trClick");
+			}
+			
+			$(this).addClass("trClick");
+			oldTr = $(this);			
+		}
+	});
+	var tableid=nowDataTable.attr("id");
+	
+	if(rowEventsDT[tableid]){
+		$.each(rowEventsDT[tableid],function(eventName,fn){
+			nowDataTable.find(" tr").on(eventName,fn);
+		});
+	}else{
+		if(rowEvents){
+			$.each(rowEvents,function(eventName,fn){
+				nowDataTable.find(" tr").on(eventName,fn);
+			});
+		}
+		
+	}
+
 }
 ;
 
@@ -1607,23 +1630,7 @@ var DataTable = {
 			// 显示数据
 			nowDataTable.append(content);
 			// 表格效果事件
-			nowDataTable.find(" tr:even").addClass("evenColor");
-			nowDataTable.find(" tr").hover(function() {
-				$(this).addClass("tdHover");
-			}, function() {
-				$(this).removeClass("tdHover");
-			});
-
-			var oldTr;
-
-			nowDataTable.find(" tr").on("click", function() {
-				if (oldTr) {
-					oldTr.removeClass("tdClick");
-				}
-				$(this).addClass("tdClick");
-				oldTr = $(this);
-			});
-
+			addRowEvent(nowDataTable);
 		},
 		/**
 		 * 全部静态数据范围静态搜索 
@@ -1806,6 +1813,23 @@ var DataTable = {
 			}
 			
 			dtSort();
+		},
+		/**
+		 * 为Datatable的行注册各种处理事件
+		 * @param events 注册的事件处理列表
+		 * @param datatableid 可选，将事件列表注册到id指定的DataTable
+		 */
+		setRowEvent: function(events, datatableid){
+			if(datatableid){
+				rowEventsDT[datatableid]=events;
+			}else{
+				rowEvents=events;
+			}
+			
+			$(".datatable").each(function(){
+				addRowEvent($(this));
+			});
+			
 		},
 		init:function(){
 			$(".pagego").hover(function() {
