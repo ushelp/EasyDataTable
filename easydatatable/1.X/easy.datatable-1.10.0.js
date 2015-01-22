@@ -1,15 +1,18 @@
-// jQuery EasyDataTable Plugin
-//
-// Version 1.9.0
-//
-// Copy By RAY
-// inthinkcolor@gmail.com
-// 2013
-//
-// https://github.com/ushelp/EasyDataTable
-//
+/**
+ * jQuery EasyDataTable Plugin
+ * 
+ * Version 1.10.0
+ * 
+ * http://easyproject.cn
+ * https://github.com/ushelp/EasyDataTable
+ * 
+ * Copyright 2014 Ray [ inthinkcolor@gmail.com ]
+ * 
+ * Dependencies: jQuery
+ * 
+ */
 (function(window) {
-    var cacheData = {}, cacheDataRow = {}, cacheThLength = {}, cachePageTheme = {}, cacheLanguage = {}, cacheOrderArrow = {}, cacheInitLoading = {}, cacheStartFun = {}, cacheEndFun = {}, cacheUserPage = {}, cacheInit = {}, cacheDefaultRow = {}, cacheLoadDefault = {}, cacheSizeArray = {}, innerLoad = function(tableid, easydataParams, jsonData) {
+    var cacheData = {}, cacheDataRow = {}, cacheThLength = {}, cachePageTheme = {}, cacheLanguage = {}, cacheOrderArrow = {}, cacheInitLoading = {}, cacheStartFun = {}, cacheEndFun = {}, cacheUserPage = {}, cacheInit = {}, cacheDefaultRow = {},order_default="&uarr;&darr;",order_up="&uarr;",order_down="&darr;",orderCache={}, cacheLoadDefault = {}, cacheSizeArray = {}, innerLoad = function(tableid, easydataParams, jsonData) {
         var nowDataTable = $("[id='" + tableid + "']");
         if (nowDataTable.length == 0) {
             return;
@@ -636,7 +639,142 @@
                 firstEnable(tableid);
             }
         }
-    };
+    },
+  //渲染页面的排序指示符号
+    dtSort=function(){
+    	$("table:has([sort]),table:has([staticSort])")
+    	.each(function() {
+    		var table = $(this);
+    		var tableid = table.attr("id");
+    		table.find("[sort],[staticSort]").each(
+    			function() {
+    				var o = $(this);
+    				var oDef=order_default;
+    				var oU=order_up;
+    				var oD=order_down;
+    				
+    				var oSel;
+    				if(orderCache){
+    					$.each(orderCache,function(k,v){
+    						var k2=","+k.toLowerCase()+",";
+    						tableidTmp=","+tableid.toLowerCase()+",";
+    						
+    						if(k2.indexOf(tableidTmp)!=-1){
+    							oSel=true;
+    						}
+    						if(oSel){
+    							orderCache[k].order_default?oDef=orderCache[k].order_default:"";
+    							orderCache[k].order_up?oU=orderCache[k].order_up:"";
+    							orderCache[k].order_down?oD=orderCache[k].order_down:"";
+    							return;
+    						}
+    					});
+    				}
+    				var sortHtml;
+    				if(o.find("span.sortArrow").length>0){
+    					sortHtml=o.html().replace(o.find("span.sortArrow").html(),oDef);
+    				}else{
+    					sortHtml=o.html()+ "<span class='sortArrow' name='orderspan'>"+oDef+"</span>";
+    				}
+    				o.html(sortHtml);
+    				o.css("cursor", "pointer");
+    				o.off("click");
+    				var dataForm = $("form").has(
+    						"[id='" + tableid
+    								+ "']");
+    				o.on("click",function(e) {
+    									var sort = o.attr("sort")|| o.attr("staticSort");
+    									
+    									if (dataForm
+    											.find("input[name='sort']").length > 0) {
+    										dataForm.find("input[name='sort']").val(sort);
+    										
+    										dataForm.find("input[name='order']")
+    												.val(
+    														dataForm
+    																.find(
+    																		"input[name='order']")
+    																.val()
+    																.toLowerCase() == "asc" ? "desc"
+    																: "asc");
+
+    										
+    										var arrowObj = $(
+    												this)
+    												.find(
+    														"[name='orderspan']");
+    										if (cacheOrderArrow[tableid]) {
+    											cacheOrderArrow[tableid]
+    													.html(oDef);
+    										}
+    										if (dataForm
+    												.find(
+    														"input[name='order']")
+    												.val() == "asc") {
+    											arrowObj
+    													.html(oU);
+    										} else if (dataForm
+    												.find(
+    														"input[name='order']")
+    												.val() == "desc") {
+    											arrowObj
+    													.html(oD);
+    										} else {
+    											arrowObj
+    													.html(oDef);
+    										}
+    										cacheOrderArrow[tableid] = arrowObj;
+    										if (o.attr("sort")) {
+    											
+    											DataTable.load(tableid);
+    										} else {
+    											DataTable
+    													.staticDataSort(
+    															tableid,
+    															sort,
+    															dataForm
+    																	.find(
+    																			"input[name='order']")
+    																	.val());
+    										}
+    									}
+
+    								});
+    			});
+    				table.find("[sort],[staticSort]").hover(
+    						function() {
+    							var arrowObj = $(this).find(
+    									"[name='orderspan']");
+    							arrowObj.removeClass("sortArrow");
+    							arrowObj.removeClass("sortArrowDown");
+    							arrowObj.addClass("sortArrowHover");
+    						},
+    						function() {
+    							var arrowObj = $(this).find(
+    									"[name='orderspan']");
+    							arrowObj.removeClass("sortArrowHover");
+    							arrowObj.addClass("sortArrow");
+    						});
+    				table.find("[sort],[staticSort]").on(
+    						"mousedown",
+    						function() {
+    							var arrowObj = $(this).find(
+    									"[name='orderspan']");
+    							arrowObj.removeClass("sortArrowHover");
+    							arrowObj.addClass("sortArrowDown");
+    						});
+    				table.find("[sort],[staticSort]").on(
+    						"mouseup",
+    						function() {
+    							var arrowObj = $(this).find(
+    									"[name='orderspan']");
+    							arrowObj.removeClass("sortArrowDown");
+    							arrowObj.addClass("sortArrowHover");
+    							});
+    				});
+    }
+    ;
+    
     var DataTable = {
         default_row:5,
         default_matchMode:"like_i",
@@ -647,13 +785,13 @@
         sort:{},
         loading_msg:"Data is loading ......",
         default_lang:{
-            first:"首页",
-            previous:"上一页",
-            next:"下一页",
-            last:"末页",
-            totalCount:"共{0}条",
-            totalPage:"共{0}页",
-            rowPerPage:"每页显示{0}条"
+        	first : "first",
+			previous : "previous",
+			next : "next",
+			last : "last",
+			totalCount : "total {0} rows",
+			totalPage : "total {0} pages",
+			rowPerPage : "page for {0} rows"
         },
         load:function(tableid, easydataParams) {
             innerLoad(tableid, easydataParams);
@@ -761,6 +899,20 @@
                 });
             }
         },
+		setOrder: function(orderParams,datatableid){	
+			if(datatableid){
+				orderCache[datatableid]={};
+				orderCache[datatableid].order_default=orderParams.order_default;
+				orderCache[datatableid].order_up=orderParams.order_up;
+				orderCache[datatableid].order_down=orderParams.order_down;
+			}else{
+				order_default=orderParams.order_default;
+				order_up=orderParams.order_up;
+				order_down=orderParams.order_down;
+			}
+			
+			dtSort();
+		},
         init:function() {
             $(".pagego").hover(function() {
                 $(this).addClass("pageGoHover");
@@ -789,81 +941,8 @@
                     }
                 });
             });
-            $("table:has([sort])").each(function() {
-                var table = $(this);
-                var tableid = table.attr("id");
-                table.find("[sort]").each(function() {
-                    var o = $(this);
-                    var oDef = DataTable.order_default;
-                    var oU = DataTable.order_up;
-                    var oD = DataTable.order_down;
-                    var oSel;
-                    if (DataTable.sort) {
-                        $.each(DataTable.sort, function(k, v) {
-                            var k2 = "," + k.toLowerCase() + ",";
-                            tableidTmp = "," + tableid.toLowerCase() + ",";
-                            if (k2.indexOf(tableidTmp) != -1) {
-                                oSel = true;
-                            }
-                            if (oSel) {
-                                DataTable.sort[k].order_default ? oDef = DataTable.sort[k].order_default :"";
-                                DataTable.sort[k].order_up ? oU = DataTable.sort[k].order_up :"";
-                                DataTable.sort[k].order_down ? oD = DataTable.sort[k].order_down :"";
-                                return;
-                            }
-                        });
-                    }
-                    o.html(o.html() + "<span class='sortArrow' name='orderspan'>" + oDef + "</span>");
-                    o.css("cursor", "pointer");
-                    o.off("click");
-                    var dataForm = $("form").has("[id='" + tableid + "']");
-                    o.on("click", function(e) {
-                        var sort = o.attr("sort");
-                        if (dataForm.find("input[name='sort']").length > 0) {
-                            dataForm.find("input[name='sort']").val(sort);
-                            dataForm.find("input[name='order']").val(dataForm.find("input[name='order']").val().toLowerCase() == "asc" ? "desc" :"asc");
-                            var arrowObj = $(this).find("[name='orderspan']");
-                            if (cacheOrderArrow[tableid]) {
-                                cacheOrderArrow[tableid].html(oDef);
-                            }
-                            if (dataForm.find("input[name='order']").val() == "asc") {
-                                arrowObj.html(oU);
-                            } else if (dataForm.find("input[name='order']").val() == "desc") {
-                                arrowObj.html(oD);
-                            } else {
-                                arrowObj.html(oDef);
-                            }
-                            cacheOrderArrow[tableid] = arrowObj;
-                            DataTable.load(tableid);
-                        }
-                    });
-                });
-                table.find("[sort]").hover(function() {
-                    var arrowObj = $(this).find("[name='orderspan']");
-                    arrowObj.removeClass("sortArrow");
-                    arrowObj.removeClass("sortArrowDown");
-                    arrowObj.addClass("sortArrowHover");
-                }, function() {
-                    var arrowObj = $(this).find("[name='orderspan']");
-                    arrowObj.removeClass("sortArrowHover");
-                    arrowObj.addClass("sortArrow");
-                });
-                table.find("[sort]").on("mousedown", function() {
-                    var arrowObj = $(this).find("[name='orderspan']");
-                    arrowObj.removeClass("sortArrowHover");
-                    arrowObj.addClass("sortArrowDown");
-                });
-                table.find("[sort]").on("mouseup", function() {
-                    var arrowObj = $(this).find("[name='orderspan']");
-                    arrowObj.removeClass("sortArrowDown");
-                    arrowObj.addClass("sortArrowHover");
-                });
-            });
+            dtSort();
         }
     };
     window.DataTable = DataTable;
 })(window);
-
-$(function() {
-    DataTable.init();
-});

@@ -1,4 +1,4 @@
-*{font-family: 微软雅黑,Arial, sans-serif;}
+
 .datatable {
 	border-spacing: 0;
 	background: #fff;
@@ -12,20 +12,26 @@
 }
 
 .datatable th {
-	color: #444;
+	font-weight: bold;
+	color: #ff6600;
+	border-color: #d0d0d0;
+	background: #F0EFF0;
 	padding: 1px 2px;
+	line-height: 21px;
 	border-right: solid 1px #D0D0D0;
 	border-bottom: solid 1px #D0D0D0;
 	text-align: center;
-	background-image: url("../../images/grid3-hrow.gif");
 }
 .datatable th:hover {
-	color: #444;
+	font-weight: bold;
+	color: #ff6600;
+	border-color: #d0d0d0;
+	background: #DAE2FF;
 	padding: 1px 2px;
+	line-height: 21px;
 	border-right: solid 1px #D0D0D0;
 	border-bottom: solid 1px #D0D0D0;
 	text-align: center;
-	background-image: url("../../images/grid3-hrow-over.gif");
 }
 
 .datatable tr {
@@ -33,21 +39,20 @@
 }
 .datatable td {
 	padding: 1px 2px;
+	line-height: 21px;
 	border-right: solid 1px #ededed;
-	
 }
 
 .datatable a {color:#3C7FB1; font-size:13px; line-height:20px;}
 .datatable a:hover {text-decoration:underline; line-height:20px;}
 
-.evenColor{}
-.tdHover{background-color:#EFEFEF; }
-.tdClick{background-color:#D9E8FB; }
+.evenColor{background-color: #F8F8F8;}
+.tdHover{background-color:#E4F5FF; }
+.tdClick{background-color:#7CC5E5; }
 
-.dataTableScrollDiv{border: 1px solid #99BBE8;}
+.dataTableScrollDiv{border: 1px solid #D0D0D0;}
 
-
-.panelBar {border-color:#99BBE8; background-image: url("../../images/bg.gif");font-size:13px; display:block; overflow:hidden; height:25px; border-style:solid;border-width:1px 1px;border-top:0px; background-repeat:repeat-x; }
+.panelBar {border-color:#D0D0D0; background-color:#efefef;font-size:13px; display:block; overflow:hidden; height:25px; border-style:solid;border-width:1px 1px;border-top:0px; background-repeat:repeat-x; }
 .panelBar .pages { float:left; overflow:hidden; height:21px; padding:2px 5px;margin: 0px;}
 .panelBar .pages span { float:left; line-height:21px;}
 .panelBar .pages label {  line-height:21px; padding-left:3px;padding-right: 3px; }
@@ -63,7 +68,7 @@
 .firstlastgo{color:#878787;}
 .nowpagenum{font-weight: bold;color: red;}
 .DataTable_Loading{font-weight: normal;color:#878787; margin: 10px auto;padding: 10px auto;text-align: center;}
-.sortArrow{font-size:11px;color:#444;padding-left: 3px;font-weight: bold;}
-.sortArrowHover{font-size:11px;color:#222;padding-left: 3px;font-weight: bold;}
-.sortArrowDown{font-size:11px;color:#000;padding-left: 3px;font-weight: bold;}
+.sortArrow{font-size:11px;color:#ff6600;padding-left: 3px;font-weight: bold;}
+.sortArrowHover{font-size:11px;color:#4EBEE4;padding-left: 3px;font-weight: bold;}
+.sortArrowDown{font-size:11px;color:#191919;padding-left: 3px;font-weight: bold;}
 .mycombox{color:#183152; border:6px #183152; font-size: 18px}
