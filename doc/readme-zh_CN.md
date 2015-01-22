@@ -74,7 +74,7 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
     ```
 
 3. 自定义分页，将分页内容定义在 `<div class="customPaging"> </div>`中，可以防止自定义的内容在渲染完成前显示
-
+4
  ```HTML
 <div class="panelBar" style="width: 780px;height: 40px; line-height: 40px;" size="5,10,30,50" pagetheme="no" row="8">
        <div class="customPaging">
