@@ -19,16 +19,15 @@ And other relatively EasyDataTable Ext main features:
 4. comprehensive: dynamic and static load **full variety of data sources**, and supports a variety of different scope, approach, mode of static data filtering query
 
 
-**Version Notice:**
+- **Version Notice:**
 EasyDataTable currently supports two versions 1.X and 2.X versions
 2.X increased static data sources (JSON Data List and Array Format), JSON file data source paging load support, and support for more than static data filtering and sorting query.
 
-**Upgraded version IMPORTANT:**
+- **Upgraded version IMPORTANT:**
+ 
+ Upgrade from version 1.X low to 1.10.0 (including) version, 2.X upgrade later to a lower version 2.3.0 (included) or later, you need to replace the following:
 
-Upgrade from version 1.X low to 1.10.0 (including) version, 2.X upgrade later to a lower version 2.3.0 (included) or later, you need to replace the following:
-
-1. The need for a separate download in English (DataTable) and Chinese (EasyDataTable), language switching by introducing appropriate language independent JS file implementation
-
+ 1. The need for a separate download in English (DataTable) and Chinese (EasyDataTable), language switching by introducing appropriate language independent JS file implementation
  ```HTML
 <link rel="stylesheet" href="easydatatable/css/datatable.css" type="text/css" id="themecss"></link>
 <script type="text/javascript" src="easydatatable/easy.datatable-2.3.0.min.js"></script>
@@ -36,47 +35,44 @@ Upgrade from version 1.X low to 1.10.0 (including) version, 2.X upgrade later to
 <script type="text/javascript" src="easydatatable/lang/easy.datatable-lang-en.js"></script>
 ```
 If you need to add other languages to refer to the language file, by adding a new international language file implementation.
- 
  > The default language is English, but due to the implementation of the internal language file `DataTable.init()` function to complete DataTable automatically initialized, so if you do not introduce the language file, you must manually invoke `DataTable.init()` function to initialize the DataTable. Reference design reasons - <3, Ajax paged table data initialization: EasyDataTable using special instructions at Ajax loaded content-based scenarios.>
+ 
+ 2. If you use a **custom sort indicator**, the following code needs to be replaced:
+     - Global Customization: Modify the default sort all DataTable objects indicator
+     Old code:
+     ```JS
+    DataTable.order_default="<img src='images/order_default.gif'/>";
+    DataTable.order_up="<img src='images/order_up.gif'/>";
+    DataTable.order_down="<img src='images/order_down.gif'/>";
+    ```
+     Change to:
+     ```JS
+    DataTable.setOrder({	
+    			order_default:"<img src='easydatatable/images/order_default.gif'/>",
+    			order_up:"<img src='easydatatable/images/order_up.gif'/>",
+    			order_down:"<img src='easydatatable/images/order_down.gif'/>"
+    		});
+    ```
+     - Press DataTableID Custom: Modify only the current sort indicator DataTableID corresponding DataTable object
+     Old code:
+     ```JS
+    DataTable.sort["datatable,datatable2,datatable4"]={
+          order_default:"<img src='images/order_default.gif'/>",
+          order_up:"<img src='images/order_up.gif'/>",
+          order_down:"<img src='images/order_down.gif'/>"
+    };
+    ```
+     Change to:
+     ```JS
+    DataTable.setOrder({	
+    				order_default:"<img src='images/order_default.gif'/>",
+    				order_up:"<img src='images/order_up.gif'/>",
+    				order_down:"<img src='images/order_down.gif'/>"
+    			},
+    			"datatable4");
+    ```
 
-2. If you use a **custom sort indicator**, the following code needs to be replaced:
-
- - Global Customization: Modify the default sort all DataTable objects indicator
-Old code:
-```JS
-DataTable.order_default="<img src='images/order_default.gif'/>";
-DataTable.order_up="<img src='images/order_up.gif'/>";
-DataTable.order_down="<img src='images/order_down.gif'/>";
-```
-Change to:
-```JS
-DataTable.setOrder({	
-			order_default:"<img src='easydatatable/images/order_default.gif'/>",
-			order_up:"<img src='easydatatable/images/order_up.gif'/>",
-			order_down:"<img src='easydatatable/images/order_down.gif'/>"
-		});
-```
- - Press DataTableID Custom: Modify only the current sort indicator DataTableID corresponding DataTable object
-Old code:
-```JS
-DataTable.sort["datatable,datatable2,datatable4"]={
-      order_default:"<img src='images/order_default.gif'/>",
-      order_up:"<img src='images/order_up.gif'/>",
-      order_down:"<img src='images/order_down.gif'/>"
-};
-```
-Change to:
-```JS
-DataTable.setOrder({	
-				order_default:"<img src='images/order_default.gif'/>",
-				order_up:"<img src='images/order_up.gif'/>",
-				order_down:"<img src='images/order_down.gif'/>"
-			},
-			"datatable4");
-```
-
-3. Custom paging, paging content is defined in the `<div class ="customPaging"> </div>` can be prevented custom content displayed before the rendering is complete
-4. 
+ 3. Custom paging, paging content is defined in the `<div class ="customPaging"> </div>` can be prevented custom content displayed before the rendering is complete
  ```HTML
 <div class="panelBar" style="width: 780px;height: 40px; line-height: 40px;" size="5,10,30,50" pagetheme="no" row="8">
        <div class="customPaging">
