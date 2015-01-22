@@ -23,8 +23,8 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
 
 由1.X 之前版本升级到 `1.10.0`（包括）以后版本，2.X 之前版本升级到 `2.3.0`（包括）以后版本，需要进行以下更换：
 
-1.  通过引入相应独立的语言JS文件实现语言切换（无需独立下载英文版 DataTable 和中文版 EasyDataTable ）
-```HTML
+1. 通过引入相应独立的语言JS文件实现语言切换（无需独立下载英文版 DataTable 和中文版 EasyDataTable ）
+ ```HTML
 <-- CSS -->
 <link rel="stylesheet" href="easydatatable/css/datatable.css" type="text/css" id="themecss"></link>
 <script type="text/javascript" src="easydatatable/easy.datatable-2.3.0.min.js"></script>
@@ -36,12 +36,14 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
 
 2. 如果使用了**自定义排序指示符号**，则以下代码需要进行更换
  - 全局自定义：默认修改所有DataTable对象的排序指示符 
+ 
     旧代码：
     ```JS
     DataTable.order_default="<img src='images/order_default.gif'/>";
     DataTable.order_up="<img src='images/order_up.gif'/>";
     DataTable.order_down="<img src='images/order_down.gif'/>";
     ```
+
     更改为：
     ```JS
     DataTable.setOrder({	
@@ -51,6 +53,7 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
     	});
     ```
   - 按DataTableID自定义：仅修改当前DataTableID对应的DataTable对象的排序指示符
+    
     旧代码：
     ```JS
     DataTable.sort["datatable,datatable2,datatable4"]={
@@ -59,6 +62,7 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
       order_down:"<img src='images/order_down.gif'/>"
     };
     ```
+   
     更改为：
     ```JS
     DataTable.setOrder({	
@@ -70,6 +74,7 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
     ```
 
 3. 自定义分页，将分页内容定义在 `<div class="customPaging"> </div>`中，可以防止自定义的内容在渲染完成前显示
+
  ```HTML
 <div class="panelBar" style="width: 780px;height: 40px; line-height: 40px;" size="5,10,30,50" pagetheme="no" row="8">
        <div class="customPaging">
