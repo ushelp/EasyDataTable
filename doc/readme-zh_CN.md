@@ -36,21 +36,20 @@ EasyDataTable目前支持两个版本 1.X 和 2.X 版本
 
  2. 如果使用了**自定义排序指示符号**，则以下代码需要进行更换
    - 全局自定义：默认修改所有DataTable对象的排序指示符
-    旧代码：
-    ```JS
+     旧代码：
+     ```JS
     DataTable.order_default="<img src='images/order_default.gif'/>";
     DataTable.order_up="<img src='images/order_up.gif'/>";
     DataTable.order_down="<img src='images/order_down.gif'/>";
     ```
-    更改为：
-    ```JS
+     更改为：
+     ```JS
     DataTable.setOrder({	
     			order_default:"<img src='easydatatable/images/order_default.gif'/>",
     			order_up:"<img src='easydatatable/images/order_up.gif'/>",
     			order_down:"<img src='easydatatable/images/order_down.gif'/>"
     		});
     ```
-    
    - 按DataTableID自定义：仅修改当前DataTableID对应的DataTable对象的排序指示符
     旧代码：
     ```JS
