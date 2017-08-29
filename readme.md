@@ -39,7 +39,7 @@ EasyDataTable aka DataTable, is based on pure Ajax jQuery pagination plugin supp
 如果您有更好意见，建议或想法，请联系我。
 
 
-### [The official home page](http://www.easyproject.cn/easydatatable/en/index.jsp The official home page')
+### [The official home page](http://www.easyproject.cn/easydatatable/en/index.jsp)
 
 [Comments](http://www.easyproject.cn/easydatatable/en/index.jsp#donation 'Comments')
 
